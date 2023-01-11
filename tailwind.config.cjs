@@ -41,6 +41,10 @@ const themeSwapper = require('tailwindcss-theme-swapper')({
 module.exports = {
   content: ['./src/**/*.{jsx,tsx}'],
   theme: {
+    fontFamily: {
+      roboto: ['Roboto', 'sans-serif'],
+      dm: ['DM Sans', 'sans-serif'],
+    },
     screens: {
       xxs: '25em',
       xs: '31.25em',
