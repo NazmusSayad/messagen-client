@@ -1,0 +1,45 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "watch": "tsc --watch",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "latest",
+    "css-reset-plus": "latest",
+    "error-boundary-react": "latest",
+    "get-classnames": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-redux": "latest",
+    "react-router-dom": "latest",
+    "use-react-api": "latest",
+    "vite-vscode": "latest"
+  },
+  "devDependencies": {
+    "@honkhonk/vite-plugin-svgr": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "postcss-preset-env": "latest",
+    "sass": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vite-pwa": "latest"
+  },
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      "last 5 version",
+      "> 1%",
+      "IE 11"
+    ]
+  }
+}
