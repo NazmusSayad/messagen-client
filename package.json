@@ -2,32 +2,32 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "watch": "tsc --watch",
+    "tsc": "tsc --watch",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "latest",
-    "css-reset-plus": "latest",
     "error-boundary-react": "latest",
     "get-classnames": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-redux": "latest",
     "react-router-dom": "latest",
-    "tailwindcss-theme-swapper": "^0.6.2",
-    "use-react-api": "latest",
-    "vite-vscode": "latest"
+    "use-react-api": "latest"
   },
   "devDependencies": {
+    "vite-vscode": "latest",
+    "css-reset-plus": "latest",
     "@honkhonk/vite-plugin-svgr": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
+    "tailwindcss-theme-swapper": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
     "postcss-preset-env": "latest",
     "sass": "latest",
-    "tailwindcss": "^3.2.4",
+    "tailwindcss": "latest",
     "typescript": "latest",
     "vite": "latest",
     "vite-pwa": "latest"

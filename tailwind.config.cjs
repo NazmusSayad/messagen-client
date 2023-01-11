@@ -1,6 +1,4 @@
-/** @type {import('tailwindcss').Config} */
-
-const baseColors = [
+const colors = [
   '#131517',
   '#1E1F25',
   '#282932',
@@ -12,11 +10,11 @@ const baseColors = [
   '#f9fbff',
 ]
 
-const baseColorsObj = Object.fromEntries(
-  baseColors.map((color, ind) => [10 - (ind + 1), color])
+const lightColorsObj = Object.fromEntries(
+  colors.map((color, ind) => [10 - (ind + 1), color])
 )
 const darkColorsObj = Object.fromEntries(
-  baseColors.map((color, ind) => [ind + 1, color])
+  colors.map((color, ind) => [ind + 1, color])
 )
 
 const themeSwapper = require('tailwindcss-theme-swapper')({
@@ -25,7 +23,7 @@ const themeSwapper = require('tailwindcss-theme-swapper')({
       name: 'base',
       selectors: [':root'],
       theme: {
-        colors: { clr: baseColorsObj },
+        colors: { clr: lightColorsObj },
       },
     },
     {
@@ -56,4 +54,7 @@ module.exports = {
     },
   },
   plugins: [themeSwapper],
+  corePlugins: {
+    preflight: false,
+  },
 }

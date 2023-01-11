@@ -1,13 +1,10 @@
-import './core'
-
 import React from 'react'
 import { Provider } from 'react-redux'
 import { createRoot } from 'react-dom/client'
 import store from '$store'
 
 import 'css-reset-plus'
-import './styles/index.scss'
-import './tailwind.css'
+import './styles/index.css'
 import App from './App'
 import ErrorBoundary from 'error-boundary-react'
 

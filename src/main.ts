@@ -8,3 +8,5 @@ declare global {
   var $store: typeof store
   var $cn: typeof getClassName
 }
+
+import './index'
