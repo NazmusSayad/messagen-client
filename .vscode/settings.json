@@ -1,0 +1,34 @@
+{
+  "path-autocomplete.pathMappings": {
+    "$slice": "${folder}/src/store/slice",
+    "$api": "${folder}/src/api",
+    "$assets": "${folder}/src/assets",
+    "$components": "${folder}/src/components",
+    "$config": "${folder}/src/config",
+    "$data": "${folder}/src/data",
+    "$features": "${folder}/src/features",
+    "$hooks": "${folder}/src/hooks",
+    "$layouts": "${folder}/src/layouts",
+    "$pages": "${folder}/src/pages",
+    "$store": "${folder}/src/store",
+    "$styles": "${folder}/src/styles",
+    "$utils": "${folder}/src/utils",
+    "$src": "${folder}/src"
+  },
+  "path-intellisense.pathMappings": {
+    "$slice": "${workspaceFolder}/src/store/slice",
+    "$api": "${workspaceFolder}/src/api",
+    "$assets": "${workspaceFolder}/src/assets",
+    "$components": "${workspaceFolder}/src/components",
+    "$config": "${workspaceFolder}/src/config",
+    "$data": "${workspaceFolder}/src/data",
+    "$features": "${workspaceFolder}/src/features",
+    "$hooks": "${workspaceFolder}/src/hooks",
+    "$layouts": "${workspaceFolder}/src/layouts",
+    "$pages": "${workspaceFolder}/src/pages",
+    "$store": "${workspaceFolder}/src/store",
+    "$styles": "${workspaceFolder}/src/styles",
+    "$utils": "${workspaceFolder}/src/utils",
+    "$src": "${workspaceFolder}/src"
+  }
+}

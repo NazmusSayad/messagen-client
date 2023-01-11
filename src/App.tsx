@@ -1,7 +1,5 @@
-import InitialApp from '$features/_InitialApp/InitialApp'
-
 const App = () => {
-  return <InitialApp />
+  return <></>
 }
 
 export default App

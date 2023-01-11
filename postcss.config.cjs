@@ -1,7 +1,7 @@
 const postcssPresetEnv = require('postcss-preset-env')
 const isDevMode = process.env.NODE_ENV === 'development'
 
-const plugins = []
+const plugins = [require('tailwindcss')]
 
 if (!isDevMode) {
   plugins.push(

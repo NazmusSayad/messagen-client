@@ -7,6 +7,7 @@ import store from '$store'
 
 import 'css-reset-plus'
 import './styles/index.scss'
+import './tailwind.css'
 import App from './App'
 import ErrorBoundary from 'error-boundary-react'
 
