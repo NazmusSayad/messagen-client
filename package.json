@@ -15,6 +15,7 @@
     "react-dom": "latest",
     "react-redux": "latest",
     "react-router-dom": "latest",
+    "tailwindcss-theme-swapper": "^0.6.2",
     "use-react-api": "latest",
     "vite-vscode": "latest"
   },
@@ -26,6 +27,9 @@
     "@vitejs/plugin-react": "latest",
     "postcss-preset-env": "latest",
     "sass": "latest",
+    "tailwindcss": "^3.2.4",
+    "tailwindcss-themeable": "^1.3.0",
+    "tailwindcss-themer": "^2.0.3",
     "typescript": "latest",
     "vite": "latest",
     "vite-pwa": "latest"
