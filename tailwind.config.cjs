@@ -1,3 +1,5 @@
+/** @type {import('tailwindcss').Config} */
+
 const colors = [
   '#131517',
   '#1E1F25',
@@ -37,7 +39,11 @@ const themeSwapper = require('tailwindcss-theme-swapper')({
 })
 
 module.exports = {
-  content: ['./src/**/*.{jsx,tsx}'],
+  content: {
+    files: ['./src/**/*.{jsx,tsx}'],
+    transform: require('tailwind-variant-group').default,
+  },
+
   theme: {
     fontFamily: {
       roboto: ['Roboto', 'sans-serif'],

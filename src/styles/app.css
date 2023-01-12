@@ -12,6 +12,6 @@
   }
 
   .wrapper {
-    @apply w-full max-w-[144rem] my-auto;
+    @apply w-full max-w-[144rem] mx-auto;
   }
 }
