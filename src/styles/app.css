@@ -4,7 +4,7 @@
   }
 
   body {
-    @apply bg-clr-1 text-clr-9 font-roboto;
+    @apply bg-clr-1 text-clr-9  font-roboto overflow-x-hidden;
   }
 
   #Root {

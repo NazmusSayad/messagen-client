@@ -5,3 +5,14 @@
 .heroBgImg {
   background-image: url('$assets/bg-1.jpg');
 }
+
+.humburgerActive {
+  transform: translateX(-100%);
+  $padding: 8rem;
+  width: min(min(32rem - $padding, 100vw - $padding), 100vw - $padding);
+  transition: width 0.2s ease-in-out, transform 0.125s ease-in-out;
+}
+
+.humburgerInactive {
+  transition-property: transform;
+}

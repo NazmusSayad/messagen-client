@@ -6,6 +6,8 @@ const LandingPage = () => {
   return (
     <RootLayout className={css.LandingPage}>
       <Hero />
+      
+      Hello
     </RootLayout>
   )
 }

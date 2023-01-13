@@ -39,6 +39,7 @@ const themeSwapper = require('tailwindcss-theme-swapper')({
 })
 
 module.exports = {
+  // mode: 'jit',
   content: {
     files: ['./src/**/*.{jsx,tsx}'],
     transform: require('tailwind-variant-group').default,
