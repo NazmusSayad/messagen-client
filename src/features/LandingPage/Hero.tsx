@@ -1,5 +1,7 @@
-import Header from './Header'
 import css from './index.module.scss'
+import Nav from './Nav'
+import HeroMain from './HeroMain'
+import Wrapper from '$layouts/Wrapper'
 
 const Hero = () => {
   return (
@@ -11,7 +13,11 @@ const Hero = () => {
         )}
       />
 
-      <Header />
+      <Nav />
+
+      <Wrapper>
+        <HeroMain />
+      </Wrapper>
     </div>
   )
 }

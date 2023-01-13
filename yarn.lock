@@ -1737,10 +1737,10 @@ tailwind-group-variant@^1.0.0:
   dependencies:
     "@babel/runtime" "^7.18.9"
 
-tailwind-variant-group@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/tailwind-variant-group/-/tailwind-variant-group-1.0.1.tgz#ecf2eac4d84500b55f4a3be036348978c772d01f"
-  integrity sha512-N/H8yDCARwul+UrnASrp73IvSoULtXABu5JkrNGVgVGJjX750tIclb6W+ZWrQKwYYdGJUNceZ/qdRVhIHE+aIQ==
+tailwind-variant-group@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/tailwind-variant-group/-/tailwind-variant-group-1.0.4.tgz#e99d329d25ff7b14d51c94d61be3c6d8ee1d4237"
+  integrity sha512-DtRmsL2p9799rOZ0psouECkqezL01QnsqwfBYZlk+lbd8G+X9c0oPz9CmErSdiT30QXzO1VM6xK/CqYZtAYf1w==
 
 tailwindcss-theme-swapper@^0.6.2:
   version "0.6.2"

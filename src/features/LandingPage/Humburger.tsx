@@ -14,7 +14,7 @@ const Humburger = ({
     <BlankButton
       {...props}
       className={$cn.tw(
-        'relative z-50 w-10 h-10 flex flex-col justify-around',
+        'relative z-50 w-9 h-9 flex flex-col justify-around',
         'md:hidden',
         className
       )}

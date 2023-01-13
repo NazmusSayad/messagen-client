@@ -16,3 +16,10 @@
 .humburgerInactive {
   transition-property: transform;
 }
+
+.heroH1 {
+  background: linear-gradient(currentColor, #aaa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

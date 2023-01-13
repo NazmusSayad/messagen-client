@@ -1,0 +1,13 @@
+.Button {
+  @apply py-3 px-10
+  text-[1.55rem]
+  rounded-2xl
+  text-clr-01
+  transition-colors
+  border-transparent
+  bg-transparent;
+}
+
+.outline {
+  @apply hover:(bg-clr-01 text-clr-010);
+}

@@ -2,6 +2,3 @@
 
 @import './fonts.css';
 @import './app.css';
-
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';

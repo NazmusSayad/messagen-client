@@ -1,23 +1,25 @@
-/** @type {import('tailwindcss').Config} */
+const generateColorObj = (invert) => {
+  const colors = [
+    '#131517',
+    '#1E1F25',
+    '#282932',
+    '#606389',
+    '#4569c4',
+    '#296EFF',
+    '#5f93ff',
+    '#94b7ff',
+    '#cadbff',
+    '#e2ebff',
+    '#f9fbff',
+  ]
+  const output = {}
+  ;(invert ? colors.reverse() : colors).forEach((clr, ind) => {
+    output[ind] = clr
+    output['0' + ind] = clr
+  })
 
-const colors = [
-  '#131517',
-  '#1E1F25',
-  '#282932',
-  '#606389',
-  '#296EFF',
-  '#94b7ff',
-  '#cadbff',
-  '#e2ebff',
-  '#f9fbff',
-]
-
-const lightColorsObj = Object.fromEntries(
-  colors.map((color, ind) => [10 - (ind + 1), color])
-)
-const darkColorsObj = Object.fromEntries(
-  colors.map((color, ind) => [ind + 1, color])
-)
+  return output
+}
 
 const themeSwapper = require('tailwindcss-theme-swapper')({
   themes: [
@@ -25,21 +27,22 @@ const themeSwapper = require('tailwindcss-theme-swapper')({
       name: 'base',
       selectors: [':root'],
       theme: {
-        colors: { clr: lightColorsObj },
+        colors: { clr: generateColorObj(true) },
       },
     },
     {
       name: 'dark',
       selectors: ['.theme-dark'],
       theme: {
-        colors: { clr: darkColorsObj },
+        colors: { clr: generateColorObj(false) },
       },
     },
   ],
 })
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  // mode: 'jit',
+  mode: 'jit',
   content: {
     files: ['./src/**/*.{jsx,tsx}'],
     transform: require('tailwind-variant-group').default,
@@ -48,6 +51,7 @@ module.exports = {
   theme: {
     fontFamily: {
       roboto: ['Roboto', 'sans-serif'],
+      rubik: ['Rubik', 'sans-serif'],
       dm: ['DM Sans', 'sans-serif'],
     },
     screens: {
