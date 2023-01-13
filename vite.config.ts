@@ -16,7 +16,7 @@ const plugins = [
   react(),
   // @ts-ignore
   svgr.default(),
-  vitePWA(),
+  // vitePWA(),
   viteVSCode(),
 ]
 
