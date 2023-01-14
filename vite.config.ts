@@ -10,7 +10,7 @@ const srcDir = path.resolve('./src')
 export default defineConfig({
   plugins: [
     react(),
-    vitePWA(),
+    // vitePWA(),
     viteVSCode(),
     // @ts-ignore
     svgr.default(),
