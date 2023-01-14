@@ -1,0 +1,41 @@
+@use 'sass:math';
+$REM: 10;
+
+@function px-to-rem($px) {
+  $rems: math.div($px, $REM) * 1rem;
+  @return $rems;
+}
+
+@function formatParam($value) {
+  $noUnit: math.div($value, ($value * 0 + 1));
+  @return $noUnit * $REM;
+}
+
+@function fluid($min-size, $max-size, $max-breakpoint: 2000) {
+  $min-breakpoint: 300;
+  $min-size: formatParam($min-size);
+  $max-size: formatParam($max-size);
+
+  $slope: math.div($max-size - $min-size, $max-breakpoint - $min-breakpoint);
+  $slope-to-unit: $slope * 100;
+  $intercept-rem: px-to-rem($min-size - $slope * $min-breakpoint);
+  $min-size-rem: px-to-rem($min-size);
+  $max-size-rem: px-to-rem($max-size);
+  @return clamp(
+    #{$min-size-rem},
+    #{$slope-to-unit}vw + #{$intercept-rem},
+    #{$max-size-rem}
+  );
+}
+
+$fluid-97: fluid(9.2rem, 10.2rem);
+$fluid-61: fluid(5.75rem, 6.45rem);
+$fluid-48: fluid(4.5rem, 5.1rem);
+$fluid-34: fluid(3.15rem, 3.55rem);
+$fluid-24: fluid(2.2rem, 2.6rem);
+$fluid-20: fluid(1.85rem, 2.15rem);
+$fluid-16: fluid(1.5rem, 1.7rem);
+$fluid-15: fluid(1.4rem, 1.6rem);
+$fluid-14: fluid(1.3rem, 1.5rem);
+$fluid-13: fluid(1.2rem, 1.4rem);
+$fluid-12: fluid(1.1rem, 1.3rem);

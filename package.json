@@ -7,32 +7,28 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.1",
-    "error-boundary-react": "^1.0.1",
-    "get-classnames": "^1.0.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-redux": "^8.0.5",
-    "react-router-dom": "^6.6.2",
-    "tailwind-variant-group": "^1.0.4",
-    "use-react-api": "^1.0.17"
+    "@reduxjs/toolkit": "latest",
+    "css-reset-plus": "latest",
+    "error-boundary-react": "latest",
+    "get-classnames": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-redux": "latest",
+    "react-router-dom": "latest",
+    "use-react-api": "latest"
   },
   "devDependencies": {
-    "@honkhonk/vite-plugin-svgr": "^1.1.0",
-    "@types/node": "^18.11.18",
-    "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.10",
-    "@vitejs/plugin-react": "^3.0.1",
-    "css-reset-plus": "^1.0.3",
-    "postcss-preset-env": "^7.8.3",
-    "sass": "^1.57.1",
-    "tailwind-group-variant": "^1.0.0",
-    "tailwindcss": "^3.2.4",
-    "tailwindcss-theme-swapper": "^0.6.2",
-    "typescript": "^4.9.4",
-    "vite": "^4.0.4",
-    "vite-pwa": "^1.0.2",
-    "vite-vscode": "^1.0.5"
+    "@honkhonk/vite-plugin-svgr": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react-swc": "latest",
+    "postcss-preset-env": "latest",
+    "sass": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vite-pwa": "latest",
+    "vite-vscode": "latest"
   },
   "browserslist": {
     "development": [

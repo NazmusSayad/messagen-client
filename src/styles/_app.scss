@@ -1,0 +1,22 @@
+@use './core' as *;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--c10);
+  background: var(--c0);
+}
+
+[theme] {
+  color: var(--c10);
+}
+
+#Root {
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  overflow-x: hidden;
+}

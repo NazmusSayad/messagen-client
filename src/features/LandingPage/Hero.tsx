@@ -1,17 +1,13 @@
-import css from './index.module.scss'
-import Nav from './Nav'
-import HeroMain from './HeroMain'
 import Wrapper from '$layouts/Wrapper'
+import css from './Hero.module.scss'
+import HeroMain from './HeroMain'
+import Nav from './Nav'
+import bgImg from '$assets/hero-bg.webp'
 
 const Hero = () => {
   return (
-    <div className={`min-h-screen text-clr-1 bg-clr-9 relative isolate`}>
-      <div
-        className={$cn(
-          css.heroBgImg,
-          'inset-0 absolute bg-center bg-cover -z-50 opacity-30'
-        )}
-      />
+    <div className={css.Hero} {...{ theme: 'dark' }}>
+      <img className={css.Img} src={bgImg} alt="" />
 
       <Nav />
 

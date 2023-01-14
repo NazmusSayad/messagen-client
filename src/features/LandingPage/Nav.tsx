@@ -1,12 +1,13 @@
 import { useState } from 'react'
+import css from './Nav.module.scss'
 import Wrapper from '$layouts/Wrapper'
-import Humburger from './Humburger'
+import NavHumburger from './NavHumburger'
 
 const Nav = () => {
   const [isActive, setIsActive] = useState(false)
 
   return (
-    <div className={'bg-clr-9/30 backdrop-blur-[0.1rem]'}>
+    <div className={css.Nav}>
       <style>
         {isActive &&
           `html {
@@ -18,31 +19,23 @@ const Nav = () => {
           }`}
       </style>
 
-      <Wrapper className={'flex justify-between items-center py-6 gap-24'}>
-        <h3 className={'text-clr-05 font-dm text-[2rem]'}>Messagen</h3>
+      <Wrapper className={css.wrapper}>
+        <h3 className={css.brand}>Messagen</h3>
 
-        <Humburger
+        <NavHumburger
           active={isActive}
           onClick={() => setIsActive((prev) => !prev)}
         />
 
         <div
           onClick={() => setIsActive(false)}
-          className={$cn(
-            'h-screen w-screen fixed inset-0 bg-clr-8/70 backdrop-blur-sm transition-opacity duration-300',
-            'opacity-0 invisible',
-            isActive && 'opacity-100 !visible',
-            'md:hidden'
-          )}
+          className={css.backdrop}
+          is-active={isActive ? '' : undefined}
         ></div>
 
         <div
-          className={$cn.tw(
-            'w-full transition-[transform]',
-            'max-md:(h-screen translate-x-full fixed right-0 top-0 bg-clr-10 bottom-0 max-w-lg p-8 pt-24 shadow-clr-08 shadow-xl)',
-            isActive && 'max-md:(translate-x-0)',
-            'md:(flex items-center justify-between)'
-          )}
+          className={css.listContainer}
+          is-active={isActive ? '' : undefined}
         >
           <div>Links</div>
           <div>Cta</div>

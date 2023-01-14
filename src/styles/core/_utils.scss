@@ -1,0 +1,36 @@
+@use 'sass:string';
+
+@mixin transition($props, $duration: 100ms, $timing: ease-in-out) {
+  transition-property: string.unquote($props);
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+}
+
+@mixin svg-size($size) {
+  max-width: $size;
+  max-height: $size;
+  min-width: $size;
+  min-height: $size;
+  width: $size;
+  height: $size;
+}
+
+@mixin theme($theme: dark) {
+  [theme='#{$theme}'] &,
+  &[theme='#{$theme}'] {
+    @content;
+  }
+}
+
+@mixin focus-true {
+  &:focus,
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin focus-false {
+  &:focus:not(:focus-visible) {
+    @content;
+  }
+}

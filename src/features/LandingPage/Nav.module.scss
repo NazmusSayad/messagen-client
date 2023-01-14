@@ -1,0 +1,67 @@
+.Nav {
+  backdrop-filter: blur(0.1rem);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+
+.backdrop {
+  inset: 0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  backdrop-filter: blur(3rem);
+  opacity: 0;
+  visibility: hidden;
+  background-color: var(--c2);
+  $transition: opacity 200ms, visibility 200ms;
+  transition: $transition 200ms;
+
+  @include min($md) {
+    display: none;
+  }
+
+  &[is-active] {
+    transition: $transition;
+    visibility: visible;
+    opacity: 0.6;
+  }
+}
+
+.brand{
+  color: var(--c6);
+  
+  
+}
+
+.listContainer {
+  padding-left: 2.5rem;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+
+  @include max($md) {
+    display: block;
+    height: 100vh;
+    transform: translateX(100%);
+    position: fixed;
+    inset: 0;
+    left: auto;
+    width: 100%;
+    max-width: 32rem;
+    padding-top: 4.5rem;
+    transition: transform 200ms;
+    background: var(--c0);
+    box-shadow: 0 0 1.5rem -1.25rem var(--c7);
+  }
+
+  &[is-active] {
+    transform: translateX(0);
+  }
+}

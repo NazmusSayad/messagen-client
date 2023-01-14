@@ -1,3 +1,4 @@
+import css from './RootLayout.module.scss'
 import { PropsWithChildren } from 'react'
 
 const RootLayout = ({
@@ -6,7 +7,7 @@ const RootLayout = ({
   ...props
 }: PropsWithChildren<any>) => {
   return (
-    <div {...props} className={$cn('min-h-[100%]', className)}>
+    <div {...props} className={$cn(css.RootLayout, className)}>
       {children}
     </div>
   )

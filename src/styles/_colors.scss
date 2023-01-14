@@ -1,0 +1,38 @@
+@use 'sass:list';
+
+$colors: '#131517', '#1E1F25', '#282932', '#606389', '#4569c4', '#296EFF',
+  '#5f93ff', '#94b7ff', '#cadbff', '#e2ebff', '#f9fbff';
+
+@mixin colors-base {
+  @each $color in $colors {
+    $index: list.index($colors, $color) - 1;
+    --c#{10 - $index}: #{$color};
+    --sc#{10 - $index}: #{$color};
+  }
+}
+
+@mixin colors-dark {
+  @each $color in $colors {
+    $index: list.index($colors, $color) - 1;
+    --c#{$index}: #{$color};
+  }
+}
+
+:root {
+  @include colors-base;
+  --c-err: #ee333d;
+}
+
+[theme='dark'] {
+  @include colors-dark;
+}
+
+[theme='light'] {
+  @include colors-base;
+}
+
+[theme='auto'] {
+  @media (prefers-color-scheme: dark) {
+    @include colors-dark;
+  }
+}

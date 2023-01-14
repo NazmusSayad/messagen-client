@@ -1,44 +1,78 @@
-import React from 'react'
 import css from './Button.module.scss'
+
+export const Button = ({
+  blank = false,
+  disabled,
+  className,
+  children,
+  loading = false,
+  loadingElement = 'Loading...',
+  ...props
+}: {
+  blank?: boolean
+  disabled?: boolean
+  className?: string | any[]
+  children: any
+  loading?: boolean
+  loadingElement?: any
+  [i: string]: any
+}) => {
+  props.disabled ??= loading
+
+  return (
+    <button
+      {...props}
+      className={$cn(blank || 'button', css.Button, className)}
+    >
+      {loading ? <div className={css.loading}>{loadingElement}</div> : children}
+    </button>
+  )
+}
+
+export const ButtonBlank = ({
+  className,
+  ...props
+}: Parameters<typeof Button>[0]) => {
+  return <Button {...props} className={['focus', className]} blank />
+}
+
+export const ButtonReset = ({
+  className,
+  ...props
+}: Parameters<typeof Button>[0]) => {
+  return (
+    <Button
+      {...props}
+      className={['focus', css.ButtonReset, className]}
+      blank
+    />
+  )
+}
 
 export const ButtonPrimary = ({
   className,
   ...props
-}: React.ComponentProps<'button'>) => {
-  return (
-    <button
-      {...props}
-      className={$cn(
-        css.Button,
-        'bg-clr-05 hover:bg-clr-06 active:bg-clr-07',
-        className
-      )}
-    />
-  )
+}: Parameters<typeof Button>[0]) => {
+  return <Button {...props} className={['button__primary', className]} />
 }
 
 export const ButtonSecondary = ({
   className,
   ...props
-}: React.ComponentProps<'button'>) => {
-  return <button {...props} className={$cn(css.Button, '')} />
+}: Parameters<typeof Button>[0]) => {
+  return <Button {...props} className={['button__secondary', className]} />
 }
 
 export const ButtonOutline = ({
   className,
   ...props
-}: React.ComponentProps<'button'>) => {
-  return (
-    <button
-      {...props}
-      className={$cn.tw(
-        css.Button,
-        'bg-transparent border-solid border-2 border-clr-00 ',
-        // 'hover:(bg-clr-01 text-clr-010)',
-        css.outline,
-        'active:(border-clr-03 bg-clr-03 text-clr-010)',
-        className
-      )}
-    />
-  )
+}: Parameters<typeof Button>[0]) => {
+  return <Button {...props} className={['button__outline', className]} />
+}
+
+export const ButtonRed = ({
+  className,
+  ...props
+}: Parameters<typeof Button>[0]) => {
+  return <Button {...props} className={['button__red', className]} />
 }

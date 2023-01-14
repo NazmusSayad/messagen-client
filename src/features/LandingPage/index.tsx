@@ -1,17 +1,15 @@
 import css from './index.module.scss'
 import RootLayout from '$layouts/RootLayout'
-import { lazy } from 'react'
+import Hero from './Hero'
 
-// import Hero from './Hero'
-const Hero = lazy(() => import('./Hero'))
-
-const LandingPage = () => {
+const index = () => {
   return (
-    <RootLayout className={css.LandingPage}>
+    <RootLayout>
       <Hero />
-      Hello
+      
+      Hello world!
     </RootLayout>
   )
 }
 
-export default LandingPage
+export default index

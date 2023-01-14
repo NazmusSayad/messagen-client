@@ -1,0 +1,20 @@
+.Hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--c0);
+  isolation: isolate;
+
+  :global(.wrapper) {
+    padding: fluid(1rem, 2rem) fluid(1.5rem, 10rem);
+  }
+}
+
+.Img {
+  position: absolute;
+  height: inherit;
+  min-height: inherit;
+  opacity: 0.3;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+}

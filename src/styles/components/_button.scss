@@ -1,0 +1,109 @@
+@use '$styles/core' as *;
+
+@mixin focus-true {
+  &:focus,
+  &:focus-visible {
+    @content;
+  }
+}
+
+@mixin focus-false {
+  &:focus:not(:focus-visible) {
+    @content;
+  }
+}
+
+.button,
+.focus {
+  @include focus-true {
+    outline: 0.15em dashed var(--c5);
+    outline-offset: 0.1em;
+  }
+  @include focus-false {
+    outline: none;
+  }
+}
+
+.button {
+  position: relative;
+  color: var(--clr-text);
+  background-color: var(--clr-bg);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: $fluid-16;
+  padding: 0.45em 1.45em;
+  border-radius: 0.5em;
+  text-decoration: none;
+  line-height: 1.5;
+  border: none;
+  @include transition('background-color');
+
+  &:not([disabled]) {
+    &:hover {
+      background-color: var(--clr-bg-hover, var(--clr-bg));
+    }
+
+    &:active {
+      background-color: var(--clr-bg-active, var(--clr-bg));
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.65;
+  }
+
+  &__primary {
+    --clr-bg: var(--c5);
+    --clr-text: var(--sc0);
+    --clr-bg-hover: var(--sc4);
+    --clr-bg-active: var(--sc6);
+  }
+
+  &__secondary {
+    --clr-bg: var(--sc1);
+    --clr-text: var(--sc10);
+    --clr-bg-hover: var(--sc2);
+    --clr-bg-active: var(--sc3);
+  }
+
+  &__outline {
+    --clr-bg: transparent;
+    --clr-text: var(--c10);
+    --clr-bg-hover: var(--c2);
+    --clr-bg-active: var(--c3);
+
+    &::after {
+      border: 0.15em solid var(--clr-text);
+      border-radius: inherit !important;
+      content: '';
+      display: block;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      @include transition('border');
+    }
+
+    &:hover,
+    &:active {
+      &::after {
+        border-color: transparent;
+      }
+    }
+  }
+
+  &__red {
+    --clr-bg: var(--c-err);
+    --clr-text: var(--sc1);
+    transition-property: opacity;
+
+    &:not([disabled]) {
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:active {
+        opacity: 1;
+      }
+    }
+  }
+}

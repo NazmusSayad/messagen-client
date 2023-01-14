@@ -4,10 +4,7 @@ import { createRoot } from 'react-dom/client'
 import store from '$store'
 
 import 'css-reset-plus'
-import './styles/tw-base.css'
-import './styles/tw-components.css'
-import './styles/tw-utilities.css'
-
+import './styles/index.scss'
 import App from './App'
 import ErrorBoundary from 'error-boundary-react'
 
