@@ -1,3 +1,22 @@
 .Main {
   text-align: center;
 }
+
+.header {
+  margin-top: 5rem;
+  font-size: fluid(4rem, 5rem);
+  line-height: 1.25;
+}
+
+.paragraph {
+  max-width: 60ch;
+  margin-inline: auto;
+  margin-block: fluid(3.5rem, 4rem);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

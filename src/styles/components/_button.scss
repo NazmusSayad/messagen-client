@@ -30,7 +30,7 @@
   background-color: var(--clr-bg);
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
-  font-size: $fluid-16;
+  font-size: $fluid-15;
   padding: 0.45em 1.45em;
   border-radius: 0.5em;
   text-decoration: none;
@@ -68,7 +68,7 @@
 
   &__outline {
     --clr-bg: transparent;
-    --clr-text: var(--c10);
+    --clr-text: var(--c9);
     --clr-bg-hover: var(--c2);
     --clr-bg-active: var(--c3);
 

@@ -1,13 +1,13 @@
 import css from './NavHumburger.module.scss'
 import React from 'react'
-import { ButtonReset } from '$components/Button'
+import { ButtonBlank } from '$components/Button'
 
 const Humburger = ({
   active,
   ...props
 }: React.ComponentProps<'button'> & { active: boolean }) => {
   return (
-    <ButtonReset
+    <ButtonBlank
       {...props}
       is-active={active ? '' : undefined}
       className={css.Humburger}
@@ -15,7 +15,7 @@ const Humburger = ({
       <div />
       <div />
       <div />
-    </ButtonReset>
+    </ButtonBlank>
   )
 }
 

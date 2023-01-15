@@ -3,18 +3,21 @@
   min-height: 100vh;
   background: var(--c0);
   isolation: isolate;
-
-  :global(.wrapper) {
-    padding: fluid(1rem, 2rem) fluid(1.5rem, 10rem);
-  }
+  margin-bottom: 50vmin;
 }
 
 .Img {
   position: absolute;
-  height: inherit;
-  min-height: inherit;
   opacity: 0.3;
-  object-fit: cover;
-  object-position: center;
   z-index: -1;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+
+  img {
+    height: inherit;
+    width: inherit;
+    object-fit: cover;
+    object-position: center;
+  }
 }

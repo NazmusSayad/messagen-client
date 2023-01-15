@@ -1,5 +1,7 @@
 .Nav {
   backdrop-filter: blur(0.1rem);
+  position: relative;
+  z-index: 999;
 }
 
 .wrapper {
@@ -8,8 +10,6 @@
   align-items: center;
   gap: 2rem;
 }
-
-
 
 .backdrop {
   inset: 0;
@@ -34,17 +34,17 @@
   }
 }
 
-.brand{
+.brand {
   color: var(--c6);
-  
-  
+  padding-right: 2rem;
 }
 
 .listContainer {
-  padding-left: 2.5rem;
   flex: 1;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  transition: transform 200ms;
 
   @include max($md) {
     display: block;
@@ -55,13 +55,40 @@
     left: auto;
     width: 100%;
     max-width: 32rem;
-    padding-top: 4.5rem;
-    transition: transform 200ms;
+    padding-top: 5rem;
     background: var(--c0);
     box-shadow: 0 0 1.5rem -1.25rem var(--c7);
+    text-align: center;
   }
 
   &[is-active] {
     transform: translateX(0);
+  }
+
+  @include max($md) {
+    a,
+    button {
+      font-size: $fluid-20;
+    }
+  }
+
+  a {
+    padding: 0;
+
+    @include min($md) {
+      font-size: $fluid-14;
+    }
+  }
+}
+
+.linksContainer {
+  display: flex;
+  column-gap: 2rem;
+  row-gap: 0.5rem;
+
+  @include max($md) {
+    flex-direction: column;
+    margin-bottom: 2.5rem;
+    align-items: center;
   }
 }

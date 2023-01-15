@@ -4,9 +4,8 @@ import Hero from './Hero'
 
 const index = () => {
   return (
-    <RootLayout>
+    <RootLayout className={css.LandingPage}>
       <Hero />
-      
       Hello world!
     </RootLayout>
   )

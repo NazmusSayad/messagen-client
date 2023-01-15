@@ -1,0 +1,30 @@
+.HeroBottom {
+  // position: absolute;
+  bottom: 0;
+  transform: translateY(33%);
+  width: 100%;
+  z-index: -1;
+  padding: fluid(1rem, 4rem) fluid(2rem, 20rem);
+}
+
+.content {
+  position: relative;
+  width: fit-content;
+  margin-inline: auto;
+  max-width: 100rem;
+
+  img {
+    border-radius: fluid(1rem, 3rem);
+    box-shadow: 0 1rem 7.5rem -3rem var(--c0);
+  }
+}
+
+.appScreenshot {
+  position: absolute;
+  padding: fluid(2rem, 8rem);
+  inset: 0;
+  transform: translateY(5%);
+
+  img {
+  }
+}

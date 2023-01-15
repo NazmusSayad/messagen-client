@@ -3,17 +3,22 @@ import css from './Hero.module.scss'
 import HeroMain from './HeroMain'
 import Nav from './Nav'
 import bgImg from '$assets/hero-bg.webp'
+import HeroBottom from './HeroBottom'
 
 const Hero = () => {
   return (
     <div className={css.Hero} {...{ theme: 'dark' }}>
-      <img className={css.Img} src={bgImg} alt="" />
+      <div className={css.Img}>
+        <img src={bgImg} alt="Hero background image..." />
+      </div>
 
       <Nav />
 
       <Wrapper>
         <HeroMain />
       </Wrapper>
+
+      <HeroBottom heroClass={css.Hero} />
     </div>
   )
 }

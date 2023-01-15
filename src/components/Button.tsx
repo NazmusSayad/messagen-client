@@ -29,21 +29,21 @@ export const Button = ({
   )
 }
 
-export const ButtonBlank = ({
+export const ButtonDefault = ({
   className,
   ...props
 }: Parameters<typeof Button>[0]) => {
   return <Button {...props} className={['focus', className]} blank />
 }
 
-export const ButtonReset = ({
+export const ButtonBlank = ({
   className,
   ...props
 }: Parameters<typeof Button>[0]) => {
   return (
     <Button
       {...props}
-      className={['focus', css.ButtonReset, className]}
+      className={['focus', css.ButtonBlank, className]}
       blank
     />
   )
