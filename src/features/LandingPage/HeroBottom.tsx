@@ -1,16 +1,24 @@
 import css from './HeroBottom.module.scss'
 import macWallpeper from '$assets/mac-wallpaper.jpg'
+import appScreenshot from '$assets/app-screenshot.png'
 import { useCallback, useLayoutEffect, useRef } from 'react'
 
 const HeroBottom = ({ heroClass }: { heroClass: string }) => {
+  const bottomImageRef = useRef<HTMLImageElement>()!
   const containerRef = useRef<HTMLDivElement>()!
 
   const handleChange = useCallback(() => {
     const hero = document.querySelector<HTMLDivElement>(`.${heroClass}`)!
     const container = containerRef.current as HTMLDivElement
+    const bottomImg = bottomImageRef.current as HTMLImageElement
+
     const margin =
-      container.offsetTop + container.clientHeight * 1.33 - hero.clientHeight
-    hero.style.marginBottom = `${margin > 0 ? margin : 0}px`
+      container.offsetTop +
+      bottomImg.clientHeight * 1.33 -
+      hero.clientHeight +
+      60
+
+    hero.style.marginBottom = `calc(${margin > 0 ? margin : 0}px - 1.5vh + 1vw)`
   }, [])
 
   useLayoutEffect(() => {
@@ -28,7 +36,8 @@ const HeroBottom = ({ heroClass }: { heroClass: string }) => {
 
         <div className={css.appScreenshot}>
           <img
-            src={macWallpeper}
+            ref={bottomImageRef as any}
+            src={appScreenshot}
             alt="Mac wallpaper..."
             onLoad={handleChange}
           />

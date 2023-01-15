@@ -1,7 +1,7 @@
 .HeroBottom {
-  // position: absolute;
   bottom: 0;
   transform: translateY(33%);
+  margin-top: calc(fluid(2rem, 10rem) * -1);
   width: 100%;
   z-index: -1;
   padding: fluid(1rem, 4rem) fluid(2rem, 20rem);
@@ -21,7 +21,8 @@
 
 .appScreenshot {
   position: absolute;
-  padding: fluid(2rem, 8rem);
+  padding-inline: fluid(4rem, 12rem);
+  padding-top: calc(2vh - 1vw);
   inset: 0;
   transform: translateY(5%);
 
