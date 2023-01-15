@@ -45,6 +45,7 @@
   align-items: center;
   justify-content: space-between;
   transition: transform 200ms;
+  font-size: $fluid-14;
 
   @include max($md) {
     display: block;
@@ -59,32 +60,23 @@
     background: var(--c0);
     box-shadow: 0 0 1.5rem -1.25rem var(--c7);
     text-align: center;
+    font-size: $fluid-18;
   }
 
   &[is-active] {
     transform: translateX(0);
   }
 
-  @include max($md) {
-    a,
-    button {
-      font-size: $fluid-20;
-    }
-  }
-
-  a {
-    padding: 0;
-
-    @include min($md) {
-      font-size: $fluid-14;
-    }
-  }
 }
 
 .linksContainer {
   display: flex;
-  column-gap: 2rem;
   row-gap: 0.5rem;
+  
+  a,
+  button {
+    font-size: inherit;
+  }
 
   @include max($md) {
     flex-direction: column;

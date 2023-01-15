@@ -1,20 +1,6 @@
 @use '$styles/core' as *;
 
-@mixin focus-true {
-  &:focus,
-  &:focus-visible {
-    @content;
-  }
-}
-
-@mixin focus-false {
-  &:focus:not(:focus-visible) {
-    @content;
-  }
-}
-
-.button,
-.focus {
+.buttonFocus {
   @include focus-true {
     outline: 0.15em dashed var(--c5);
     outline-offset: 0.1em;
@@ -24,32 +10,60 @@
   }
 }
 
-.button {
-  position: relative;
-  color: var(--clr-text);
-  background-color: var(--clr-bg);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  font-size: $fluid-15;
-  padding: 0.45em 1.45em;
-  border-radius: 0.5em;
-  text-decoration: none;
-  line-height: 1.5;
-  border: none;
-  @include transition('background-color');
-
-  &:not([disabled]) {
+.buttonHover {
+  @include not-disabled {
     &:hover {
+      color: var(--clr-text-hover, var(--clr-text));
       background-color: var(--clr-bg-hover, var(--clr-bg));
     }
 
     &:active {
+      color: var(--clr-text-active, var(--clr-text));
       background-color: var(--clr-bg-active, var(--clr-bg));
     }
   }
+}
+
+.button {
+  position: relative;
+  color: var(--clr-text);
+  background-color: var(--clr-bg);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: $fluid-15;
+  padding: 0.5em 1.5em;
+  border-radius: 0.5em;
+  text-decoration: none;
+  line-height: 1.5;
+  border: none;
+  @include transition('color opacity background-color');
 
   &[disabled] {
     opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  &__blank {
+    background: transparent;
+    border: none;
+  }
+
+  &__text {
+    --clr-text: var(--c9);
+    --clr-text-active: var(--c10);
+    padding: 0.2em 1em;
+
+    &:hover {
+      opacity: 0.85;
+      text-decoration: underline;
+    }
+
+    &.active {
+      opacity: 0.85;
+      text-decoration: none;
+      --clr-text: var(--c8);
+      --clr-text-active: var(--c8);
+    }
   }
 
   &__primary {
@@ -83,10 +97,12 @@
       @include transition('border');
     }
 
-    &:hover,
-    &:active {
-      &::after {
-        border-color: transparent;
+    @include not-disabled {
+      &:hover,
+      &:active {
+        &::after {
+          border-color: transparent;
+        }
       }
     }
   }
@@ -94,7 +110,6 @@
   &__red {
     --clr-bg: var(--c-err);
     --clr-text: var(--sc1);
-    transition-property: opacity;
 
     &:not([disabled]) {
       &:hover {

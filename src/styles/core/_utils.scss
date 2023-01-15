@@ -34,3 +34,9 @@
     @content;
   }
 }
+
+@mixin not-disabled {
+  &:not([disabled]) {
+    @content;
+  }
+}

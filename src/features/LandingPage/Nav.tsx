@@ -2,7 +2,7 @@ import { useState } from 'react'
 import css from './Nav.module.scss'
 import Wrapper from '$layouts/Wrapper'
 import NavHumburger from './NavHumburger'
-import { ButtonOutline } from '$components/Button'
+import { ButtonBlank, ButtonOutline, ButtonText } from '$components/Button'
 
 const Nav = () => {
   const [isActive, setIsActive] = useState(false)
@@ -39,22 +39,22 @@ const Nav = () => {
           is-active={isActive ? '' : undefined}
         >
           <div className={css.linksContainer}>
-            <a className={'button'} href="#">
+            <ButtonText nav to="/product">
               Product
-            </a>
-            <a className={'button'} href="#">
+            </ButtonText>
+            <ButtonText nav to="/pricing">
               Pricing
-            </a>
-            <a className={'button'} href="#">
+            </ButtonText>
+            <ButtonText nav to="/download">
               Download
-            </a>
-            <a className={'button'} href="#">
+            </ButtonText>
+            <ButtonText nav to="/contact">
               Contact
-            </a>
+            </ButtonText>
           </div>
 
           <div>
-            <ButtonOutline>Let's go</ButtonOutline>
+            <ButtonOutline to="/signup">Let's go</ButtonOutline>
           </div>
         </div>
       </Wrapper>
