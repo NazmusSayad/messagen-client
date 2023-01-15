@@ -21,7 +21,9 @@ const Nav = () => {
       </style>
 
       <Wrapper className={css.wrapper}>
-        <h3 className={css.brand}>Messagen</h3>
+        <ButtonBlank to="/" className={css.brand}>
+          <h3>Messagen</h3>
+        </ButtonBlank>
 
         <NavHumburger
           active={isActive}
@@ -53,7 +55,7 @@ const Nav = () => {
             </ButtonText>
           </div>
 
-          <div>
+          <div className={css.ctaContainer}>
             <ButtonOutline to="/signup">Let's go</ButtonOutline>
           </div>
         </div>

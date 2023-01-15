@@ -1,3 +1,41 @@
 .Stats {
-  padding-top: calc(2vh - 1vw);
+  padding-top: calc(2vh - 1vw + 5rem);
+}
+
+.content {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.Item {
+  --line-width: 0.33rem;
+  position: relative;
+  padding: 0.2rem calc(var(--line-width) + 1rem);
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    right: auto;
+    width: var(--line-width);
+    background: var(--c5);
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  h2 {
+    color: var(--c5);
+  }
+}
+
+.bottom {
+  overflow: hidden;
+  height: 5ch;
 }

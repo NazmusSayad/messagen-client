@@ -28,12 +28,7 @@ export const Button = ({
   props.disabled ??= loading
   const allProps = {
     ...props,
-    className: $cn(
-      defaultStyles || 'button',
-      'buttonFocus',
-      'buttonHover',
-      className
-    ),
+    className: $cn(defaultStyles || 'button', 'buttonFocus', className),
   }
 
   if (href) return <a {...allProps} href={href} children={children} />

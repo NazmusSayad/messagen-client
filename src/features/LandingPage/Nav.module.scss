@@ -36,7 +36,7 @@
 
 .brand {
   color: var(--c6);
-  padding-right: 2rem;
+  margin-right: 2rem;
 }
 
 .listContainer {
@@ -66,15 +66,13 @@
   &[is-active] {
     transform: translateX(0);
   }
-
 }
 
 .linksContainer {
   display: flex;
   row-gap: 0.5rem;
-  
-  a,
-  button {
+
+  a {
     font-size: inherit;
   }
 
@@ -82,5 +80,13 @@
     flex-direction: column;
     margin-bottom: 2.5rem;
     align-items: center;
+  }
+}
+
+.ctaContainer {
+  @include max($md) {
+    a {
+      font-size: inherit;
+    }
   }
 }
