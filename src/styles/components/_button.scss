@@ -1,5 +1,6 @@
 @use '$styles/core' as *;
 
+.button,
 .buttonFocus {
   @include focus-true {
     outline: 0.15em dashed var(--c5);

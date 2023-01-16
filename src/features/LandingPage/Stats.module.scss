@@ -1,16 +1,17 @@
 .Stats {
-  padding-top: calc(2vh - 1vw + 5rem);
+  max-width: 100rem;
 }
 
 .content {
+  padding-top: calc(2vh - 1vw + 5rem);
   display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
 }
 
 .Item {
   --line-width: 0.33rem;
+  max-width: 20rem;
   position: relative;
   padding: 0.2rem calc(var(--line-width) + 1rem);
 

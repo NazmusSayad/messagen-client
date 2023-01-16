@@ -1,13 +1,11 @@
 import { Link, NavLink } from 'react-router-dom'
 import css from './Button.module.scss'
 
-type ButtonProps = Parameters<typeof Button>[0]
-type ButtonCustomProps = {
+type ButtonProps = {
   children: any
   default?: boolean
   className?: string | any[]
   loading?: boolean
-  loadingElement?: any
   href?: string
   to?: string
   nav?: boolean
@@ -19,16 +17,14 @@ export const Button = ({
   className,
   children,
   loading = false,
-  loadingElement = 'Loading...',
   href,
   to,
   nav,
   ...props
-}: ButtonCustomProps) => {
-  props.disabled ??= loading
-  const allProps = {
+}: ButtonProps) => {
+  const allProps: any = {
     ...props,
-    className: $cn(defaultStyles || 'button', 'buttonFocus', className),
+    className: $cn(defaultStyles || 'button', className),
   }
 
   if (href) return <a {...allProps} href={href} children={children} />
@@ -40,9 +36,10 @@ export const Button = ({
     )
   }
 
+  allProps.disabled ??= loading
   return (
     <button {...allProps}>
-      {loading ? <div className={css.loading}>{loadingElement}</div> : children}
+      {loading ? <div className={css.loading}>Loading...</div> : children}
     </button>
   )
 }
