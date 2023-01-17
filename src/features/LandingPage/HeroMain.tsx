@@ -12,8 +12,8 @@ const HeroMain = () => {
       </p>
 
       <div className={css.buttons}>
-        <ButtonOutline to='about'>Learn more</ButtonOutline>
-        <ButtonPrimary>Start for free</ButtonPrimary>
+        <ButtonOutline to="about">Learn more</ButtonOutline>
+        <ButtonPrimary to="signup">Start for free</ButtonPrimary>
       </div>
     </div>
   )
