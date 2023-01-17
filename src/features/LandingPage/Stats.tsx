@@ -16,8 +16,8 @@ const StatsItem = ({ number, header, paragraph }) => {
 
 const Stats = () => {
   return (
-    <Wrapper className={css.Stats} id="learn-more">
-      <div className={css.content}>
+    <Wrapper className={css.Stats}>
+      <div className={css.content} id="learn-more">
         <StatsItem
           number="850K+"
           header="Downloads"

@@ -10,6 +10,8 @@ const index = () => {
       <Hero />
       <Stats />
       <FeaturesOverview />
+
+      <div style={{ height: '500vh' }} />
     </RootLayout>
   )
 }
