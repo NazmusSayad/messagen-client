@@ -40,6 +40,7 @@ const HeroBottom = ({ heroClass }: { heroClass: string }) => {
             src={appScreenshot}
             alt="Mac wallpaper..."
             onLoad={handleChange}
+            onLoadStart={handleChange}
           />
         </div>
       </div>
