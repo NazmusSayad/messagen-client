@@ -1,6 +1,6 @@
 import css from './HeroBottom.module.scss'
 import macWallpeper from '$assets/mac-wallpaper.jpg'
-import appScreenshot from '$assets/app-screenshot.png'
+import appScreenshot from '$assets/app-screenshot.webp'
 import { useCallback, useLayoutEffect, useRef } from 'react'
 
 const HeroBottom = ({ heroClass }: { heroClass: string }) => {
