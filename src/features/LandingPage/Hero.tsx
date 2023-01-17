@@ -2,7 +2,7 @@ import Wrapper from '$layouts/Wrapper'
 import css from './Hero.module.scss'
 import HeroMain from './HeroMain'
 import Nav from './Nav'
-import bgImg from '$assets/hero-bg-2.jpg'
+import bgImg from '$assets/hero-bg.jpg'
 import HeroBottom from './HeroBottom'
 
 const Hero = () => {
