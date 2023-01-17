@@ -18,16 +18,22 @@ const Stats = () => {
   return (
     <Wrapper className={css.Stats}>
       <div className={css.content}>
-        <StatsItem number="850K+" header="Downloads" paragraph="Hello world" />
+        <StatsItem
+          number="850K+"
+          header="Downloads"
+          paragraph="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium provident porro voluptate, suscipit excepturi voluptatum hic eveniet quam amet tempore, facilis dolores veniam voluptates exercitationem ratione. Quas, sit sunt."
+        />
+
         <StatsItem
           number="700K+"
           header="Active users"
-          paragraph="Hello world"
+          paragraph="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium provident porro voluptate, suscipit excepturi voluptatum hic eveniet quam amet tempore, facilis dolores veniam voluptates exercitationem ratione. Quas, sit sunt."
         />
+
         <StatsItem
           number="24"
           header="Hours Support"
-          paragraph="Hello world asdf asdf asd fHello world asdf asdf asd fHello world asdf asdf asd fHello world asdf asdf asd fHello world asdf asdf asd fHello world asdf asdf asd fHello world asdf asdf asd f"
+          paragraph="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium provident porro voluptate, suscipit excepturi voluptatum hic eveniet quam amet tempore, facilis dolores veniam voluptates exercitationem ratione. Quas, sit sunt."
         />
       </div>
     </Wrapper>
