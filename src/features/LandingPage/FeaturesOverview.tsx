@@ -1,7 +1,7 @@
 import css from './FeaturesOverview.module.scss'
 
 const FeaturesOverview = () => {
-  return <div>FeaturesOverview</div>
+  return <div>"Hello boi"</div>
 }
 
 export default FeaturesOverview

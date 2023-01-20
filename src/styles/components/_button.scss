@@ -71,16 +71,16 @@
 
   &__primary {
     --clr-bg: var(--c5);
-    --clr-text: var(--sc0);
-    --clr-bg-hover: var(--sc4);
-    --clr-bg-active: var(--sc6);
+    --clr-text: var(--cs0);
+    --clr-bg-hover: var(--cs4);
+    --clr-bg-active: var(--cs6);
   }
 
   &__secondary {
-    --clr-bg: var(--sc1);
-    --clr-text: var(--sc10);
-    --clr-bg-hover: var(--sc2);
-    --clr-bg-active: var(--sc3);
+    --clr-bg: var(--cs1);
+    --clr-text: var(--cs10);
+    --clr-bg-hover: var(--cs2);
+    --clr-bg-active: var(--cs3);
   }
 
   &__outline {
@@ -112,7 +112,7 @@
 
   &__red {
     --clr-bg: var(--c-err);
-    --clr-text: var(--sc1);
+    --clr-text: var(--cs1);
 
     &:not([disabled]) {
       &:hover {

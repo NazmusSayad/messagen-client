@@ -10,6 +10,12 @@ declare module '*.module.sass' {
 declare module '*.png' {
   export default string
 }
+declare module '*.svg' {
+  export default string
+}
+declare module '*.svg?component' {
+  export default React.Component
+}
 declare module '*.jpg' {
   export default string
 }

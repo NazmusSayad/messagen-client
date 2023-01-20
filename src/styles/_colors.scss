@@ -7,7 +7,7 @@ $colors: '#131517', '#1E1F25', '#282932', '#606389', '#4569c4', '#296EFF',
   @each $color in $colors {
     $index: list.index($colors, $color) - 1;
     --c#{10 - $index}: #{$color};
-    --sc#{10 - $index}: #{$color};
+    --cs#{10 - $index}: #{$color};
   }
 }
 

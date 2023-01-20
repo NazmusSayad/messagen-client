@@ -2,14 +2,14 @@ import css from './index.module.scss'
 import RootLayout from '$layouts/RootLayout'
 import Hero from './Hero'
 import Stats from './Stats'
-import FeaturesOverview from './FeaturesOverview'
+import Features from './Features'
 
 const index = () => {
   return (
     <RootLayout className={css.LandingPage}>
       <Hero />
       <Stats />
-      <FeaturesOverview />
+      <Features />
 
       <div style={{ height: '500vh' }} />
     </RootLayout>
