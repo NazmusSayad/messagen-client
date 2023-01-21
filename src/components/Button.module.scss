@@ -1,6 +1,44 @@
-.ButtonBlank {
+.loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
 }
 
-.ButtonText {
+// ===========================
 
+.loader {
+  position: relative;
+  height: 1em;
+  width: 3em;
+  font-size: 1em;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(#fff 2em, transparent 0),
+    linear-gradient(#fff 2em, transparent 0),
+    linear-gradient(#fff 2em, transparent 0);
+  background-position: 0px center, 1em center, 2em center, 3em center;
+  animation: rikSpikeRoll 0.65s linear infinite alternate;
+}
+@keyframes rikSpikeRoll {
+  0% {
+    background-size: 0.75em 0.2em;
+  }
+  16% {
+    background-size: 0.75em 2em, 0.75em 0.2em, 0.75em 0.2em;
+  }
+  33% {
+    background-size: 0.75em 1em, 0.75em 2em, 0.75em 0.2em;
+  }
+  50% {
+    background-size: 0.75em 0.75em, 0.75em 1em, 0.75em 2em;
+  }
+  66% {
+    background-size: 0.75em 0.2em, 0.75em 0.75em, 0.75em 1em;
+  }
+  83% {
+    background-size: 0.75em 0.2em, 0.75em 0.2em, 0.75em 0.75em;
+  }
+  100% {
+    background-size: 0.75em 0.2em, 0.75em 0.2em, 0.75em 0.2em;
+  }
 }

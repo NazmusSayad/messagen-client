@@ -5,6 +5,7 @@ import All from '$routes/All'
 import Authenticated from '$routes/Authenticated'
 import NotAuthenticated from '$routes/NotAuthenticated'
 import { Suspense } from 'react'
+import Loading from '$components/Loading'
 
 const App = () => {
   const isAuthenticated = useSelector<Store>(
@@ -12,7 +13,7 @@ const App = () => {
   )
 
   return (
-    <Suspense fallback={<h1>Loading...</h1>}>
+    <Suspense fallback={<Loading />}>
       <Routes>
         {isAuthenticated ? Authenticated : NotAuthenticated}
         {All}

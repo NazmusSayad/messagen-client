@@ -16,7 +16,7 @@ export const Button = ({
   default: defaultStyles = false,
   className,
   children,
-  loading = false,
+  loading,
   href,
   to,
   nav,
@@ -24,7 +24,7 @@ export const Button = ({
 }: ButtonProps) => {
   const allProps: any = {
     ...props,
-    className: $cn(defaultStyles || 'button', className),
+    className: $cn(defaultStyles ? 'buttonFocus' : 'button', className),
   }
 
   if (href) return <a {...allProps} href={href} children={children} />
@@ -39,7 +39,19 @@ export const Button = ({
   allProps.disabled ??= loading
   return (
     <button {...allProps}>
-      {loading ? <div className={css.loading}>Loading...</div> : children}
+      {typeof loading === 'boolean' ? (
+        <div style={{ color: loading ? 'transparent' : undefined }}>
+          {children}
+        </div>
+      ) : (
+        children
+      )}
+
+      {loading === true && (
+        <div className={css.loading}>
+          <div className={css.loader}></div>
+        </div>
+      )}
     </button>
   )
 }
