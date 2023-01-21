@@ -1,11 +1,12 @@
 import css from './Reviews.module.scss'
+import Wrapper from '$layouts/Wrapper'
 import ReviewsSlide from './ReviewsSlide'
 
 const Reviews = () => {
   return (
-    <div>
+    <Wrapper>
       <ReviewsSlide />
-    </div>
+    </Wrapper>
   )
 }
 

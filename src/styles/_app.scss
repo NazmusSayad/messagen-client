@@ -26,3 +26,7 @@ body {
 [theme] {
   color: var(--c10);
 }
+
+.swiper-pagination {
+  position: static !important;
+}

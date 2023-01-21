@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
-import { Routes } from 'react-router-dom'
 import { Store } from '$store'
-import All from '$routes/All'
+import RootRoutes from '$routes/Root'
 import Authenticated from '$routes/Authenticated'
 import NotAuthenticated from '$routes/NotAuthenticated'
 import { Suspense } from 'react'
@@ -14,10 +13,9 @@ const App = () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Routes>
-        {isAuthenticated ? Authenticated : NotAuthenticated}
-        {All}
-      </Routes>
+      <RootRoutes
+        element={isAuthenticated ? <Authenticated /> : <NotAuthenticated />}
+      />
     </Suspense>
   )
 }

@@ -9,17 +9,17 @@ import App from './App'
 import ErrorBoundary from 'error-boundary-react'
 import { BrowserRouter } from 'react-router-dom'
 
-const rootElement = document.getElementById('Root')
-const root = createRoot(rootElement as any)
+const rootElement = document.getElementById('Root')!
+const root = createRoot(rootElement)
 
 root.render(
   <Provider store={store}>
     <ErrorBoundary element={<h1>Error</h1>}>
-      <React.StrictMode>
-        <BrowserRouter>
+      <BrowserRouter>
+        <React.StrictMode>
           <App />
-        </BrowserRouter>
-      </React.StrictMode>
+        </React.StrictMode>
+      </BrowserRouter>
     </ErrorBoundary>
   </Provider>
 )
