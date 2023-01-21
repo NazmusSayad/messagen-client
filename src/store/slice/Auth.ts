@@ -1,26 +1,43 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getCookies } from '$utils'
 
 const initialState = {
-  jwt: null,
+  jwt: null as null | string,
+  isAuthenticated: false,
 }
 
 const sessionState = {
   ...initialState,
-  jwt: localStorage.getItem('jwt-token'),
+  isAuthenticated: Boolean(getCookies().hasToken),
 }
 
-const authSlice = createSlice({
+const Auth = createSlice({
   name: 'auth',
-  initialState: sessionState,
+  initialState: { ...sessionState },
   reducers: {
-    login(state, { payload }) {
-      state.jwt = payload
+    jwt(state, { payload }) {
+      state.jwt = payload || null
+      state.isAuthenticated = Boolean(payload)
+      sessionState.isAuthenticated = Boolean(payload)
     },
+
+    login(state) {
+      state.isAuthenticated = true
+      sessionState.isAuthenticated = true
+    },
+
     logout(state) {
       Object.assign(state, initialState)
+      Object.assign(sessionState, initialState)
     },
   },
 })
 
-export const authReducers = authSlice.reducer
-export default authSlice.actions
+setInterval(() => {
+  const hasToken = 'hasToken' in getCookies()
+  if (hasToken === sessionState.isAuthenticated) return
+  $store(hasToken ? Auth.actions.login() : Auth.actions.logout())
+}, 500)
+
+export const authReducers = Auth.reducer
+export default Auth.actions

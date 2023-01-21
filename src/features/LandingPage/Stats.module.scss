@@ -49,7 +49,8 @@
 
 .bottom {
   overflow: hidden;
-  height: 5ch;
+  line-height: 1.5;
+  height: calc(1.5em /* Line Height */ * 3 /* Line count */);
   font-size: $fluid-15;
   color: var(--c8);
 }
