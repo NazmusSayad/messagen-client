@@ -3,6 +3,7 @@ import RootLayout from '$layouts/RootLayout'
 import Hero from './Hero'
 import Stats from './Stats'
 import Features from './Features'
+import Reviews from './Reviews'
 
 const index = () => {
   return (
@@ -10,6 +11,7 @@ const index = () => {
       <Hero />
       <Stats />
       <Features />
+      <Reviews />
 
       <div style={{ height: '500vh' }} />
     </RootLayout>

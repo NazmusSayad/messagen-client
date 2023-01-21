@@ -13,8 +13,10 @@
     "get-classnames": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-icons": "^4.7.1",
     "react-redux": "latest",
     "react-router-dom": "latest",
+    "swiper": "^8.4.6",
     "use-react-api": "latest"
   },
   "devDependencies": {
@@ -22,6 +24,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/react-icons": "^3.0.0",
     "@vitejs/plugin-react-swc": "latest",
     "postcss-preset-env": "latest",
     "sass": "latest",

@@ -1,11 +1,10 @@
-import css from './Features.module.scss'
 import FeaturesOverview from './FeaturesOverview'
 
 const Features = () => {
   return (
-    <>
+    <div>
       <FeaturesOverview />
-    </>
+    </div>
   )
 }
 
