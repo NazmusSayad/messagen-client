@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getCookies } from '$utils'
+import * as api from '$api/react'
 
 const initialState = {
-  jwt: null as null | string,
   isAuthenticated: false,
+  isSocketConnected: false,
+  jwt: null as null | string,
+  socket: null as null | string,
 }
 
 const sessionState = {
@@ -16,19 +19,28 @@ const Auth = createSlice({
   initialState: { ...sessionState },
   reducers: {
     jwt(state, { payload }) {
+      api.updateJwtToken(payload ? `Bearer ${payload}` : undefined)
+      sessionState.isAuthenticated = Boolean(payload)
+
       state.jwt = payload || null
       state.isAuthenticated = Boolean(payload)
-      sessionState.isAuthenticated = Boolean(payload)
     },
 
     login(state) {
-      state.isAuthenticated = true
       sessionState.isAuthenticated = true
+      state.isAuthenticated = true
     },
 
     logout(state) {
-      Object.assign(state, initialState)
       Object.assign(sessionState, initialState)
+      Object.assign(state, initialState)
+    },
+
+    socketId(state, { payload }) {
+      api.updateSocketId(payload || undefined)
+
+      state.socket = payload || null
+      state.isSocketConnected = Boolean(payload)
     },
   },
 })
@@ -37,7 +49,7 @@ setInterval(() => {
   const hasToken = 'hasToken' in getCookies()
   if (hasToken === sessionState.isAuthenticated) return
   $store(hasToken ? Auth.actions.login() : Auth.actions.logout())
-}, 500)
+}, 750)
 
 export const authReducers = Auth.reducer
 export default Auth.actions

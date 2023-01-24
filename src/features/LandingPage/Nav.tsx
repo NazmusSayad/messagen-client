@@ -56,7 +56,7 @@ const Nav = () => {
           </div>
 
           <div className={css.ctaContainer}>
-            <ButtonOutline to="/signup">Let's go</ButtonOutline>
+            <ButtonOutline to="/login">Login</ButtonOutline>
           </div>
         </div>
       </Wrapper>

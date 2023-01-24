@@ -1,15 +1,21 @@
+import { useLayoutEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { navigateTo } from './utils'
-import Home from '$pages/NotAuthenticated/Home'
+import * as socket from '$src/socket'
+import * as page from '$pages/NotAuthenticated'
 
-const NotAuthenticated = () => (
-  <Routes>
-    <Route index element={<Home />} />
-    <Route path="login" element={<h1>Login</h1>} />
-    <Route path="signup" element={<h1>Signup</h1>} />
+const NotAuthenticated = () => {
+  useLayoutEffect(() => socket.disconnectSocket(), [])
 
-    {navigateTo(['account'], '/login')}
-  </Routes>
-)
+  return (
+    <Routes>
+      <Route index element={<page.Home />} />
+      <Route path="login" element={<page.Login />} />
+      <Route path="signup" element={<page.Signup />} />
+
+      {navigateTo(['account'], '/login')}
+    </Routes>
+  )
+}
 
 export default NotAuthenticated
