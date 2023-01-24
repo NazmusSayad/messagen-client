@@ -27,7 +27,7 @@ export const connectSocket = (jwt) => {
 
     const cb = socketEvent[ev]
     if (cb) cb(data)
-    else console.log('Callback for', ev, 'not found!')
+    else console.log('Callback for', ev, 'not found!', data)
   })
 }
 
