@@ -1,16 +1,25 @@
 import ReactApi from 'use-react-api'
 
 export const baseURL = 'http://localhost:8000'
-export // const baseURL = 'https://messagen.onrender.com'
+//  export const baseURL = 'https://messagen.onrender.com'
 
-const reactApi = ReactApi({
-  baseURL,
-  withCredentials: true,
-  headers: {
-    token: 'Smile',
-    socketid: 'hello',
+const reactApi = ReactApi(
+  {
+    baseURL,
+    withCredentials: true,
+    headers: {
+      token: 'Smile',
+      socketid: 'hello',
+    },
   },
-})
+  {
+    _getFail(err) {
+      if (err.response?.status === 401) {
+        $store({ type: 'auth/logout' })
+      }
+    },
+  }
+)
 
 export default reactApi
 export const { useApi, useApiOnce, createSuspenseApi } = reactApi

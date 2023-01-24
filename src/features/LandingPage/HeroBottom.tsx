@@ -11,6 +11,7 @@ const HeroBottom = ({ heroClass }: { heroClass: string }) => {
     const hero = document.querySelector<HTMLDivElement>(`.${heroClass}`)!
     const container = containerRef.current as HTMLDivElement
     const bottomImg = bottomImageRef.current as HTMLImageElement
+    if (!(hero && container && bottomImg)) return
 
     const margin =
       container.offsetTop +

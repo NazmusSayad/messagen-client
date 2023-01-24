@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getCookies } from '$utils'
-import * as api from '$api/react'
+import * as api from '$api/http'
 
 const initialState = {
   isAuthenticated: false,
@@ -32,6 +32,7 @@ const Auth = createSlice({
     },
 
     logout(state) {
+      console.log('Hited Logout')
       Object.assign(sessionState, initialState)
       Object.assign(state, initialState)
     },

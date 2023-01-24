@@ -1,4 +1,4 @@
-import { useApi } from '$api/react'
+import { useApi } from '$api/http'
 import { useNavigate } from 'react-router-dom'
 import Auth from '$slice/Auth'
 import css from './Login.module.scss'
