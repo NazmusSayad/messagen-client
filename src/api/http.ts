@@ -15,7 +15,7 @@ const reactApi = ReactApi(
   {
     _getFail(err) {
       if (err.response?.status === 401) {
-        $store({ type: 'auth/logout' })
+        $store({ type: 'auth/logout', payload: undefined })
       }
     },
   }

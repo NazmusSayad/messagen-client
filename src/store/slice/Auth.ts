@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getCookies } from '$utils'
-import * as api from '$api/http'
+import reactApi, * as api from '$api/http'
 
 const initialState = {
   isAuthenticated: false,
@@ -33,15 +33,11 @@ const Auth = createSlice({
     },
 
     logout(state) {
-      const cookie = getCookies()
-
-      if ('hasToken' in cookie) {
-        document.cookie = document.cookie.replace(
-          `hasToken=${cookie.hasToken}`,
-          `hasToken=${cookie.hasToken}; ${new Date(1970)};`
-        )
+      if ('hasToken' in getCookies()) {
+        document.cookie = 'hasToken=; Max-Age=-99999999;'
       }
 
+      reactApi.methods.get('/auth/clear')
       Object.assign(sessionState, initialState)
       Object.assign(state, initialState)
     },
