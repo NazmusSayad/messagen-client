@@ -5,16 +5,22 @@ import socketEvent from './socketEvent'
 let __socket__: Socket
 
 export const connectSocket = (jwt) => {
-  const socket =
-    getSocket() ??
-    setSocket(
-      io(baseURL, {
-        auth: { authorization: jwt },
-      })
-    )
+  if (getSocket()) return
+  $store(Auth.setSocketError(''))
+
+  const socket = setSocket(
+    io(baseURL, {
+      auth: { authorization: jwt },
+    })
+  )
 
   socket.on('ok', () => {
     $store(Auth.socketId(socket.id))
+  })
+
+  socket.on('error', (message) => {
+    $store(Auth.setSocketError(message))
+    socket.disconnect()
   })
 
   socket.on('disconnect', () => {

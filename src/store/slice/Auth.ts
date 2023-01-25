@@ -7,6 +7,7 @@ const initialState = {
   isSocketConnected: false,
   jwt: null as null | string,
   socket: null as null | string,
+  socketError: '',
 }
 
 const sessionState = {
@@ -32,7 +33,15 @@ const Auth = createSlice({
     },
 
     logout(state) {
-      console.log('Hited Logout')
+      const cookie = getCookies()
+
+      if ('hasToken' in cookie) {
+        document.cookie = document.cookie.replace(
+          `hasToken=${cookie.hasToken}`,
+          `hasToken=${cookie.hasToken}; ${new Date(1970)};`
+        )
+      }
+
       Object.assign(sessionState, initialState)
       Object.assign(state, initialState)
     },
@@ -42,6 +51,10 @@ const Auth = createSlice({
 
       state.socket = payload || null
       state.isSocketConnected = Boolean(payload)
+    },
+
+    setSocketError(state, { payload }) {
+      state.socketError = payload
     },
   },
 })

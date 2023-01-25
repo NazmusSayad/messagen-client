@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import { createSuspenseApi } from '$api/http'
@@ -16,9 +17,14 @@ const Authenticated = () => {
     useSuspenseApi(['get', '/auth/token'], ([{ data, ok }]) => {
       if (!ok) return
       $store(Auth.jwt(data.token))
-      socket.connectSocket(data.token)
     })
   }
+
+  useLayoutEffect(() => {
+    socket.connectSocket(auth.jwt)
+  }, [])
+
+  if (auth.socketError) return <h1>{auth.socketError}</h1>
 
   return !auth.isSocketConnected ? (
     <Loading />

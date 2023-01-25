@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import css from './Nav.module.scss'
 import Wrapper from '$layouts/Wrapper'
 import NavHumburger from './NavHumburger'
@@ -6,6 +6,13 @@ import { ButtonBlank, ButtonOutline, ButtonText } from '$components/Button'
 
 const Nav = () => {
   const [isActive, setIsActive] = useState(false)
+
+  useMemo(() => {
+    if (isActive) {
+      const root = document.querySelector('#Root')!
+      root.scrollTop = 0
+    }
+  }, [isActive])
 
   return (
     <div className={css.Nav}>
