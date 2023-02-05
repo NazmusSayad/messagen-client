@@ -17,6 +17,7 @@ const Authenticated = () => {
     useSuspenseApi(['get', '/auth/token'], ([{ data, ok }]) => {
       if (!ok) return
       $store(Auth.jwt(data.token))
+      $store(Auth.putUser(data.user))
     })
   }
 
@@ -25,7 +26,6 @@ const Authenticated = () => {
   }, [])
 
   if (auth.socketError) return <h1>{auth.socketError}</h1>
-
   return !auth.isSocketConnected ? (
     <Loading />
   ) : (
