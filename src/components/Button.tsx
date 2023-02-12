@@ -12,7 +12,7 @@ type ButtonProps = {
   [i: string]: any
 }
 
-export const Button = ({
+const Button = ({
   default: defaultStyles = false,
   className,
   children,

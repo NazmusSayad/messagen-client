@@ -1,7 +1,12 @@
 import ReactApi from 'use-react-api'
 
-export const baseURL = 'http://localhost:8000'
-//  export const baseURL = 'https://messagen.onrender.com'
+const localURL = 'http://localhost:8000'
+const onlineURL = 'https://messagen.onrender.com'
+
+const serverURL = localURL
+// const serverURL = onlineURL
+
+export const baseURL = location.hostname === 'localhost' ? serverURL : onlineURL
 
 const reactApi = ReactApi(
   {

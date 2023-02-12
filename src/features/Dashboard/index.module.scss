@@ -1,0 +1,14 @@
+.Dashboard {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: max-content 1fr;
+  height: 100%;
+}
+
+.sidebar {
+}
+
+.main {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
