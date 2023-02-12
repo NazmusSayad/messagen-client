@@ -24,6 +24,6 @@ const Sidebar = () => {
       <div className={css.bottom}>Profile</div>
     </div>
   )
-}ghp 
+}
 
 export default Sidebar
