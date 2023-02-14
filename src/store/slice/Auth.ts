@@ -26,7 +26,7 @@ const sessionState = {
 }
 
 const Auth = createSlice({
-  name: 'auth',
+  name: 'Auth',
   initialState: { ...sessionState },
   reducers: {
     jwt(state, { payload }) {

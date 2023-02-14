@@ -13,8 +13,8 @@ const reactApi = ReactApi(
     baseURL,
     withCredentials: true,
     headers: {
-      token: 'Smile',
-      socketid: 'hello',
+      authorization: null,
+      socketid: null,
     },
   },
   {
@@ -30,7 +30,7 @@ export default reactApi
 export const { useApi, useApiOnce, createSuspenseApi } = reactApi
 
 export const updateJwtToken = (jwt) => {
-  reactApi.instance.defaults.headers.token = jwt
+  reactApi.instance.defaults.headers.authorization = jwt
 }
 
 export const updateSocketId = (sid) => {

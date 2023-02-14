@@ -11,21 +11,18 @@ import Loading from '$components/Loading'
 import Dashboard from '$features/Dashboard'
 import Chat from '$features/Chat'
 
-const useSuspenseApi = createSuspenseApi()
+const useAuthApi = createSuspenseApi()
 
 const Authenticated = () => {
   let suspenseError
   const auth = useSelector<Store, Store['auth']>((state) => state.auth)
 
   if (!auth.jwt) {
-    const [{ error }] = useSuspenseApi(
-      ['get', '/auth/token'],
-      ([{ data, ok }]) => {
-        if (!ok) return
-        $store(Auth.jwt(data.token))
-        $store(Auth.putUser(data.user))
-      }
-    )
+    const [{ error }] = useAuthApi(['get', '/auth/token'], ([{ data, ok }]) => {
+      if (!ok) return
+      $store(Auth.jwt(data.token))
+      $store(Auth.putUser(data.user))
+    })
 
     suspenseError = error
   }
