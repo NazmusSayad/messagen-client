@@ -1,12 +1,16 @@
 import ReactApi from 'use-react-api'
+const devStatus: any = {
+  useDevMode: true,
+}
 
 const localURL = 'http://localhost:8000'
+const hostURL = 'http://192.168.0.100:8000'
 const onlineURL = 'https://messagen.onrender.com'
 
-const serverURL = localURL
-// const serverURL = onlineURL
-
-export const baseURL = location.hostname === 'localhost' ? serverURL : onlineURL
+const devURL = location.host.startsWith('192') ? hostURL : localURL
+const isDevMode = devStatus.useDevMode && location.protocol === 'http:'
+export const baseURL = isDevMode ? devURL : onlineURL
+console.log('Server:', baseURL)
 
 const reactApi = ReactApi(
   {

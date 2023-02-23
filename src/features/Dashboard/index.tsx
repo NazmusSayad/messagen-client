@@ -1,5 +1,5 @@
 import { createSuspenseApi } from '$api/http'
-import Friends from '$slice/Friends'
+import User from '$slice/User'
 import { Outlet } from 'react-router-dom'
 import css from './index.module.scss'
 import Sidebar from './Sidebar'
@@ -11,7 +11,7 @@ const index = () => {
     ['get', '/friends'],
     /* ['get', '/groups'], */
     ([{ data: friends } /* { data: groups } */]) => {
-      friends && $store(Friends.init(friends))
+      friends && $store(User.setFriends(friends))
     }
   )
 

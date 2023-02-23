@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { getSocket } from '$socket'
 
 type SendSocketReturnValue = Promise<{ ok: boolean; data?: any; error?: any }>
-const initialStatus = {
+const INITIAL_STATUS = {
   error: undefined as any,
   loading: false,
 }
@@ -25,15 +25,15 @@ export const sendRequest = (ev, body: unknown): SendSocketReturnValue => {
 }
 
 export const useWs = () => {
-  const [status, setStatus] = useState(initialStatus)
+  const [status, setStatus] = useState(INITIAL_STATUS)
 
   const methods = useMemo(() => {
     return {
       socket: getSocket(),
       async send(ev: string, body: unknown) {
-        setStatus({ ...initialStatus, loading: true })
+        setStatus({ ...INITIAL_STATUS, loading: true })
         const { ok, data, error } = await sendRequest(ev, body)
-        setStatus({ ...initialStatus, error: ok ? undefined : error })
+        setStatus({ ...INITIAL_STATUS, error: ok ? undefined : error })
         return data
       },
     }

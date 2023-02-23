@@ -2,22 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getLocalStorage, setLocalStorage } from '$utils'
 import reactApi, * as api from '$api/http'
 
-export interface UserType {
-  _id: string
-  name: string
-  email: string
-  avatar: string
-  username: string
-  isVerified: boolean
-}
-
 const initialState = {
   isAuthenticated: false,
   isSocketConnected: false,
   jwt: null as null | string,
   socket: null as null | string,
   socketError: '',
-  user: {} as UserType,
 }
 
 const sessionState = {
@@ -60,10 +50,6 @@ const Auth = createSlice({
 
     setSocketError(state, { payload }) {
       state.socketError = payload
-    },
-
-    putUser(state, { payload }) {
-      Object.assign(state.user, payload)
     },
   },
 })
