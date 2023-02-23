@@ -1,8 +1,10 @@
-export const getCookies = () => {
-  return Object.fromEntries(
-    document.cookie.split('; ').map((item) => {
-      const firstEqual = item.indexOf('=')
-      return [item.slice(0, firstEqual), item.slice(firstEqual + 1, Infinity)]
-    })
-  )
+export const getLocalStorage = (key) => {
+  const value = localStorage.getItem(key)
+  return value === null ? null : JSON.parse(value)
+}
+
+export const setLocalStorage = (key, value) => {
+  value === null
+    ? localStorage.removeItem(key)
+    : localStorage.setItem(key, JSON.stringify(value))
 }

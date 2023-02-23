@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getCookies } from '$utils'
+import { getLocalStorage, setLocalStorage } from '$utils'
 import reactApi, * as api from '$api/http'
 
 export interface UserType {
@@ -22,7 +22,7 @@ const initialState = {
 
 const sessionState = {
   ...initialState,
-  isAuthenticated: Boolean(getCookies().hasToken),
+  isAuthenticated: Boolean(getLocalStorage('hasToken')),
 }
 
 const Auth = createSlice({
@@ -30,8 +30,9 @@ const Auth = createSlice({
   initialState: { ...sessionState },
   reducers: {
     jwt(state, { payload }) {
-      api.updateJwtToken(payload ? `Bearer ${payload}` : undefined)
       sessionState.isAuthenticated = Boolean(payload)
+      setLocalStorage('hasToken', payload ? true : null)
+      api.updateJwtToken(payload ? `Bearer ${payload}` : undefined)
 
       state.jwt = payload || null
       state.isAuthenticated = Boolean(payload)
@@ -43,11 +44,9 @@ const Auth = createSlice({
     },
 
     logout(state) {
-      if ('hasToken' in getCookies()) {
-        document.cookie = 'hasToken=; Max-Age=-99999999;'
-      }
-
       reactApi.methods.get('/auth/clear')
+      setLocalStorage('hasToken', null)
+
       Object.assign(sessionState, initialState)
       Object.assign(state, initialState)
     },
@@ -70,7 +69,7 @@ const Auth = createSlice({
 })
 
 setInterval(() => {
-  const hasToken = 'hasToken' in getCookies()
+  const hasToken = Boolean(getLocalStorage('hasToken'))
   if (hasToken === sessionState.isAuthenticated) return
   $store(hasToken ? Auth.actions.login() : Auth.actions.logout())
 }, 750)

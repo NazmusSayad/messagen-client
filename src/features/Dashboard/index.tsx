@@ -9,9 +9,8 @@ const useDataApi = createSuspenseApi()
 const index = () => {
   useDataApi(
     ['get', '/friends'],
-    ['get', '/groups'],
-    ([{ data: friends }, { data: groups }]) => {
-      console.log(groups)
+    /* ['get', '/groups'], */
+    ([{ data: friends } /* { data: groups } */]) => {
       friends && $store(Friends.init(friends))
     }
   )
