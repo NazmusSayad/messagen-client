@@ -27,3 +27,17 @@
   background-color: var(--c5);
   color: var(--c9);
 }
+
+.avatarBtn {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-inline: auto;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
