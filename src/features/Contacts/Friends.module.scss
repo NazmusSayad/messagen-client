@@ -2,6 +2,7 @@
   display: flex;
   gap: 0.75rem;
   align-items: center;
+  padding: 0.75rem 1rem;
 
   img {
     $size: 4rem;
@@ -26,6 +27,12 @@
 
 .controls {
   margin-left: auto;
+
+  button {
+    display: block;
+    font-size: 2rem;
+    border-radius: 25%;
+  }
 }
 
 .Group {

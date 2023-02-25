@@ -5,32 +5,52 @@ import css from './Friends.module.scss'
 import friendCat from '$assets/friend-cat.jpg'
 import { ButtonBlank } from '$components/Button'
 import { useApi } from '$api/http'
+import {
+  AiOutlineUserAdd,
+  AiOutlineDelete,
+  AiOutlineCheck,
+} from 'react-icons/ai'
 
 interface FriendGroupProps {
   label: string
-  friends: FormattedFriendType[]
+  friends: UserType[]
   request?: boolean
 }
 
-const Friend = ({ friend, request }) => {
+export const Friend = ({ user, request = false, add = false }) => {
   const api = useApi()
+
+  const handleAdd = async () => {}
 
   const handleDelete = async () => {}
 
   const handleAccept = async () => {}
 
   return (
-    <div key={friend.user._id} className={css.Friend}>
-      <img src={friend.user.avatar || friendCat} alt={friend.user.name} />
+    <div key={user._id} className={css.Friend}>
+      <img src={user.avatar || friendCat} alt={user.name} />
 
       <section className={css.bio}>
-        <p>{friend.user.name}</p>
-        <p>@{friend.user.username}</p>
+        <p>{user.name}</p>
+        <p>@{user.username}</p>
       </section>
 
       <section className={css.controls}>
-        {request && <ButtonBlank>Accept</ButtonBlank>}
-        <ButtonBlank>Delete</ButtonBlank>
+        {request && (
+          <ButtonBlank onClick={handleAccept}>
+            <AiOutlineCheck />
+          </ButtonBlank>
+        )}
+
+        {add ? (
+          <ButtonBlank onClick={handleAdd}>
+            <AiOutlineUserAdd />
+          </ButtonBlank>
+        ) : (
+          <ButtonBlank onClick={handleDelete}>
+            <AiOutlineDelete />
+          </ButtonBlank>
+        )}
       </section>
     </div>
   )
@@ -38,8 +58,8 @@ const Friend = ({ friend, request }) => {
 
 const FriendGroup = ({ label, friends, request }: FriendGroupProps) => {
   const content = useMemo(() => {
-    return friends.map((friend) => (
-      <Friend key={friend.user._id} request={request} friend={friend} />
+    return friends.map((user) => (
+      <Friend key={user._id} request={request} user={user} />
     ))
   }, [friends])
 
@@ -91,12 +111,6 @@ const Friends = () => {
 
 export default Friends
 
-type FormattedFriendType = {
-  accepted: boolean
-  user: UserType
+const formatFriend = (friend: FriendType): UserType => {
+  return friend.user._id ? friend.user : friend.friend
 }
-
-const formatFriend = (friend: FriendType): FormattedFriendType => ({
-  accepted: friend.accepted,
-  user: friend.user._id ? friend.user : friend.friend,
-})

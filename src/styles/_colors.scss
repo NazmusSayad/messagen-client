@@ -1,13 +1,23 @@
 @use 'sass:list';
+@use 'sass:color';
 
-$colors: '#131517', '#1E1F25', '#282932', '#606389', '#4569c4', '#296EFF',
-  '#5f93ff', '#94b7ff', '#cadbff', '#e2ebff', '#f9fbff';
+$colors: #131517, #1e1f25, #282932, #606389, #4569c4, #296eff, #5f93ff, #94b7ff,
+  #cadbff, #e2ebff, #f9fbff;
+
+@function makeRawColor($clr) {
+  $red: color.red($clr);
+  $green: color.green($clr);
+  $blue: color.blue($clr);
+  @return #{$red, $green, $blue};
+}
 
 @mixin colors-base {
   @each $color in $colors {
-    $index: list.index($colors, $color) - 1;
-    --c#{10 - $index}: #{$color};
-    --cs#{10 - $index}: #{$color};
+    $index: 9 - list.index($colors, $color);
+    --c#{$index}: #{$color};
+    --cs#{$index}: #{$color};
+    --raw-c#{$index}: #{makeRawColor($color)};
+    --raw-cs#{$index}: #{makeRawColor($color)};
   }
 }
 
@@ -15,24 +25,29 @@ $colors: '#131517', '#1E1F25', '#282932', '#606389', '#4569c4', '#296EFF',
   @each $color in $colors {
     $index: list.index($colors, $color) - 1;
     --c#{$index}: #{$color};
+    --raw-c#{$index}: #{makeRawColor($color)};
   }
 }
 
 :root {
-  @include colors-base;
   --c-err: #ee333d;
+  color-scheme: auto;
+}
+
+:root,
+[theme='light'] {
+  @include colors-base;
+  color-scheme: light;
 }
 
 [theme='dark'] {
   @include colors-dark;
-}
-
-[theme='light'] {
-  @include colors-base;
+  color-scheme: dark;
 }
 
 [theme='auto'] {
   @media (prefers-color-scheme: dark) {
     @include colors-dark;
+    color-scheme: dark;
   }
 }

@@ -1,0 +1,24 @@
+.Input,
+.Textarea {
+  padding: 0.175em 0.5em;
+  border-radius: 0.5rem;
+  border: none;
+  outline: solid 0 transparent;
+  transition: outline 150ms ease-in-out;
+  width: 100%;
+
+  &:focus {
+    outline-width: 0.2rem;
+    outline-color: var(--c7);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.Input {
+}
+
+.Textarea {
+}

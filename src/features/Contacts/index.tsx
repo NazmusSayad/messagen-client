@@ -1,12 +1,13 @@
 import Wrapper from '$layouts/Wrapper'
+import AddFriends from './AddFriends'
 import Friends from './Friends'
 import Groups from './Groups'
 import css from './index.module.scss'
 
-const Group = ({ title, children }) => {
+const Group = ({ title = '', children }) => {
   return (
     <Wrapper className={css.group}>
-      <h3>{title}</h3>
+      {title && <h3>{title}</h3>}
       {children}
     </Wrapper>
   )
@@ -14,15 +15,23 @@ const Group = ({ title, children }) => {
 
 const index = () => {
   return (
-    <Wrapper className={css.wrapper}>
-      <Group title="Groups">
-        <Groups />
-      </Group>
+    <div className={css.Contacts}>
+      <Wrapper className={css.wrapper}>
+        <Wrapper className={css.addFriends}>
+          <AddFriends />
+        </Wrapper>
 
-      <Group title="Friends">
-        <Friends />
-      </Group>
-    </Wrapper>
+        <div className={css.contacts}>
+          <Group title="Groups">
+            <Groups />
+          </Group>
+
+          <Group title="Friends">
+            <Friends />
+          </Group>
+        </div>
+      </Wrapper>
+    </div>
   )
 }
 

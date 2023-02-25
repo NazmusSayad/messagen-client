@@ -1,6 +1,14 @@
+.Contacts {
+  padding: 1rem fluid(2rem, 4rem);
+}
+
 .wrapper {
   max-width: 100rem;
+}
+
+.contacts {
   display: grid;
+  grid-auto-columns: 1fr;
   row-gap: 3rem;
 
   @include min($md) {
@@ -10,10 +18,17 @@
 
 .group {
   max-width: 50rem;
-  padding: 1rem fluid(2rem, 4rem);
 
   h3 {
     color: var(--c7);
     margin-bottom: 1.5rem;
+  }
+}
+
+.addFriends {
+  margin-bottom: 2rem;
+
+  @include max($md) {
+    max-width: 50rem;
   }
 }

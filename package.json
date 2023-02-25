@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "latest",
-    "axios": "^1.2.3",
+    "axios": "^1.3.4",
     "css-reset-plus": "latest",
     "error-boundary-react": "latest",
     "get-classnames": "latest",
@@ -19,6 +19,7 @@
     "react-router-dom": "latest",
     "socket.io-client": "^4.5.4",
     "swiper": "^8.4.6",
+    "use-active-state": "^1.0.6",
     "use-react-api": "latest"
   },
   "devDependencies": {
