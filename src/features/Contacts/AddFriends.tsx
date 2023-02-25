@@ -6,6 +6,7 @@ import { useApi } from '$api/http'
 import { Input } from '$components/Input'
 import css from './AddFriends.module.scss'
 import { Friend } from './Friends'
+import { useAbortSignal } from 'use-react-api'
 
 const AddFriends = () => {
   const [handleOnChange, users, isLoading] = useSearchFriends()
@@ -45,23 +46,19 @@ const AddFriends = () => {
 const useSearchFriends = (): [any, UserType[], boolean] => {
   const [users, setUsers] = useState([])
   const timeoutRef = useRef<NodeJS.Timeout>()
-  const tokenRef = useRef<any>()
   const api = useApi()
+  const abort = useAbortSignal()
 
   const handleOnChange = (e) => {
     clearTimeout(timeoutRef.current)
-    if (tokenRef.current) {
-      tokenRef.current.signal.aborted || tokenRef.current.abort()
-      tokenRef.current = null
-    }
+    abort.abort()
 
     const username = e.target.value
     if (!username) return setUsers([])
 
     timeoutRef.current = setTimeout(async () => {
-      tokenRef.current = new AbortController()
       const data = await api.get('/account/search?username=' + username, {
-        signal: tokenRef.current.signal,
+        signal: abort.signal,
       })
 
       data && setUsers(data.users)
