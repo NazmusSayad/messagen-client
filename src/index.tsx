@@ -16,9 +16,9 @@ root.render(
   <Provider store={store}>
     <ErrorBoundary element={<h1>Error</h1>}>
       <BrowserRouter>
-        <React.StrictMode>
+        {/* <React.StrictMode> */}
           <App />
-        </React.StrictMode>
+        {/* </React.StrictMode> */}
       </BrowserRouter>
     </ErrorBoundary>
   </Provider>

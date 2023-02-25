@@ -20,7 +20,7 @@
     "socket.io-client": "^4.5.4",
     "swiper": "^8.4.6",
     "use-active-state": "^1.0.6",
-    "use-react-api": "^1.0.18"
+    "use-react-api": "^1.0.19"
   },
   "devDependencies": {
     "@honkhonk/vite-plugin-svgr": "latest",

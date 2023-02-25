@@ -1687,10 +1687,10 @@ use-active-state@^1.0.6:
   resolved "https://registry.yarnpkg.com/use-active-state/-/use-active-state-1.0.6.tgz#c93ddfc6864149d5fe8bd64993cc8c0f111f1361"
   integrity sha512-lEbYAYZWgLu99M3Huadc3lfZ4fyvi1++ghfFkwQHP+pdOibPMhXojGYjB0Ye4SuSjez7lsVJJJoz7pxnCD03HQ==
 
-use-react-api@^1.0.18:
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/use-react-api/-/use-react-api-1.0.18.tgz#e477fcb067313f9370551afa25755697d3a436c7"
-  integrity sha512-H3gHkx3rfsffWvnSYUhzBP/Zj+/o3EM6CT23muDh6tdlIIKofge57i7ZOBd9YldTnXKccOFQaZMiqNt4lVWGYA==
+use-react-api@^1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/use-react-api/-/use-react-api-1.0.19.tgz#e3b6381d4fd3d98b488ea70a8ba81f42a720669f"
+  integrity sha512-YtQgWpQJykcsHAag91yG1BaPZ5wga4QrTbm2neA6B2DXjbbA591NgMAP21118kAW55LQUYdc7Nae6zxM7xXatg==
 
 use-sync-external-store@^1.0.0:
   version "1.2.0"
