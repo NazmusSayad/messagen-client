@@ -9,9 +9,18 @@ export interface UserType {
   isVerified: boolean
 }
 
+export interface FriendType {
+  _id: string
+  accepted: boolean
+  user: UserType
+  friend: UserType
+}
+
+export interface GroupType {}
+
 const initialState = {
   user: {} as UserType,
-  friends: [],
+  friends: [] as FriendType[],
   groups: [],
 }
 

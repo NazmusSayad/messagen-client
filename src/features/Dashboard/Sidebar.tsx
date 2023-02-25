@@ -20,13 +20,13 @@ const Sidebar = () => {
   return (
     <div className={css.Sidebar}>
       <div className={css.top}>
-        <SidebarIcon icon={<AiFillMessage />} nav to="chat" />
-        <SidebarIcon icon={<FaUserFriends />} nav to="contacts" />
-        <SidebarIcon icon={<IoSettings />} nav to="settings" />
+        <SidebarIcon icon={<AiFillMessage />} nav to="/chat" />
+        <SidebarIcon icon={<FaUserFriends />} nav to="/contacts" />
+        <SidebarIcon icon={<IoSettings />} nav to="/settings" />
       </div>
 
       <div className={css.bottom}>
-        <ButtonBlank className={css.avatarBtn}>
+        <ButtonBlank className={css.avatarBtn} to="/profile">
           <img src={userAvatar || catAvatar} alt="" />
         </ButtonBlank>
       </div>

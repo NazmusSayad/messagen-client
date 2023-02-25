@@ -11,7 +11,7 @@ const index = () => {
     ['get', '/friends'],
     /* ['get', '/groups'], */
     ([{ data: friends } /* { data: groups } */]) => {
-      friends && $store(User.setFriends(friends))
+      friends && $store(User.setFriends(friends.friends))
     }
   )
 

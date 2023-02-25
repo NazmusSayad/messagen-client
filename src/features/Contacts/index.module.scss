@@ -1,0 +1,19 @@
+.wrapper {
+  max-width: 100rem;
+  display: grid;
+  row-gap: 3rem;
+
+  @include min($md) {
+    grid-auto-flow: column;
+  }
+}
+
+.group {
+  max-width: 50rem;
+  padding: 1rem fluid(2rem, 4rem);
+
+  h3 {
+    color: var(--c7);
+    margin-bottom: 1.5rem;
+  }
+}
