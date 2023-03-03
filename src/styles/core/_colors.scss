@@ -2,7 +2,7 @@
 
 @function clr($var, $opacity: false) {
   @if ($opacity == false) {
-    @return string.unquote('rgb(var(--raw-c#{$var}))');
+    @return string.unquote('rgb(var(--raw-c-#{$var}))');
   }
-  @return string.unquote('rgba(var(--raw-c#{$var}), #{$opacity})');
+  @return string.unquote('rgba(var(--raw-c-#{$var}), #{$opacity})');
 }

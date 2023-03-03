@@ -3,6 +3,8 @@
   gap: 0.75rem;
   align-items: center;
   padding: 0.75rem 1rem;
+  overflow: hidden;
+  position: relative;
 
   img {
     $size: 4rem;
@@ -27,10 +29,15 @@
 
 .controls {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
   button {
+    background: clr(1);
+    padding: 0.33rem;
     display: block;
-    font-size: 2rem;
+    font-size: 1.8rem;
     border-radius: 25%;
   }
 }
@@ -43,4 +50,13 @@
   &:not(:last-child) {
     margin-bottom: 1.5rem;
   }
+}
+
+.clrRed {
+  color: clr(err);
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
 }

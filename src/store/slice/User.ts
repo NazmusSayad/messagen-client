@@ -28,12 +28,30 @@ const User = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser(state, { payload }) {
+    setUser(state, { payload }: { payload: UserType }) {
       state.user = payload
     },
 
-    setFriends(state, { payload }) {
+    setFriends(state, { payload }: { payload: FriendType[] }) {
       state.friends = payload
+    },
+
+    addFriend(state, { payload }: { payload: FriendType }) {
+      state.friends.push(payload)
+    },
+
+    removeFriend(state, { payload }: { payload: string }) {
+      state.friends = state.friends.filter((user) => {
+        return user._id !== payload
+      })
+    },
+
+    updateFriend(state, { payload }: { payload: FriendType }) {
+      state.friends.find((user) => {
+        if (user._id !== payload._id) return false
+        Object.assign(user, payload)
+        return true
+      })
     },
 
     setGroups(state, { payload }) {

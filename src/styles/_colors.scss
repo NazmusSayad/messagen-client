@@ -16,8 +16,8 @@ $colors: #131517, #1e1f25, #282932, #606389, #4569c4, #296eff, #5f93ff, #94b7ff,
     $index: 9 - list.index($colors, $color);
     --c#{$index}: #{$color};
     --cs#{$index}: #{$color};
-    --raw-c#{$index}: #{makeRawColor($color)};
-    --raw-cs#{$index}: #{makeRawColor($color)};
+    --raw-c-#{$index}: #{makeRawColor($color)};
+    --raw-cs-#{$index}: #{makeRawColor($color)};
   }
 }
 
@@ -25,12 +25,13 @@ $colors: #131517, #1e1f25, #282932, #606389, #4569c4, #296eff, #5f93ff, #94b7ff,
   @each $color in $colors {
     $index: list.index($colors, $color) - 1;
     --c#{$index}: #{$color};
-    --raw-c#{$index}: #{makeRawColor($color)};
+    --raw-c-#{$index}: #{makeRawColor($color)};
   }
 }
 
 :root {
   --c-err: #ee333d;
+  --raw-c-err: #{makeRawColor(#ee333d)};
   color-scheme: auto;
 }
 

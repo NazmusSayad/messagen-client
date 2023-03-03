@@ -1,9 +1,10 @@
-import { FriendType, UserType } from '$slice/User'
+import User, { FriendType, UserType } from '$slice/User'
 import { useStore } from '$store'
 import { useMemo } from 'react'
 import css from './Friends.module.scss'
 import friendCat from '$assets/friend-cat.jpg'
 import { ButtonBlank } from '$components/Button'
+import Loading from '$components/Loading'
 import { useApi } from '$api/http'
 import {
   AiOutlineUserAdd,
@@ -20,14 +21,29 @@ interface FriendGroupProps {
 export const Friend = ({ user, request = false, add = false }) => {
   const api = useApi()
 
-  const handleAdd = async () => {}
+  const handleAdd = async () => {
+    const data = await api.post('/friends', { friend: user._id })
+    data && $store(User.addFriend(data.friend))
+  }
 
-  const handleDelete = async () => {}
+  const handleDelete = async () => {
+    const data = await api.delete('/friends/' + user._id)
+    data && $store(User.removeFriend(user.friendId))
+  }
 
-  const handleAccept = async () => {}
+  const handleAccept = async () => {
+    const data = await api.patch('/friends/accept/' + user._id)
+    data && $store(User.updateFriend(data.friend))
+  }
 
   return (
     <div key={user._id} className={css.Friend}>
+      {api.loading && (
+        <div className={css.loading}>
+          <Loading />
+        </div>
+      )}
+
       <img src={user.avatar || friendCat} alt={user.name} />
 
       <section className={css.bio}>
@@ -47,7 +63,7 @@ export const Friend = ({ user, request = false, add = false }) => {
             <AiOutlineUserAdd />
           </ButtonBlank>
         ) : (
-          <ButtonBlank onClick={handleDelete}>
+          <ButtonBlank onClick={handleDelete} className={css.clrRed}>
             <AiOutlineDelete />
           </ButtonBlank>
         )}
@@ -111,6 +127,9 @@ const Friends = () => {
 
 export default Friends
 
-const formatFriend = (friend: FriendType): UserType => {
-  return friend.user._id ? friend.user : friend.friend
+const formatFriend = (friend: FriendType): UserType & { friendId: string } => {
+  return {
+    ...(friend.user._id ? friend.user : friend.friend),
+    friendId: friend._id,
+  }
 }

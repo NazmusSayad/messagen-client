@@ -21,14 +21,15 @@ const Auth = createSlice({
   reducers: {
     jwt(state, { payload }) {
       sessionState.isAuthenticated = Boolean(payload)
-      setLocalStorage('hasToken', payload ? true : null)
       api.updateJwtToken(payload ? `Bearer ${payload}` : undefined)
+      setLocalStorage('hasToken', payload ? true : null)
 
       state.jwt = payload || null
       state.isAuthenticated = Boolean(payload)
     },
 
     login(state) {
+      setLocalStorage('hasToken', true)
       sessionState.isAuthenticated = true
       state.isAuthenticated = true
     },

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import useActiveState from 'use-active-state'
 import { UserType } from '$slice/User'
 import { useApi } from '$api/http'
@@ -7,6 +7,7 @@ import { Input } from '$components/Input'
 import css from './AddFriends.module.scss'
 import { Friend } from './Friends'
 import { useAbortSignal } from 'use-react-api'
+import { useStore } from '$store'
 
 const AddFriends = () => {
   const [handleOnChange, users, isLoading] = useSearchFriends()
@@ -44,7 +45,9 @@ const AddFriends = () => {
 }
 
 const useSearchFriends = (): [any, UserType[], boolean] => {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([] as any[])
+  const friends = useStore((state) => state.user.friends)
+
   const timeoutRef = useRef<NodeJS.Timeout>()
   const api = useApi()
   const abort = useAbortSignal()
@@ -60,12 +63,19 @@ const useSearchFriends = (): [any, UserType[], boolean] => {
       const data = await api.get('/account/search?username=' + username, {
         signal: abort.signal,
       })
-
-      data && setUsers(data.users)
+      if (!data) return
+      setUsers(data.users)
     }, 400)
   }
 
-  return [handleOnChange, users, api.loading]
+  const filteredUsers = useMemo(() => {
+    const friendsId = Object.fromEntries(
+      friends.map((user) => [user.friend._id || user.user._id, true])
+    )
+    return users.filter((user) => !friendsId[user._id])
+  }, [users, friends])
+
+  return [handleOnChange, filteredUsers, api.loading]
 }
 
 export default AddFriends
