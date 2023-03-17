@@ -5,16 +5,16 @@ import { useApi } from '$api/http'
 
 import { Input } from '$components/Input'
 import css from './AddFriends.module.scss'
-import { Friend } from './Friends'
 import { useAbortSignal } from 'use-react-api'
 import { useStore } from '$store'
+import { FriendCard } from './Card'
 
 const AddFriends = () => {
   const [handleOnChange, users, isLoading] = useSearchFriends()
   const [isShowing, toggleState, containerRref] = useActiveState()
 
   const userList = users.map((user) => {
-    return <Friend key={user._id} user={user} add />
+    return <FriendCard key={user._id} user={user} add />
   })
 
   const content = isShowing && (

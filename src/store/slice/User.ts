@@ -16,12 +16,18 @@ export interface FriendType {
   friend: UserType
 }
 
-export interface GroupType {}
+export interface GroupType {
+  _id: string
+  name: string
+  avatar: string
+  owner: UserType
+  users: { user: UserType; accepted: boolean }[]
+}
 
 const initialState = {
   user: {} as UserType,
   friends: [] as FriendType[],
-  groups: [],
+  groups: [] as GroupType[],
 }
 
 const User = createSlice({

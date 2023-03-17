@@ -1,0 +1,62 @@
+.Friend {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    $size: 4rem;
+    width: $size;
+    height: $size;
+    background: red;
+    border-radius: 50%;
+  }
+}
+
+.bio {
+  font-size: 1.5rem;
+  color: var(--c9);
+
+  p:first-child {
+  }
+
+  p:last-child {
+    opacity: 0.8;
+  }
+}
+
+.controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  button {
+    background: clr(1);
+    padding: 0.33rem;
+    display: block;
+    font-size: 1.8rem;
+    border-radius: 25%;
+  }
+}
+
+.Group {
+  h4 {
+    margin-bottom: 1rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.clrRed {
+  color: clr(err);
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+}
