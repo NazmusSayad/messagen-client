@@ -19,7 +19,6 @@ const index = () => {
     }
 
     const data = await ws.send('messages/post', body)
-    console.log(data)
     $store(Message.addMessage(data.message))
   }
 

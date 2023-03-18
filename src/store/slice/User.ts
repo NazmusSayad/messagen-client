@@ -10,7 +10,7 @@ const User = createSlice({
   initialState,
   reducers: {
     setUser(state, { payload }: { payload: UserType }) {
-      console.log(payload.username)
+      console.log(payload.username, payload._id)
       state.user = payload
     },
 
@@ -22,11 +22,27 @@ const User = createSlice({
       state.contacts.push(formatContact(state, payload))
     },
 
+    putContact(state, { payload }: { payload: RawContactType }) {
+      const ind = state.contacts.findIndex(
+        (contact) => contact._id === payload._id
+      )
+      const contact = formatContact(state, payload)
+
+      if (ind < 0) {
+        state.contacts.push(contact)
+      } else {
+        state.contacts[ind] = contact
+      }
+    },
+
     updateContact(state, { payload }: { payload: RawContactType }) {
-      state.contacts = state.contacts.map((contact) => {
-        if (contact._id !== payload._id) return contact
-        return formatContact(state, payload)
-      })
+      const ind = state.contacts.findIndex(
+        (contact) => contact._id === payload._id
+      )
+
+      if (ind >= 0) {
+        state.contacts[ind] = formatContact(state, payload)
+      }
     },
 
     removeContact(state, { payload }: { payload: string }) {

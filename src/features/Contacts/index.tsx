@@ -1,7 +1,6 @@
 import Wrapper from '$layouts/Wrapper'
 import { ContactType } from '$slice/User'
 import { useStore } from '$store'
-import { group } from 'console'
 import { useMemo } from 'react'
 import AddFriends from './AddFriends'
 import Friends from './Friends'
@@ -57,7 +56,9 @@ const index = () => {
   return (
     <div className={css.Contacts}>
       <Wrapper className={css.wrapper}>
-        <Wrapper className={css.addFriends}>{<AddFriends />}</Wrapper>
+        <Wrapper className={css.addFriends}>
+          <AddFriends />
+        </Wrapper>
 
         <div className={css.contacts}>
           <Group title="Groups">
@@ -68,13 +69,11 @@ const index = () => {
           </Group>
 
           <Group title="Friends">
-            {
-              <Friends
-                friends={result.friends}
-                friendRequests={result.friendRequests}
-                friendRequested={result.friendRequested}
-              />
-            }
+            <Friends
+              friends={result.friends}
+              friendRequests={result.friendRequests}
+              friendRequested={result.friendRequested}
+            />
           </Group>
         </div>
       </Wrapper>

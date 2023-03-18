@@ -1,5 +1,4 @@
-import User, { ContactType, UserType } from '$slice/User'
-import css from './Friends.module.scss'
+import User, { ContactType } from '$slice/User'
 import friendCat from '$assets/friend-cat.jpg'
 import { ButtonBlank } from '$components/Button'
 import Loading from '$components/Loading'
@@ -10,6 +9,7 @@ import {
   AiOutlineDelete,
   AiOutlineCheck,
 } from 'react-icons/ai'
+import css from './Card.module.scss'
 
 export const FriendCard = ({
   contact,
