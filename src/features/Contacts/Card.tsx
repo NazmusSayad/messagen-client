@@ -78,6 +78,7 @@ export const FriendsSection = ({
     return contacts.map((contact) => (
       <FriendCard
         key={contact._id}
+        request={request}
         contact={
           contact.isGroup
             ? contact

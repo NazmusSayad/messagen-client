@@ -13,7 +13,7 @@ $colors: #131517, #1e1f25, #212329, #606389, #4569c4, #296eff, #5f93ff, #94b7ff,
 
 @mixin colors-base {
   @each $color in $colors {
-    $index: 9 - list.index($colors, $color);
+    $index: 11 - list.index($colors, $color);
     --c#{$index}: #{$color};
     --cs#{$index}: #{$color};
     --raw-c-#{$index}: #{makeRawColor($color)};

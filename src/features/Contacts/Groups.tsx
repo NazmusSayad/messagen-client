@@ -1,5 +1,3 @@
-import { useStore } from '$store'
-import { useMemo } from 'react'
 import { FriendsSection } from './Card'
 
 const Groups = ({ groups, groupRequests }) => {

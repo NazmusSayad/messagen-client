@@ -1,6 +1,3 @@
-import { useMemo } from 'react'
-import { UserType } from '$slice/User'
-import { useStore } from '$store'
 import { FriendsSection } from './Card'
 
 const Friends = ({ friends, friendRequests, friendRequested }) => {
