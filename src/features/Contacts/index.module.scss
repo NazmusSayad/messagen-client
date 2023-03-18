@@ -9,7 +9,7 @@
 .contacts {
   display: grid;
   grid-auto-columns: 1fr;
-  row-gap: 3rem;
+  gap: 4rem 3rem;
 
   @include min($md) {
     grid-auto-flow: column;

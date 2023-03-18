@@ -1,5 +1,6 @@
 import { useStore } from '$store'
 import css from './Card.module.scss'
+import defaultGroupAvatar from '$assets/friend-cat.jpg'
 import defaultAvatar from '$assets/cat-x256.jpg'
 import { Link } from 'react-router-dom'
 import { ContactType } from '$slice/User'
@@ -12,7 +13,11 @@ const Card = ({ contact }: CardProps) => {
   return (
     <Link to={'/chat/' + contact._id} className={css.Card}>
       <img
-        src={contact.avatar || contact.user.avatar || defaultAvatar}
+        src={
+          contact.isGroup
+            ? contact.avatar || defaultGroupAvatar
+            : contact.user.avatar || defaultAvatar
+        }
         alt={contact.name || contact.user.name}
       />
 

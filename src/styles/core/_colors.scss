@@ -6,3 +6,10 @@
   }
   @return string.unquote('rgba(var(--raw-c-#{$var}), #{$opacity})');
 }
+
+@function clrs($var, $opacity: false) {
+  @if ($opacity == false) {
+    @return string.unquote('rgb(var(--raw-cs-#{$var}))');
+  }
+  @return string.unquote('rgba(var(--raw-cs-#{$var}), #{$opacity})');
+}

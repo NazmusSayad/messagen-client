@@ -1,0 +1,27 @@
+.CreateGroup {
+  margin-bottom: 1.5rem;
+}
+
+.button {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  svg {
+    font-size: 2rem;
+  }
+}
+
+.dialog {
+  all: inherit;
+  background-color: clr(1);
+  margin: fluid(0, 5rem) auto;
+  max-width: 50rem;
+}
+
+.backdrop {
+  background-color: clr(0, 0.85);
+}

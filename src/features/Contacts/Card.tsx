@@ -14,27 +14,38 @@ import css from './Card.module.scss'
 export const FriendCard = ({
   contact,
   add = false,
+  link = false,
   request = false,
 }: FriendCardParam) => {
   const api = useApi()
 
-  const handleAdd = async () => {
+  const handleAdd = async (e: MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     const data = await api.post('/contacts', { user: contact._id })
     data && $store(User.addContact(data.contact))
   }
 
-  const handleDelete = async () => {
+  const handleDelete = async (e: MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     const data = await api.delete('/contacts/' + contact._id)
     data && $store(User.deleteContact(contact._id))
   }
 
-  const handleAccept = async () => {
+  const handleAccept = async (e: MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     const data = await api.patch(`/contacts/${contact._id}/accept`)
     data && $store(User.updateContact(data.contact))
   }
 
   return (
-    <div key={contact._id} className={css.Friend}>
+    <ButtonBlank
+      anchor
+      className={css.Friend}
+      to={link ? `/chat/${contact._id}` : undefined}
+    >
       {api.loading && (
         <div className={css.loading}>
           <Loading />
@@ -65,7 +76,7 @@ export const FriendCard = ({
           </ButtonBlank>
         )}
       </section>
-    </div>
+    </ButtonBlank>
   )
 }
 
@@ -73,11 +84,13 @@ export const FriendsSection = ({
   label,
   request,
   contacts,
+  ...props
 }: FriendGroupProps) => {
   const content = useMemo(() => {
     return contacts.map((contact) => (
       <FriendCard
         key={contact._id}
+        {...props}
         request={request}
         contact={
           contact.isGroup
@@ -105,11 +118,14 @@ interface FriendGroupProps {
   label: string
   contacts: ContactType[]
   request?: boolean
+  link?: boolean
+  [i: string]: any
 }
 
 interface FriendCardParam {
   request?: boolean
   add?: boolean
+  link?: boolean
 
   contact: {
     _id: string

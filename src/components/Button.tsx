@@ -9,6 +9,7 @@ type ButtonProps = {
   href?: string
   to?: string
   nav?: boolean
+  anchor?: boolean
   [i: string]: any
 }
 
@@ -20,6 +21,7 @@ const Button = ({
   href,
   to,
   nav,
+  anchor,
   ...props
 }: ButtonProps) => {
   const allProps: any = {
@@ -27,7 +29,6 @@ const Button = ({
     className: $cn(defaultStyles ? 'buttonFocus' : 'button', className),
   }
 
-  if (href) return <a {...allProps} href={href} children={children} />
   if (to) {
     return nav ? (
       <NavLink {...allProps} to={to} children={children} />
@@ -35,6 +36,7 @@ const Button = ({
       <Link {...allProps} to={to} children={children} />
     )
   }
+  if (anchor || href) return <a {...allProps} href={href} children={children} />
 
   allProps.disabled ??= loading
   return (

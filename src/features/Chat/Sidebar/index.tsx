@@ -6,6 +6,7 @@ import css from './index.module.scss'
 
 const index = () => {
   const [contacts, setQuery] = useContactsSearch()
+  console.log(contacts)
 
   return (
     <div className={css.Sidebar}>
@@ -29,14 +30,9 @@ const useContactsSearch = (): [ContactType[], Function] => {
 
   const matchedQuery = useMemo(() => {
     return contacts.filter((contact) => {
-      if (
-        !(
-          (contact.isGroup && contact.me.accepted) ||
-          (contact.me.accepted && contact.friend.accepted)
-        )
-      ) {
-        return false
-      }
+      if (!contact.isGroup) {
+        if (!(contact.me.accepted && contact.friend.accepted)) return
+      } else if (!contact.me.accepted) return
 
       const contactStr = JSON.stringify(contact)
       return contactStr.includes(query)

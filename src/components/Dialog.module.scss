@@ -1,0 +1,28 @@
+.Dialog {
+  all: unset;
+  display: block;
+  position: relative;
+  isolation: isolate;
+
+  &::backdrop {
+    display: none;
+  }
+
+  &:modal {
+    inset: 0;
+    overflow-y: auto;
+  }
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.main {
+}
+
+.all {
+  all: inherit;
+}
