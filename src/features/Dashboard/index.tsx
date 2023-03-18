@@ -4,17 +4,12 @@ import { Outlet } from 'react-router-dom'
 import css from './index.module.scss'
 import Sidebar from './Sidebar'
 
-const useDataApi = createSuspenseApi()
+const useBaseApi = createSuspenseApi()
 
 const index = () => {
-  useDataApi(
-    ['get', '/friends'],
-    ['get', '/groups'],
-    ([{ data: friends }, { data: groups }]) => {
-      friends && $store(User.setFriends(friends.friends))
-      groups && $store(User.setGroups(groups.groups))
-    }
-  )
+  useBaseApi(['get', '/contacts'], ([{ data }]) => {
+    data && $store(User.setContacts(data.contacts))
+  })
 
   return (
     <div className={css.Dashboard}>

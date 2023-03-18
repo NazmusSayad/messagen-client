@@ -1,5 +1,7 @@
+import Auth from '$slice/Auth'
+
 export default {
-  ping(data) {
+  $init(data) {
     console.log(data)
   },
 }

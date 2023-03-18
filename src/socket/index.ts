@@ -14,9 +14,8 @@ export const connectSocket = (jwt) => {
     })
   )
 
-  socket.on('ok', () => {
-    $store(Auth.socketId(socket.id))
-  })
+  socket.on('init', socketEvent.$init)
+  socket.on('ok', () => $store(Auth.socketId(socket.id)))
 
   socket.on('error', (message) => {
     $store(Auth.setSocketError(message))
@@ -31,7 +30,7 @@ export const connectSocket = (jwt) => {
   socket.onAny((ev: string, data) => {
     if (!ev.startsWith('$')) return
 
-    const cb = socketEvent[ev]
+    const cb = socketEvent[ev.slice(1)]
     if (cb) cb(data)
     else console.log('Callback for', ev, 'not found!', data)
   })

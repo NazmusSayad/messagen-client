@@ -10,6 +10,7 @@ import Loading from '$components/Loading'
 
 import Dashboard from '$features/Dashboard'
 import Chat from '$features/Chat'
+import ChatMain from '$features/Chat/Main'
 import Contacts from '$features/Contacts'
 import Settings from '$features/Settings'
 import Profile from '$features/Profile'
@@ -45,8 +46,8 @@ const Authenticated = () => {
         <Route index element={<Navigate to="chat" />} />
 
         <Route path="chat" element={<Chat />}>
-          <Route index element={<h1>HelloIndex</h1>} />
-          <Route path=":id" element={<h1>Hello id</h1>} />
+          <Route index element={<></>} />
+          <Route path=":id" element={<ChatMain />} />
         </Route>
         <Route path="contacts" element={<Contacts />} />
         <Route path="settings" element={<Settings />} />

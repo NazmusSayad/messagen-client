@@ -14,7 +14,7 @@ const AddFriends = () => {
   const [isShowing, toggleState, containerRref] = useActiveState()
 
   const userList = users.map((user) => {
-    return <FriendCard key={user._id} user={user} add />
+    return <FriendCard key={user._id} contact={user} add />
   })
 
   const content = isShowing && (
@@ -46,7 +46,7 @@ const AddFriends = () => {
 
 const useSearchFriends = (): [any, UserType[], boolean] => {
   const [users, setUsers] = useState([] as any[])
-  const friends = useStore((state) => state.user.friends)
+  const contacts = useStore((state) => state.user.contacts)
 
   const timeoutRef = useRef<NodeJS.Timeout>()
   const api = useApi()
@@ -70,10 +70,13 @@ const useSearchFriends = (): [any, UserType[], boolean] => {
 
   const filteredUsers = useMemo(() => {
     const friendsId = Object.fromEntries(
-      friends.map((user) => [user.friend._id || user.user._id, true])
+      contacts.map((contact) => {
+        if (contact.isGroup) return ['none', false]
+        return [contact.user._id, true]
+      })
     )
     return users.filter((user) => !friendsId[user._id])
-  }, [users, friends])
+  }, [users, contacts])
 
   return [handleOnChange, filteredUsers, api.loading]
 }

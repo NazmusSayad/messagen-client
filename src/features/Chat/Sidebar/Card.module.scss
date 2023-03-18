@@ -1,0 +1,10 @@
+.Card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  img {
+    height: 4rem;
+    border-radius: 50%;
+  }
+}

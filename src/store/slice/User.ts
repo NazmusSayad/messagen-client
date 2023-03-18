@@ -1,5 +1,77 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const initialState = {
+  user: {} as UserType,
+  contacts: [] as ContactType[],
+}
+
+const User = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    setUser(state, { payload }: { payload: UserType }) {
+      console.log(payload.username)
+      state.user = payload
+    },
+
+    setContacts(state, { payload }: { payload: RawContactType[] }) {
+      state.contacts = payload.map((contact) => formatContact(state, contact))
+    },
+
+    addContact(state, { payload }: { payload: RawContactType }) {
+      state.contacts.push(formatContact(state, payload))
+    },
+
+    updateContact(state, { payload }: { payload: RawContactType }) {
+      state.contacts = state.contacts.map((contact) => {
+        if (contact._id !== payload._id) return contact
+        return formatContact(state, payload)
+      })
+    },
+
+    removeContact(state, { payload }: { payload: string }) {
+      state.contacts = state.contacts.filter((contact) => {
+        return contact._id !== payload
+      })
+    },
+  },
+})
+
+const formatContact = (
+  state: any,
+  _rawContact: RawContactType
+): ContactType => {
+  const { users: rawUsers, ...rawContact } = _rawContact
+  const allUsers = [
+    { user: rawContact.owner, accepted: true, isOwner: true },
+    ...rawUsers,
+  ]
+
+  let me
+  const users: any[] = []
+  const myId = state?.user?._id
+  const isGroup = Boolean(rawContact.name)
+
+  allUsers.forEach((user) => {
+    if (user.user._id === myId) {
+      return (me = user)
+    }
+    users.push(user)
+  })
+
+  return {
+    ...rawContact,
+    me,
+    isGroup,
+    friend: isGroup ? undefined : users[0],
+    user: isGroup ? undefined : users[0].user,
+    users: isGroup ? users : (undefined as any),
+  }
+}
+
+export const userReducers = User.reducer
+export default User.actions
+
 export interface UserType {
   _id: string
   name: string
@@ -9,14 +81,7 @@ export interface UserType {
   isVerified: boolean
 }
 
-export interface FriendType {
-  _id: string
-  accepted: boolean
-  user: UserType
-  friend: UserType
-}
-
-export interface GroupType {
+interface RawContactType {
   _id: string
   name: string
   avatar: string
@@ -24,47 +89,16 @@ export interface GroupType {
   users: { user: UserType; accepted: boolean }[]
 }
 
-const initialState = {
-  user: {} as UserType,
-  friends: [] as FriendType[],
-  groups: [] as GroupType[],
+interface ContactUserType {
+  user: UserType
+  accepted: boolean
+  isOwner?: boolean
 }
 
-const User = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    setUser(state, { payload }: { payload: UserType }) {
-      state.user = payload
-    },
-
-    setFriends(state, { payload }: { payload: FriendType[] }) {
-      state.friends = payload
-    },
-
-    addFriend(state, { payload }: { payload: FriendType }) {
-      state.friends.push(payload)
-    },
-
-    removeFriend(state, { payload }: { payload: string }) {
-      state.friends = state.friends.filter((user) => {
-        return user._id !== payload
-      })
-    },
-
-    updateFriend(state, { payload }: { payload: FriendType }) {
-      state.friends.find((user) => {
-        if (user._id !== payload._id) return false
-        Object.assign(user, payload)
-        return true
-      })
-    },
-
-    setGroups(state, { payload }) {
-      state.groups = payload
-    },
-  },
-})
-
-export const userReducers = User.reducer
-export default User.actions
+export interface ContactType extends RawContactType {
+  isGroup: boolean
+  me: ContactUserType
+  user: UserType
+  friend: ContactUserType
+  users: ContactUserType[]
+}
