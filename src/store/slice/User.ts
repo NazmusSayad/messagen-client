@@ -45,7 +45,7 @@ const User = createSlice({
       }
     },
 
-    removeContact(state, { payload }: { payload: string }) {
+    deleteContact(state, { payload }: { payload: string }) {
       state.contacts = state.contacts.filter((contact) => {
         return contact._id !== payload
       })

@@ -6,8 +6,6 @@ const INITIAL_STATUS = {
   error: undefined as any,
   loading: false,
 }
-export const API_SOCKET_PREFIX = '@'
-export const RES_SOCKET_PREFIX = '#'
 
 export const sendRequest = (ev, body: unknown): SendSocketReturnValue => {
   const socket = getSocket()
@@ -19,7 +17,7 @@ export const sendRequest = (ev, body: unknown): SendSocketReturnValue => {
   }
 
   return new Promise((resolve) => {
-    socket.emit(API_SOCKET_PREFIX + ev, body, (res) => {
+    socket.emit(ev, body, (res) => {
       const ok = res.status === 'success'
       resolve(ok ? { data: res.data, ok } : { error: res.message, ok })
     })

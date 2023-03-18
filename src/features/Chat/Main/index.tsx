@@ -1,6 +1,5 @@
 import { useWs } from '$api/ws'
 import Message from '$slice/Message'
-import { ContactType } from '$slice/User'
 import { useStore } from '$store'
 import { FormEvent, useMemo } from 'react'
 import { Navigate, useParams } from 'react-router-dom'

@@ -2,7 +2,6 @@ import { io, Socket } from 'socket.io-client'
 import { baseURL } from '$api/http'
 import Auth from '$slice/Auth'
 import socketEvent from './socketEvent'
-import { RES_SOCKET_PREFIX } from '$api/ws'
 let __socket__: Socket
 
 export const connectSocket = (jwt) => {
@@ -15,8 +14,8 @@ export const connectSocket = (jwt) => {
     })
   )
 
-  socket.on('ok', () => $store(Auth.socketId(socket.id)))
-  socket.on('error', (message) => {
+  socket.on('#ok', () => $store(Auth.socketId(socket.id)))
+  socket.on('#error', (message) => {
     $store(Auth.setSocketError(message))
     socket.disconnect()
   })
@@ -27,9 +26,9 @@ export const connectSocket = (jwt) => {
   })
 
   socket.onAny((ev: string, data) => {
-    if (!ev.startsWith(RES_SOCKET_PREFIX)) return
+    if (ev.startsWith('#')) return
     const listner = socketEvent[ev]
-    if (listner) return listner(data)
+    if (listner) return listner(data.data || data)
     console.log('Callback for', ev, 'not found!', data)
   })
 }

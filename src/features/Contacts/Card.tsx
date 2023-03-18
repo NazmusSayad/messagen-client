@@ -25,7 +25,7 @@ export const FriendCard = ({
 
   const handleDelete = async () => {
     const data = await api.delete('/contacts/' + contact._id)
-    data && $store(User.removeContact(contact._id))
+    data && $store(User.deleteContact(contact._id))
   }
 
   const handleAccept = async () => {
