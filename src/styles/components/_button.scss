@@ -28,17 +28,21 @@
 
 .button {
   position: relative;
-  color: var(--clr-text);
   background-color: var(--clr-bg);
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: $fluid-15;
-  padding: 0.5em 1.5em;
+  padding: 0.35em 1.25em;
   border-radius: 0.5em;
   text-decoration: none;
   line-height: 1.5;
   border: none;
   @include transition('color opacity background-color');
+
+  &,
+  &:visited {
+    color: var(--clr-text);
+  }
 
   &[disabled] {
     opacity: 0.65;
@@ -71,7 +75,7 @@
 
   &__primary {
     --clr-bg: var(--c5);
-    --clr-text: var(--cs0);
+    --clr-text: var(--cs10);
     --clr-bg-hover: var(--cs4);
     --clr-bg-active: var(--cs6);
   }
@@ -123,9 +127,5 @@
         opacity: 1;
       }
     }
-  }
-
-  &:visited {
-    color: inherit;
   }
 }

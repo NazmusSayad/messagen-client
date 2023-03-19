@@ -1687,6 +1687,11 @@ use-active-state@^1.0.6:
   resolved "https://registry.yarnpkg.com/use-active-state/-/use-active-state-1.0.6.tgz#c93ddfc6864149d5fe8bd64993cc8c0f111f1361"
   integrity sha512-lEbYAYZWgLu99M3Huadc3lfZ4fyvi1++ghfFkwQHP+pdOibPMhXojGYjB0Ye4SuSjez7lsVJJJoz7pxnCD03HQ==
 
+use-css-query@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/use-css-query/-/use-css-query-1.0.1.tgz#b41bb6e81c6da9920388dacf0d57a5479bb83359"
+  integrity sha512-hyyZva1BOt/8nJJJOubaPIoH3RouYqc61daRP4HYUprbMRfpcYvKxrnMkB40kH6pP0wlomRy1beEKZdokQ6Dxg==
+
 use-react-api@^1.0.19:
   version "1.0.19"
   resolved "https://registry.yarnpkg.com/use-react-api/-/use-react-api-1.0.19.tgz#e3b6381d4fd3d98b488ea70a8ba81f42a720669f"

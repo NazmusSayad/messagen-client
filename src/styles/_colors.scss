@@ -4,6 +4,7 @@
 $colors: #131517, #1e1f25, #212329, #606389, #4569c4, #296eff, #5f93ff, #94b7ff,
   #cadbff, #e2ebff, #f9fbff;
 
+$colors-length: list.length($colors);
 @function makeRawColor($clr) {
   $red: color.red($clr);
   $green: color.green($clr);
@@ -12,8 +13,10 @@ $colors: #131517, #1e1f25, #212329, #606389, #4569c4, #296eff, #5f93ff, #94b7ff,
 }
 
 @mixin colors-base {
-  @each $color in $colors {
-    $index: 11 - list.index($colors, $color);
+  @for $i from $colors-length to 0 {
+    $index: $i - 1;
+    $color: list.nth($colors, $i);
+
     --c#{$index}: #{$color};
     --cs#{$index}: #{$color};
     --raw-c-#{$index}: #{makeRawColor($color)};
@@ -22,8 +25,10 @@ $colors: #131517, #1e1f25, #212329, #606389, #4569c4, #296eff, #5f93ff, #94b7ff,
 }
 
 @mixin colors-dark {
-  @each $color in $colors {
-    $index: list.index($colors, $color) - 1;
+  @for $i from 1 to $colors-length + 1 {
+    $index: $i - 1;
+    $color: list.nth($colors, $i);
+
     --c#{$index}: #{$color};
     --raw-c-#{$index}: #{makeRawColor($color)};
   }

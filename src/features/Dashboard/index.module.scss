@@ -1,8 +1,16 @@
 .Dashboard {
   display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: max-content 1fr;
   height: 100%;
+
+  @include min($md) {
+    grid-auto-flow: column;
+    grid-template-columns: max-content 1fr;
+  }
+
+  @include max($md) {
+    grid-auto-flow: row;
+    grid-template-rows: 1fr max-content;
+  }
 }
 
 .sidebar {

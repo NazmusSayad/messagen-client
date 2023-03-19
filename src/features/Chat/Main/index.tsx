@@ -1,33 +1,23 @@
-import { useWs } from '$api/ws'
-import Message from '$slice/Message'
-import { useStore } from '$store'
-import { FormEvent, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
+import useMobileMode from '$hooks/useMobileMode'
+import { useStore } from '$store'
+import Dialog from '$components/Dialog'
+import MessageForm from './MessageForm'
 import css from './index.module.scss'
+import MessageContent from './MessageContent'
 
 const index = () => {
-  const ws = useWs()
+  const isMobile = useMobileMode()
   const contact = useContact()
   if (!contact) return <Navigate to=".." />
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const body = {
-      to: contact._id,
-      text: e.target['text'].value,
-    }
-
-    const data = await ws.send('messages/post', body)
-    $store(Message.addMessage(data.message))
-  }
-
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <textarea name="text" />
-        <button type="submit">Send</button>
-      </form>
-    </div>
+    <Dialog open={isMobile} className={css.Dialog}>
+      <h2>{contact.name ?? contact.user.name}</h2>
+      <MessageContent contact={contact} />
+      <MessageForm contact={contact} />
+    </Dialog>
   )
 }
 

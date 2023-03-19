@@ -1,6 +1,12 @@
 .Chat {
   height: 100%;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: max-content 1fr;
+  display: flex;
+
+  @include max($md) {
+    display: block;
+  }
+
+  & > *:nth-child(2) {
+    flex: 1;
+  }
 }

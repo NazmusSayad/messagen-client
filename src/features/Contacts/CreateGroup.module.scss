@@ -15,13 +15,30 @@
   }
 }
 
-.dialog {
-  all: inherit;
-  background-color: clr(1);
-  margin: fluid(0, 5rem) auto;
-  max-width: 50rem;
+.rootDialog {
+  display: grid !important;
+  place-content: center;
 }
 
 .backdrop {
   background-color: clr(0, 0.85);
+}
+
+.Form {
+  background-color: clr(1);
+  max-width: 50rem;
+  padding: fluid(2.25rem, 4rem) fluid(4rem, 8rem);
+  border-radius: 1rem;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.bottom {
+  display: grid;
+  gap: 1rem;
 }

@@ -8,7 +8,7 @@ interface Props {
 export const Input = ({
   className,
   ...props
-}: ComponentProps<'input'> | Props) => {
+}: ComponentProps<'input'> & Props) => {
   return <input {...props} className={$cn(css.Input, className)} />
 }
 

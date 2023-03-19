@@ -1,9 +1,10 @@
 import Auth from '$slice/Auth'
+import Message from '$slice/Message'
 import User from '$slice/User'
 
 export default {
   ['messages/post'](data) {
-    console.log(data)
+    $store(Message.addMessage(data.message))
   },
 
   ['contact/put'](data) {

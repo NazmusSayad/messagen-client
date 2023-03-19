@@ -1,3 +1,4 @@
+import { Input } from '$components/Input'
 import { ContactType } from '$slice/User'
 import { useStore } from '$store'
 import { useMemo, useState } from 'react'
@@ -6,13 +7,16 @@ import css from './index.module.scss'
 
 const index = () => {
   const [contacts, setQuery] = useContactsSearch()
-  console.log(contacts)
 
   return (
     <div className={css.Sidebar}>
       <div className={css.top}>
         <h3 className={css.title}>Messages</h3>
-        <input type="search" onChange={(e) => setQuery(e.target.value)} />
+        <Input
+          type="search"
+          placeholder="Search..."
+          onChange={(e) => setQuery(e.target.value)}
+        />
       </div>
 
       <div>
@@ -31,8 +35,8 @@ const useContactsSearch = (): [ContactType[], Function] => {
   const matchedQuery = useMemo(() => {
     return contacts.filter((contact) => {
       if (!contact.isGroup) {
-        if (!(contact.me.accepted && contact.friend.accepted)) return
-      } else if (!contact.me.accepted) return
+        if (!(contact.me?.accepted && contact.friend?.accepted)) return
+      } else if (!contact.me?.accepted) return
 
       const contactStr = JSON.stringify(contact)
       return contactStr.includes(query)

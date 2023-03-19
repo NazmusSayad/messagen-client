@@ -20,6 +20,7 @@
     "socket.io-client": "^4.5.4",
     "swiper": "^8.4.6",
     "use-active-state": "^1.0.6",
+    "use-css-query": "^1.0.1",
     "use-react-api": "^1.0.19"
   },
   "devDependencies": {

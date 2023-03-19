@@ -16,6 +16,8 @@ type Props = {
   backdropClassName?: any
   openBackdropClassName?: any
   closeBackdropClassName?: any
+
+  onBackdropClick?: Function
   [key: string]: any
 }
 
@@ -32,6 +34,8 @@ const Dialog = ({
   backdropClassName,
   openBackdropClassName,
   closeBackdropClassName,
+
+  onBackdropClick,
   ...props
 }: Props) => {
   const dialogRef = useRef() as { current: HTMLDialogElement }
@@ -54,6 +58,7 @@ const Dialog = ({
     >
       <div
         {...commonProps}
+        onClick={onBackdropClick as any}
         className={$cn(
           css.backdrop,
           backdropClassName,

@@ -1,10 +1,12 @@
+import { Modify } from '$utils/types'
+import { ComponentProps } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import css from './Button.module.scss'
 
-type ButtonProps = {
+type CoreProps = ComponentProps<'button'> & ComponentProps<'a'>
+type ButtonProps = Modify<CoreProps, { className?: any }> & {
   children: any
   default?: boolean
-  className?: string | any[]
   loading?: boolean
   href?: string
   to?: string
