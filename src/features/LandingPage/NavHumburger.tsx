@@ -8,7 +8,7 @@ const Humburger = ({
 }: React.ComponentProps<'button'> & { active: boolean }) => {
   return (
     <ButtonBlank
-      {...props}
+      {...(props as any)}
       is-active={active ? '' : undefined}
       className={css.Humburger}
     >

@@ -19,21 +19,21 @@ export const FriendCard = ({
 }: FriendCardParam) => {
   const api = useApi()
 
-  const handleAdd = async (e: MouseEvent) => {
+  const handleAdd = async (e) => {
     e.preventDefault()
     e.stopPropagation()
     const data = await api.post('/contacts', { user: contact._id })
     data && $store(User.addContact(data.contact))
   }
 
-  const handleDelete = async (e: MouseEvent) => {
+  const handleDelete = async (e) => {
     e.preventDefault()
     e.stopPropagation()
     const data = await api.delete('/contacts/' + contact._id)
     data && $store(User.deleteContact(contact._id))
   }
 
-  const handleAccept = async (e: MouseEvent) => {
+  const handleAccept = async (e) => {
     e.preventDefault()
     e.stopPropagation()
     const data = await api.patch(`/contacts/${contact._id}/accept`)
