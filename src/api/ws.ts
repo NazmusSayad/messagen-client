@@ -29,7 +29,10 @@ export const useWs = () => {
 
   const methods = useMemo(() => {
     return {
-      socket: getSocket(),
+      get socket() {
+        return getSocket()
+      },
+
       async send(ev: string, body: unknown) {
         setStatus({ ...INITIAL_STATUS, loading: true })
         const { ok, data, error } = await sendRequest(ev, body)

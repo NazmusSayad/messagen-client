@@ -2,19 +2,16 @@ import { io, Socket } from 'socket.io-client'
 import { baseURL } from '$api/http'
 import Auth from '$slice/Auth'
 import socketEvent from './socketEvent'
-let __socket__: Socket
+let socket: Socket
 
 export const connectSocket = (jwt) => {
-  if (getSocket()) return
+  if (socket) return
+  disconnectSocket()
   $store(Auth.setSocketError(''))
+  socket = io(baseURL, {
+    auth: { authorization: jwt },
+  })
 
-  const socket = setSocket(
-    io(baseURL, {
-      auth: { authorization: jwt },
-    })
-  )
-
-  socket.removeAllListeners()
   socket.on('#ok', () => $store(Auth.socketId(socket.id)))
   socket.on('#error', (message) => {
     $store(Auth.setSocketError(message))
@@ -34,10 +31,9 @@ export const connectSocket = (jwt) => {
   })
 }
 
-export const getSocket = () => __socket__
-export const setSocket = (socket: Socket) => (__socket__ = socket)
+export const getSocket = () => socket
 export const disconnectSocket = () => {
-  const socket = getSocket()
   socket?.connected && socket.disconnect()
-  setSocket(null as any)
+  socket?.removeAllListeners()
+  socket = null as any
 }

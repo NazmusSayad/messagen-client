@@ -43,9 +43,7 @@ const Auth = createSlice({
     },
 
     socketId(state, { payload }) {
-      console.log(payload)
       api.updateSocketId(payload || undefined)
-
       state.socket = payload || null
       state.isSocketConnected = Boolean(payload)
     },
