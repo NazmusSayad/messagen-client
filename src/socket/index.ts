@@ -14,6 +14,7 @@ export const connectSocket = (jwt) => {
     })
   )
 
+  socket.removeAllListeners()
   socket.on('#ok', () => $store(Auth.socketId(socket.id)))
   socket.on('#error', (message) => {
     $store(Auth.setSocketError(message))

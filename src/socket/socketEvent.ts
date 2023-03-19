@@ -1,4 +1,3 @@
-import Auth from '$slice/Auth'
 import Message from '$slice/Message'
 import User from '$slice/User'
 
