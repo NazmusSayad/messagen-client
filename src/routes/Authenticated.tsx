@@ -2,7 +2,7 @@ import { useLayoutEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { createSuspenseApi } from '$api/http'
 import { navigateTo } from './utils'
-import * as socket from '$src/socket'
+import socket from '$src/socket'
 import { useStore } from '$store'
 import Auth from '$slice/Auth'
 import User from '$slice/User'
@@ -32,7 +32,7 @@ const Authenticated = () => {
   }
 
   useLayoutEffect(() => {
-    auth.jwt && socket.connectSocket(auth.jwt)
+    auth.jwt && socket(auth.jwt)
   }, [])
 
   if (suspenseError) return <h1>{suspenseError}</h1>

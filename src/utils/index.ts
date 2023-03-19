@@ -45,7 +45,24 @@ export const createTempObjectId = () => {
   return '#' + str
 }
 
-export const parseFileList = (files: FileList): string[] => {
+export const parseFileListToBASE64 = async (files: FileList) => {
+  const promises: Promise<string>[] = []
+
+  for (let i = 0; i < files.length; i++) {
+    promises.push(
+      new Promise((res) => {
+        const file = files[i]
+        const reader = new FileReader()
+        reader.onload = () => res(reader.result as string)
+        reader.readAsDataURL(file)
+      })
+    )
+  }
+
+  return await Promise.all(promises)
+}
+
+export const parseFileListToURL = (files: FileList): string[] => {
   const images: string[] = []
 
   for (let i = 0; i < files.length; i++) {

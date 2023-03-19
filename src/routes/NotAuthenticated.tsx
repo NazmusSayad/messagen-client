@@ -1,11 +1,11 @@
 import { useLayoutEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { navigateTo } from './utils'
-import * as socket from '$src/socket'
+import socket from '$src/socket'
 import * as page from '$pages/NotAuthenticated'
 
 const NotAuthenticated = () => {
-  useLayoutEffect(() => socket.disconnectSocket(), [])
+  useLayoutEffect(() => socket(), [])
 
   return (
     <Routes>

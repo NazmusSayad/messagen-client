@@ -1,6 +1,11 @@
 import { useWs } from '$api/ws'
 import Message, { MessageType } from '$slice/Message'
-import { createTempObjectId, parseFileList, parseFormInputs } from '$utils'
+import {
+  createTempObjectId,
+  parseFileListToBASE64,
+  parseFileListToURL,
+  parseFormInputs,
+} from '$utils'
 import { useState } from 'react'
 import MessageTextInput from './MessageTextInput'
 import css from './MessageForm.module.scss'
@@ -17,14 +22,18 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
     type UserInput = { text: string; images: FileList }
     const { text, images } = parseFormInputs<UserInput>(e.target)
     if (!text && images.length === 0) return
-    const body = { to: contact._id, text: text || (undefined as any), images }
+    const body = {
+      to: contact._id,
+      text: text || (undefined as any),
+      images: await parseFileListToBASE64(images),
+    }
 
     const tempId = createTempObjectId()
     const tempMessage: MessageType = {
       _id: tempId,
       from: user,
       ...body,
-      images: parseFileList(images),
+      images: parseFileListToURL(images),
       createdAt: Date.now().toString(),
       pending: true,
     }
