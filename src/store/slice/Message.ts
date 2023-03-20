@@ -36,11 +36,23 @@ const Message = createSlice({
   initialState,
   reducers: {
     addMessage(state, { payload }: { payload: MessageType }) {
-      const contacts = state.messagesMap[payload.to] ?? []
-      contacts.push(payload)
+      const messages = state.messagesMap[payload.to] ?? []
+      messages.push(payload)
 
-      state.messagesMap[payload.to] = contacts.sort(sortMessagesFn)
+      state.messagesMap[payload.to] = messages.sort(sortMessagesFn)
       state.contactsMap[payload._id] = payload.to
+    },
+
+    putMessage(state, { payload }: { payload: MessageType }) {
+      const messages = state.messagesMap[payload.to] ?? []
+      const ind = messages.findIndex((msg) => msg._id === payload._id)
+      if (ind < 0) {
+        messages.push(payload)
+        state.messagesMap[payload.to] = messages.sort(sortMessagesFn)
+        state.contactsMap[payload._id] = payload.to
+      } else {
+        Object.assign(messages[ind], payload)
+      }
     },
 
     replaceMessage(state, { payload }: { payload: { id; message } }) {
@@ -49,22 +61,22 @@ const Message = createSlice({
       const contact = state.contactsMap[id]
       if (!contact) return
 
-      const contacts = state.messagesMap[contact]
-      const ind = contacts.findIndex((msg) => msg._id === id)
+      const messages = state.messagesMap[contact]
+      const ind = messages.findIndex((msg) => msg._id === id)
       if (ind < 0) return
 
-      contacts[ind] = message
+      messages[ind] = message
     },
 
     removeMessage(state, { payload }: { payload: string }) {
       const contact = state.contactsMap[payload]
       if (!contact) return
 
-      const contacts = state.messagesMap[contact]
-      const ind = contacts.findIndex((msg) => msg._id === payload)
+      const messages = state.messagesMap[contact]
+      const ind = messages.findIndex((msg) => msg._id === payload)
       if (ind < 0) return
 
-      contacts.splice(ind, 1)
+      messages.splice(ind, 1)
       delete state.contactsMap[payload]
     },
   },

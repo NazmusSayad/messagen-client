@@ -5,9 +5,9 @@ import { useLayoutEffect, useRef } from 'react'
 import { ButtonBlank } from '$components/Button'
 
 const MessageContent = ({ contact }: { contact: ContactType }) => {
-  const [isLoading, messages] = useMessages(contact._id)
-  const containerRef = useRef() as { current: HTMLDivElement }
   const forceScrollRef = useRef(true)
+  const [isLoading, messages] = useMessages(contact._id, forceScrollRef)
+  const containerRef = useRef() as { current: HTMLDivElement }
 
   useLayoutEffect(() => {
     const scrollHeight = containerRef.current.scrollHeight
@@ -25,7 +25,12 @@ const MessageContent = ({ contact }: { contact: ContactType }) => {
       {isLoading && <ButtonBlank loading className={css.loading} children="" />}
 
       {messages.map((message) => (
-        <p key={message._id}>{message.text}</p>
+        <div key={message._id}>
+          <p>{message.pending && '...'}</p>
+          <p>{message.text}</p>
+          <p>{message.images}</p>
+          <p>{message.error}</p>
+        </div>
       ))}
     </div>
   )

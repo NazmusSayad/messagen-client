@@ -1,31 +1,27 @@
 import { useWs } from '$api/ws'
-import Message, { MessageType } from '$slice/Message'
-import {
-  createTempObjectId,
-  parseFileListToBASE64,
-  parseFileListToURL,
-  parseFormInputs,
-} from '$utils'
 import { useState } from 'react'
+import Message, { MessageType } from '$slice/Message'
+import { createTempObjectId, parseFilesToURL, parseFilesToBASE64 } from '$utils'
 import MessageTextInput from './MessageTextInput'
-import css from './MessageForm.module.scss'
 import { ContactType } from '$slice/User'
 import { useStore } from '$store'
+import { ButtonBlank } from '$components/Button'
+import MessageFileInput from './MessageFileInput'
+import css from './MessageForm.module.scss'
 
 const MessageForm = ({ contact }: { contact: ContactType }) => {
   const ws = useWs()
   const [text, setText] = useState('')
+  const [images, setImages] = useState([] as File[])
   const user = useStore((state) => state.user.user)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    type UserInput = { text: string; images: FileList }
-    const { text, images } = parseFormInputs<UserInput>(e.target)
     if (!text && images.length === 0) return
     const body = {
       to: contact._id,
       text: text || (undefined as any),
-      images: await parseFileListToBASE64(images),
+      images: await parseFilesToBASE64(images),
     }
 
     const tempId = createTempObjectId()
@@ -33,12 +29,13 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
       _id: tempId,
       from: user,
       ...body,
-      images: parseFileListToURL(images),
+      images: parseFilesToURL(images),
       createdAt: Date.now().toString(),
       pending: true,
     }
 
     setText('')
+    setImages([])
     $store(Message.addMessage(tempMessage))
     const data = await ws.send('messages/post', body)
     $store(
@@ -54,9 +51,9 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="file" name="images" multiple />
+      <MessageFileInput setValue={setImages} />
       <MessageTextInput value={text} setValue={setText} />
-      <button type="submit">Send</button>
+      <ButtonBlank type="submit">Send</ButtonBlank>
     </form>
   )
 }

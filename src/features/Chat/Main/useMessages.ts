@@ -3,7 +3,7 @@ import Message, { MessageType } from '$slice/Message'
 import { useStore } from '$store'
 import { useLayoutEffect, useMemo, useRef } from 'react'
 
-export default (contactId: string): [boolean, MessageType[]] => {
+export default (contactId: string, scrollRef): [boolean, MessageType[]] => {
   const ws = useWs()
   const triedRef = useRef(false)
   const found = useStore((state) => state.messages.messagesMap[contactId])
@@ -20,8 +20,10 @@ export default (contactId: string): [boolean, MessageType[]] => {
       const data = await ws.send('messages/get-older', { to: contactId })
       if (data && data.messages) {
         data.messages.forEach((message: MessageType) => {
-          $store(Message.addMessage(message))
+          $store(Message.putMessage(message))
         })
+
+        scrollRef.current = true
       }
     })()
   }, [contactId, messages.length])
