@@ -1,0 +1,38 @@
+.Form {
+  display: grid;
+  background: clr(1);
+  padding: 0.75rem 1rem 0.5rem;
+}
+
+.Preview {
+  display: grid;
+  overflow-y: hidden;
+  overflow-x: auto;
+  grid-auto-flow: column;
+  grid-auto-columns: min-content;
+
+  &:not(:empty) {
+    margin-bottom: 0.75rem;
+  }
+
+  & > div {
+    height: 10rem;
+    width: 10rem;
+    display: inline-block;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.inputContainer {
+  display: flex;
+  align-items: flex-end;
+
+  textarea {
+    resize: none;
+  }
+}
