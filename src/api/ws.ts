@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { getSocket } from '$socket'
+import * as Socket from '$socket'
 
 type SendSocketReturnValue = Promise<{ ok: boolean; data?: any; error?: any }>
 const INITIAL_STATUS = {
@@ -8,7 +8,7 @@ const INITIAL_STATUS = {
 }
 
 export const sendRequest = (ev, body: unknown): SendSocketReturnValue => {
-  const socket = getSocket()
+  const socket = Socket.get()
   if (!socket) {
     return Promise.resolve({
       ok: false,
@@ -30,7 +30,7 @@ export const useWs = () => {
   const methods = useMemo(() => {
     return {
       get socket() {
-        return getSocket()
+        return Socket.get()
       },
 
       async send(ev: string, body: unknown) {

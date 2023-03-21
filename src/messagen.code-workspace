@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../messagen-server"
+		}
+	],
+  "settings": {}
+}

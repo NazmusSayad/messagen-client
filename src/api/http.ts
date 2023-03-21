@@ -1,6 +1,6 @@
 import ReactApi from 'use-react-api'
 const devStatus: any = {
-  useDevMode: true,
+  // useDevMode: true,
 }
 
 const localURL = 'http://localhost:8000'

@@ -1,8 +1,8 @@
-import { io } from 'socket.io-client'
+import { io, Socket } from 'socket.io-client'
 import socketEvent from './socketEvent'
 import { baseURL } from '$api/http'
 import Auth from '$slice/Auth'
-let socket: any = undefined
+import * as store from './store'
 
 const runListner = (event: string, data) => {
   if (event.startsWith('#')) return
@@ -13,9 +13,11 @@ const runListner = (event: string, data) => {
   handler(data?.data ?? data)
 }
 
-const connect = (token) => {
-  if (socket) return console.log('Socket Already Connected')
-  socket = true
+export { get } from './store'
+
+export const connect = (token) => {
+  if (store.get()) return
+  store.set(true)
 
   const soc = io(baseURL, {
     auth: { authorization: token },
@@ -26,30 +28,30 @@ const connect = (token) => {
   })
 
   soc.on('#ok', () => {
-    socket = soc
+    store.set(soc)
     $store(Auth.socketId(soc.id))
   })
 
   soc.on('#error', (message) => {
+    disconnect(soc)
     $store(Auth.setSocketError(message))
-    socket.disconnect()
   })
 
   soc.on('disconnect', () => {
-    socket = undefined
-    $store(Auth.socketId(null))
+    disconnect(soc)
   })
 
   soc.onAny(runListner)
 }
 
-export const getSocket = () => socket
-export default (token = '') => {
-  try {
-    if (!socket && token) connect(token)
-    if (socket && !token) socket?.disconnect()
-  } catch (err) {
-    console.log(err)
-    console.error('Something went wrong in setSocket')
-  }
+export const disconnect = (soc?: Socket) => {
+  if (!soc || !soc.disconnect) return
+  soc.disconnect()
+  soc.close()
+  store.set()
+  $store(Auth.socketId(null))
+}
+
+export const update = (token: any) => {
+  token ? connect(token) : disconnect()
 }

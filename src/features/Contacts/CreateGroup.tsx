@@ -37,7 +37,7 @@ const CreateGroupForm = ({ close }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const [formData] = parseFormInputs(e.target)
+    const formData = parseFormInputs(e.target)
     const data = await api.post('/contacts', formData)
     if (data) {
       close()

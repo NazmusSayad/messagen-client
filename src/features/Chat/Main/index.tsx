@@ -6,6 +6,7 @@ import Dialog from '$components/Dialog'
 import MessageForm from './MessageForm'
 import css from './index.module.scss'
 import MessageContent from './MessageContent'
+import MessageHeader from './MessageHeader'
 
 const index = () => {
   const isMobile = useMobileMode()
@@ -14,7 +15,7 @@ const index = () => {
 
   return (
     <Dialog open={isMobile} className={css.Dialog}>
-      <h2>{contact.name ?? contact.user.name}</h2>
+      <MessageHeader contact={contact} />
       <MessageContent contact={contact} />
       <MessageForm contact={contact} />
     </Dialog>

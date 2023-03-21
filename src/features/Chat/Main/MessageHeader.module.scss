@@ -1,0 +1,12 @@
+.Header {
+  background: clr(1);
+  padding: 0.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    font-size: 2rem;
+    border-radius: 50%;
+  }
+}

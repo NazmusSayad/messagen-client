@@ -1,19 +1,12 @@
-import { useLayoutEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { createSuspenseApi } from '$api/http'
 import { navigateTo } from './utils'
-import socket from '$src/socket'
+import * as socket from '$src/socket'
 import { useStore } from '$store'
 import Auth from '$slice/Auth'
 import User from '$slice/User'
 import Loading from '$components/Loading'
-
-import Dashboard from '$features/Dashboard'
-import Chat from '$features/Chat'
-import ChatMain from '$features/Chat/Main'
-import Contacts from '$features/Contacts'
-import Settings from '$features/Settings'
-import Profile from '$features/Profile'
+import * as page from '$pages/Authenticated'
 
 const useAuthApi = createSuspenseApi()
 
@@ -31,27 +24,23 @@ const Authenticated = () => {
     suspenseError = error
   }
 
-  useLayoutEffect(() => {
-    auth.jwt && socket(auth.jwt)
-  }, [])
-
+  socket.connect(auth.jwt)
+  // if (!auth.isSocketConnected) return <Loading />
   if (suspenseError) return <h1>{suspenseError}</h1>
   if (auth.socketError) return <h1>{auth.socketError}</h1>
 
-  return !auth.isSocketConnected ? (
-    <Loading />
-  ) : (
+  return (
     <Routes>
-      <Route element={<Dashboard />}>
+      <Route element={<page.Dashboard />}>
         <Route index element={<Navigate to="chat" />} />
 
-        <Route path="chat" element={<Chat />}>
+        <Route path="chat" element={<page.Chat />}>
           <Route index element={<></>} />
-          <Route path=":id" element={<ChatMain />} />
+          <Route path=":id" element={<page.ChatMain />} />
         </Route>
-        <Route path="contacts" element={<Contacts />} />
-        <Route path="settings" element={<Settings />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="contacts" element={<page.Contacts />} />
+        <Route path="settings" element={<page.Settings />} />
+        <Route path="profile" element={<page.Profile />} />
       </Route>
 
       {navigateTo(['signup', 'login'], '/profile')}

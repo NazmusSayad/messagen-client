@@ -9,7 +9,11 @@ export const setLocalStorage = (key, value) => {
     : localStorage.setItem(key, JSON.stringify(value))
 }
 
-export const parseFormInputs = <T = any>(form) => {
+export const parseFormInputs = <
+  T = { [key: string]: string | File | File[] | FileList | Date }
+>(
+  form
+) => {
   const inputs = [
     ...form.querySelectorAll('input[name]:not([type="radio"])'),
     ...form.querySelectorAll('input[name][type="radio"]:checked'),
