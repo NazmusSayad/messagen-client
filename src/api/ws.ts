@@ -9,14 +9,12 @@ const INITIAL_STATUS = {
 
 export const sendRequest = (ev, body: unknown): SendSocketReturnValue => {
   const socket = Socket.get()
-  if (!socket) {
-    return Promise.resolve({
-      ok: false,
-      error: 'Unable to conncet with server',
-    })
-  }
 
   return new Promise((resolve) => {
+    if (!socket) {
+      return resolve({ ok: false, error: 'Unable to conncet with server' })
+    }
+
     socket.emit(ev, body, (res) => {
       const ok = res.status === 'success'
       resolve(ok ? { data: res.data, ok } : { error: res.message, ok })

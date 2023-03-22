@@ -2,7 +2,8 @@ import { io, Socket } from 'socket.io-client'
 import socketEvent from './socketEvent'
 import { baseURL } from '$api/http'
 import Auth from '$slice/Auth'
-import * as store from './store'
+import * as mem from './store'
+import store from '$store'
 
 const runListner = (event: string, data) => {
   if (event.startsWith('#')) return
@@ -16,8 +17,8 @@ const runListner = (event: string, data) => {
 export { get } from './store'
 
 export const connect = (token) => {
-  if (store.get()) return
-  store.set(true)
+  if (mem.get()) return
+  mem.set(true)
 
   const soc = io(baseURL, {
     auth: { authorization: token },
@@ -28,7 +29,7 @@ export const connect = (token) => {
   })
 
   soc.on('#ok', () => {
-    store.set(soc)
+    mem.set(soc)
     $store(Auth.socketId(soc.id))
   })
 
@@ -38,20 +39,20 @@ export const connect = (token) => {
   })
 
   soc.on('disconnect', () => {
-    disconnect(soc)
+    // disconnect(soc)
   })
 
   soc.onAny(runListner)
 }
 
-export const disconnect = (soc?: Socket) => {
+export const disconnect = (soc = mem.get()) => {
   if (!soc || !soc.disconnect) return
   soc.disconnect()
   soc.close()
-  store.set()
+  mem.set()
   $store(Auth.socketId(null))
 }
 
-export const update = (token: any) => {
+export const update = (token = store.getState().auth.jwt) => {
   token ? connect(token) : disconnect()
 }

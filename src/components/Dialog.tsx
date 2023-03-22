@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react'
+import { KeyboardEvent, useLayoutEffect, useRef } from 'react'
 import css from './Dialog.module.scss'
 
 type Props = {
@@ -43,13 +43,20 @@ const Dialog = ({
 
   useLayoutEffect(() => {
     if (!open) return dialogRef.current.close()
-    dialogRef.current.open || dialogRef.current.showModal()
+    if (dialogRef.current.open) dialogRef.current.close()
+    dialogRef.current.showModal()
   }, [open])
+
+  const handleCancel = (e) => {
+    e.preventDefault()
+  }
 
   return (
     <dialog
-      ref={dialogRef as any}
       {...commonProps}
+      ref={dialogRef as any}
+      onCancel={handleCancel}
+      aria-modal={open || undefined}
       className={$cn(
         css.Dialog,
         rootClassName,

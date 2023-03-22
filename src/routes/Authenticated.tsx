@@ -1,11 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { createSuspenseApi } from '$api/http'
 import { navigateTo } from './utils'
-import * as socket from '$src/socket'
 import { useStore } from '$store'
 import Auth from '$slice/Auth'
 import User from '$slice/User'
-import Loading from '$components/Loading'
 import * as page from '$pages/Authenticated'
 
 const useAuthApi = createSuspenseApi()
@@ -24,8 +22,6 @@ const Authenticated = () => {
     suspenseError = error
   }
 
-  socket.connect(auth.jwt)
-  // if (!auth.isSocketConnected) return <Loading />
   if (suspenseError) return <h1>{suspenseError}</h1>
   if (auth.socketError) return <h1>{auth.socketError}</h1>
 
