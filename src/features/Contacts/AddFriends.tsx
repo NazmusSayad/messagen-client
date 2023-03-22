@@ -9,11 +9,12 @@ import { useAbortSignal } from 'use-react-api'
 import { useStore } from '$store'
 import { FriendCard } from './Card'
 
-const AddFriends = ({
-  manageMember,
-  groupId,
-  excludeUserIds = undefined as any,
-}) => {
+type Props = {
+  manageMember?: boolean
+  groupId?: string
+  excludeUserIds?: string[]
+}
+const AddFriends = ({ manageMember, groupId, excludeUserIds }: Props) => {
   const [handleOnChange, users, isLoading] = useSearchFriends(excludeUserIds)
   const [isShowing, toggleState, containerRref] = useActiveState()
 
