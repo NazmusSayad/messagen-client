@@ -3,6 +3,7 @@
   display: block;
   position: relative;
   isolation: isolate;
+  user-select: text;
 
   &::backdrop {
     display: none;
@@ -11,6 +12,11 @@
   &:modal {
     inset: 0;
     overflow-y: auto;
+  }
+
+  &[open] {
+    position: fixed;
+    inset: 0;
   }
 }
 

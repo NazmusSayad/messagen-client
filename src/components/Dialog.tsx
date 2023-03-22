@@ -41,11 +41,53 @@ const Dialog = ({
   const dialogRef = useRef() as { current: HTMLDialogElement }
   const commonProps = { active: open ? '' : undefined }
 
+  const closeParent = () => {
+    const element = dialogRef.current.parentElement
+    const parentDialog = element?.closest<HTMLDialogElement>('dialog[open]')
+    parentDialog?.close()
+    return parentDialog
+  }
+
   useLayoutEffect(() => {
-    if (!open) return dialogRef.current.close()
-    if (dialogRef.current.open) dialogRef.current.close()
-    dialogRef.current.showModal()
+    dialogRef.current.close()
+
+    if (open) {
+      closeParent()?.show()
+      const child = dialogRef.current.querySelector('dialog[open]')
+      child ? dialogRef.current.show() : dialogRef.current.showModal()
+    } else {
+      closeParent()?.showModal()
+    }
+
+    return () => closeParent()?.showModal()
   }, [open])
+
+  /*   useLayoutEffect(() => {
+    const elemets = (
+      [
+        ...document.querySelectorAll(`dialog.${css.Dialog}[data-id]`),
+      ] as HTMLDialogElement[]
+    )
+      .filter((a) => a !== dialogRef.current)
+      .sort((a, b) => +a.dataset.id! - +a.dataset.id!)
+
+    if (!open) {
+      elemets.at(-1)?.close()
+      elemets.at(-1)?.showModal()
+      dialogRef.current.removeAttribute('data-id')
+      return dialogRef.current.close()
+    }
+    if (dialogRef.current.open) dialogRef.current.close()
+
+    elemets.forEach((dialog) => {
+      dialog.close()
+      dialog.show()
+    })
+
+    const lastInd = +(elemets.at(-1)?.dataset.id! || 0)
+    dialogRef.current.dataset.id = String(lastInd + 1)
+    dialogRef.current.showModal()
+  }, [open]) */
 
   const handleCancel = (e) => {
     e.preventDefault()

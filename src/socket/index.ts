@@ -1,4 +1,4 @@
-import { io, Socket } from 'socket.io-client'
+import { io } from 'socket.io-client'
 import socketEvent from './socketEvent'
 import { baseURL } from '$api/http'
 import Auth from '$slice/Auth'
