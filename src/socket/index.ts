@@ -38,8 +38,9 @@ export const connect = (token) => {
     $store(Auth.setSocketError(message))
   })
 
-  soc.on('disconnect', () => {
-    // disconnect(soc)
+  soc.on('disconnect', (_, des: any) => {
+    if (des.description === 'network connection lost') return
+    disconnect(soc)
   })
 
   soc.onAny(runListner)

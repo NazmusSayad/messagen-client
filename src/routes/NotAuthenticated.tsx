@@ -9,7 +9,7 @@ const NotAuthenticated = () => {
       <Route path="login" element={<page.Login />} />
       <Route path="signup" element={<page.Signup />} />
 
-      {navigateTo(['chat*', 'contacts*', 'settings*', 'profile*'], '/login')}
+      {navigateTo(['chat/*', 'contacts/*', 'settings/*', 'profile/*'], '/login')}
     </Routes>
   )
 }
