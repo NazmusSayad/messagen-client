@@ -18,6 +18,7 @@ const Group = ({ title = '', children }) => {
 
 const index = () => {
   const contacts = useStore((state) => state.user.contacts)
+
   const result = useMemo(() => {
     const output = {
       groups: [] as ContactType[],

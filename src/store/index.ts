@@ -3,12 +3,14 @@ import { userReducers } from '$slice/User'
 import { configureStore } from '@reduxjs/toolkit'
 import { useSelector } from 'react-redux'
 import { authReducers } from './slice/Auth'
+import { utilsReducers } from '$slice/Utils'
 
 const store = configureStore({
   reducer: {
     auth: authReducers,
     user: userReducers,
     messages: messageReducers,
+    utils: utilsReducers,
   },
 })
 

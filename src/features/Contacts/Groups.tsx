@@ -5,7 +5,7 @@ const Groups = ({ groups, groupRequests }) => {
   return (
     <div>
       <CreateGroup />
-      <FriendsSection label="" contacts={groups} link />
+      <FriendsSection label="" contacts={groups} link manageGroup />
       <FriendsSection label="Invitations" contacts={groupRequests} request />
     </div>
   )

@@ -9,12 +9,27 @@ import { useAbortSignal } from 'use-react-api'
 import { useStore } from '$store'
 import { FriendCard } from './Card'
 
-const AddFriends = () => {
-  const [handleOnChange, users, isLoading] = useSearchFriends()
+const AddFriends = ({
+  manageMember,
+  groupId,
+  excludeUserIds = undefined as any,
+}) => {
+  const [handleOnChange, users, isLoading] = useSearchFriends(excludeUserIds)
   const [isShowing, toggleState, containerRref] = useActiveState()
 
   const userList = users.map((user) => {
-    return <FriendCard key={user._id} contact={user} add />
+    return (
+      <FriendCard
+        key={user._id}
+        manageMember={manageMember}
+        contact={{
+          ...user,
+          userId: user._id,
+          _id: groupId || user._id,
+        }}
+        add
+      />
+    )
   })
 
   const content = isShowing && (
@@ -44,7 +59,7 @@ const AddFriends = () => {
   )
 }
 
-const useSearchFriends = (): [any, UserType[], boolean] => {
+const useSearchFriends = (exclude?: string[]): [any, UserType[], boolean] => {
   const [users, setUsers] = useState([] as any[])
   const contacts = useStore((state) => state.user.contacts)
 
@@ -70,13 +85,16 @@ const useSearchFriends = (): [any, UserType[], boolean] => {
 
   const filteredUsers = useMemo(() => {
     const friendsId = Object.fromEntries(
-      contacts.map((contact) => {
-        if (contact.isGroup) return ['none', false]
-        return [contact.user._id, true]
-      })
+      exclude
+        ? exclude.map((userId) => [userId, true])
+        : contacts.map((contact) => {
+            if (contact.isGroup) return ['none', false]
+            return [contact.user._id, true]
+          })
     )
+
     return users.filter((user) => !friendsId[user._id])
-  }, [users, contacts])
+  }, [users, contacts, exclude])
 
   return [handleOnChange, filteredUsers, api.loading]
 }

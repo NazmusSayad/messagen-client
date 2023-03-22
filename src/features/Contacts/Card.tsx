@@ -8,14 +8,18 @@ import {
   AiOutlineUserAdd,
   AiOutlineDelete,
   AiOutlineCheck,
+  AiOutlineSetting,
 } from 'react-icons/ai'
 import css from './Card.module.scss'
+import Utils from '$slice/Utils'
 
 export const FriendCard = ({
   contact,
   add = false,
   link = false,
   request = false,
+  manageGroup,
+  manageMember,
 }: FriendCardParam) => {
   const api = useApi()
 
@@ -26,11 +30,29 @@ export const FriendCard = ({
     data && $store(User.addContact(data.contact))
   }
 
+  const handleMemberAdd = async (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const data = await api.post(`/contacts/${contact._id}/members`, {
+      userId: contact.userId,
+    })
+    data && $store(User.updateContact(data.contact))
+  }
+
   const handleDelete = async (e) => {
     e.preventDefault()
     e.stopPropagation()
     const data = await api.delete('/contacts/' + contact._id)
     data && $store(User.deleteContact(contact._id))
+  }
+
+  const handleMemberDelete = async (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const data = await api.delete(
+      `/contacts/${contact._id}/members/${contact.userId}`
+    )
+    data && $store(User.updateContact(data.contact))
   }
 
   const handleAccept = async (e) => {
@@ -39,6 +61,14 @@ export const FriendCard = ({
     const data = await api.patch(`/contacts/${contact._id}/accept`)
     data && $store(User.updateContact(data.contact))
   }
+
+  const handleManageGroup = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    $store(Utils.setManageGroupId(contact._id))
+  }
+
+  console.log(contact.isGroup)
 
   return (
     <ButtonBlank
@@ -56,7 +86,11 @@ export const FriendCard = ({
 
       <section className={css.bio}>
         <p>{contact.name}</p>
-        <p>@{contact.username}</p>
+        <p>
+          {contact.isGroup && contact?.users
+            ? `${contact?.users?.length + 1} Member(s)`
+            : `@${contact.username}`}
+        </p>
       </section>
 
       <section className={css.controls}>
@@ -66,12 +100,21 @@ export const FriendCard = ({
           </ButtonBlank>
         )}
 
+        {manageGroup && (
+          <ButtonBlank onClick={handleManageGroup}>
+            <AiOutlineSetting />
+          </ButtonBlank>
+        )}
+
         {add ? (
-          <ButtonBlank onClick={handleAdd}>
+          <ButtonBlank onClick={manageMember ? handleMemberAdd : handleAdd}>
             <AiOutlineUserAdd />
           </ButtonBlank>
         ) : (
-          <ButtonBlank onClick={handleDelete} className={css.clrRed}>
+          <ButtonBlank
+            onClick={manageMember ? handleMemberDelete : handleDelete}
+            className={css.clrRed}
+          >
             <AiOutlineDelete />
           </ButtonBlank>
         )}
@@ -82,7 +125,6 @@ export const FriendCard = ({
 
 export const FriendsSection = ({
   label,
-  request,
   contacts,
   ...props
 }: FriendGroupProps) => {
@@ -91,7 +133,6 @@ export const FriendsSection = ({
       <FriendCard
         key={contact._id}
         {...props}
-        request={request}
         contact={
           contact.isGroup
             ? contact
@@ -126,6 +167,8 @@ interface FriendCardParam {
   request?: boolean
   add?: boolean
   link?: boolean
+  manageGroup?: boolean
+  manageMember?: boolean
 
   contact: {
     _id: string
@@ -134,6 +177,8 @@ interface FriendCardParam {
     name: string
     avatar: string
     username?: string
+
+    isGroup?: boolean
     [key: string]: any
   }
 }

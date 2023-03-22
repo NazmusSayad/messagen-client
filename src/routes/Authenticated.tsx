@@ -5,6 +5,7 @@ import { useStore } from '$store'
 import Auth from '$slice/Auth'
 import User from '$slice/User'
 import * as page from '$pages/Authenticated'
+import * as socket from '$src/socket'
 
 const useAuthApi = createSuspenseApi()
 
@@ -22,6 +23,7 @@ const Authenticated = () => {
     suspenseError = error
   }
 
+  socket.connect(auth.jwt)
   if (suspenseError) return <h1>{suspenseError}</h1>
   if (auth.socketError) return <h1>{auth.socketError}</h1>
 
