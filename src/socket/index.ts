@@ -39,7 +39,7 @@ export const connect = (token) => {
   })
 
   soc.on('disconnect', (_, des: any) => {
-    if (des.description === 'network connection lost') return
+    if (des?.description === 'network connection lost') return
     disconnect(soc)
   })
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Auth from '$slice/Auth'
 import css from './Login.module.scss'
 import Layout from './Layout'
+import User from '$slice/User'
 
 const Login = () => {
   const api = useApi()
@@ -17,7 +18,7 @@ const Login = () => {
 
     const data = await api.post('/auth/login', formData)
     if (!data) return
-    console.log(data.user)
+    $store(User.setUser(data.user))
     $store(Auth.jwt(data.token))
     navigate('/')
   }
