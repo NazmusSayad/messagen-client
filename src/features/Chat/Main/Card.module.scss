@@ -1,0 +1,86 @@
+.Card {
+  margin-bottom: 1.75rem;
+  margin-inline: 0.75rem;
+}
+
+.Left .content {
+  margin-right: auto;
+}
+
+.Right .content {
+  text-align: right;
+  margin-left: auto;
+}
+
+.content {
+  max-width: min(47.5rem, 90%);
+  --img-size: 1em + 1.5rem + 0.75rem;
+  --gap: 0.75rem;
+}
+
+.bottom {
+  display: flex;
+  gap: var(--gap);
+}
+.Right .bottom {
+  justify-content: end;
+}
+
+.username {
+  margin-left: calc(var(--img-size) + var(--gap));
+  color: clr(9, 0.333);
+}
+
+.image {
+  width: calc(var(--img-size));
+  height: calc(var(--img-size));
+  border-radius: 50%;
+  overflow: hidden;
+  background: clr(2);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.messageContainer {
+  flex: 1;
+  position: relative;
+  max-width: fit-content;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+
+  &:hover .deleteBtn {
+    --translateX: -100%;
+    opacity: 1;
+  }
+}
+
+.Left .messageContainer {
+  background: clr(3, 0.35);
+}
+
+.Right .messageContainer {
+  background: clr(2);
+  opacity: 0.85;
+}
+
+.deleteBtn {
+  --translateX: 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  opacity: 0;
+  transform: translate(var(--translateX), -50%);
+  @include transition('opacity, transform');
+  padding: 1rem;
+  padding-right: 0.75rem;
+  border-radius: 50% 0 0 50%;
+
+  &:focus {
+    --translateX: -100%;
+    opacity: 1;
+  }
+}

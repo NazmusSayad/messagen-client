@@ -55,11 +55,16 @@ const Message = createSlice({
       }
     },
 
-    replaceMessage(state, { payload }: { payload: { id; message } }) {
+    replaceMessage(
+      state,
+      { payload }: { payload: { id; message: MessageType } }
+    ) {
       const { id, message } = payload
 
       const contact = state.contactsMap[id]
       if (!contact) return
+      delete state.contactsMap[id]
+      state.contactsMap[message._id] = message.to
 
       const messages = state.messagesMap[contact]
       const ind = messages.findIndex((msg) => msg._id === id)

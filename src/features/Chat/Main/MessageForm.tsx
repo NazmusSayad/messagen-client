@@ -39,13 +39,13 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
     clearImg()
     $store(Message.addMessage(tempMessage))
     const data = await ws.send('messages/post', body)
+
     $store(
       Message.replaceMessage({
         id: tempId,
-        message:
-          data && data.message
-            ? data.message
-            : { ...tempMessage, pending: false, error: 'Failed' },
+        message: data
+          ? data.message
+          : { ...tempMessage, pending: false, error: 'Failed' },
       })
     )
   }

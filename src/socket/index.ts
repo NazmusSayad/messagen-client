@@ -19,7 +19,6 @@ export { get } from './store'
 export const connect = (token) => {
   if (mem.get()) return
   mem.set(true)
-  console.log('Socket')
 
   const soc = io(baseURL, {
     auth: { authorization: token },

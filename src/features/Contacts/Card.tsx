@@ -68,8 +68,6 @@ export const FriendCard = ({
     $store(Utils.setManageGroupId(contact._id))
   }
 
-  console.log(contact.isGroup)
-
   return (
     <ButtonBlank
       anchor

@@ -97,7 +97,6 @@ const CreateGroupForm = ({ close, contact = {} as any }: Props) => {
         )}
 
         {contact.users?.map((user) => {
-          console.log({ ...user.user, isGroup: true })
           return (
             <FriendCard
               manageMember

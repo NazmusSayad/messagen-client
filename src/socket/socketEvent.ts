@@ -6,6 +6,10 @@ export default {
     $store(Message.addMessage(data.message))
   },
 
+  ['messages/delete'](id) {
+    $store(Message.removeMessage(id))
+  },
+
   ['contact/put'](data) {
     $store(User.putContact(data.contact))
   },
