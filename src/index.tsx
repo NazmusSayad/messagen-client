@@ -14,12 +14,12 @@ const root = createRoot(rootElement)
 
 root.render(
   <Provider store={store}>
-    {/* <ErrorBoundary element={<h1>Error</h1>}> */}
-    <BrowserRouter>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </BrowserRouter>
-    {/* </ErrorBoundary> */}
+    <ErrorBoundary fallback={<h1>Error</h1>}>
+      <BrowserRouter>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </BrowserRouter>
+    </ErrorBoundary>
   </Provider>
 )
