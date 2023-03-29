@@ -3,8 +3,8 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import vitePWA from 'vite-pwa'
 import viteVSCode, { config } from 'vite-vscode'
-import react from '@vitejs/plugin-react'
-// import react from '@vitejs/plugin-react-swc'
+// import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react-swc'
 import svgr from '@honkhonk/vite-plugin-svgr'
 const srcDir = path.resolve('./src')
 
