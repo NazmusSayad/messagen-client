@@ -67,6 +67,34 @@
   opacity: 0.85;
 }
 
+.textContainer {
+}
+
+.imageContainer {
+  &.single {
+  }
+
+  &:not(.single) {
+    display: grid;
+    gap: 0.25rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .img {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-width: 30rem;
+    max-height: 30rem;
+  }
+
+  img {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 .deleteBtn {
   --translateX: 0;
   position: absolute;

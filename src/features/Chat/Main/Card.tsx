@@ -5,12 +5,12 @@ import { ButtonBlank } from '$components/Button'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { useWs } from '$api/ws'
 
-type Props = { message: MessageType; you: boolean }
-export default function Card({ message, you }: Props) {
+type Props = { message: MessageType; you: boolean; setImages }
+export default function Card({ message, setImages, you }: Props) {
   const ws = useWs()
   const handleDelete = async () => {
     const data = await ws.send('messages/delete', message._id)
-    $store(Message.removeMessage(message._id))
+    data && $store(Message.removeMessage(message._id))
   }
 
   return (
@@ -29,7 +29,32 @@ export default function Card({ message, you }: Props) {
           )}
 
           <div className={css.messageContainer}>
-            {message.text}
+            {message.text && (
+              <p className={css.textContainer}>{message.text}</p>
+            )}
+
+            {message.images?.length > 0 && (
+              <div
+                className={$cn(
+                  css.imageContainer,
+                  message.images?.length === 1 && css.single
+                )}
+              >
+                {message.images.map((src, i) => (
+                  <a
+                    href={src}
+                    className={css.img}
+                    key={i + '-' + src}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      setImages({ active: i, images: message.images })
+                    }}
+                  >
+                    <img src={src} alt={`message from ${message.from.name}`} />
+                  </a>
+                ))}
+              </div>
+            )}
 
             {you && (
               <ButtonBlank className={css.deleteBtn} onClick={handleDelete}>

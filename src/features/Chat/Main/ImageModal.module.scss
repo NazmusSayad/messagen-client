@@ -1,0 +1,43 @@
+.Modal {
+  display: grid;
+  min-height: 100%;
+  grid-auto-rows: auto 1fr;
+}
+
+.header {
+  background-color: clr(0);
+  padding: 0.5rem 5%;
+}
+
+.body {
+  position: relative;
+  place-content: center;
+  display: grid;
+  padding: 0.5rem;
+  width: fit-content;
+  margin: auto;
+
+  button {
+    --right-left: 0.85rem;
+    position: absolute;
+    transform: translateY(-50%);
+    background: clr(2);
+    border-radius: 50%;
+    padding: 0.75rem;
+    top: 50%;
+
+    &.left {
+      left: var(--right-left);
+    }
+
+    &.right {
+      right: var(--right-left);
+    }
+
+    svg {
+      $size: 1.5rem;
+      width: $size;
+      height: $size;
+    }
+  }
+}
