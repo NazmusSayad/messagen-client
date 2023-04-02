@@ -2,7 +2,7 @@ import { ButtonBlank } from '$components/Button'
 import Dialog from '$components/Dialog'
 import { useState } from 'react'
 import css from './ImageModal.module.scss'
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
 type Props = { active: number; images: string[]; setImage }
 export default function ImageModal(props: Props) {
@@ -24,13 +24,13 @@ export default function ImageModal(props: Props) {
         <img src={currentImage} />
         {props.images.length && active !== 0 && (
           <ButtonBlank className={css.left} onClick={handleLeft}>
-            <AiOutlineLeft />
+            <BsChevronLeft />
           </ButtonBlank>
         )}
 
         {props.images.length - 1 !== active && (
           <ButtonBlank className={css.right} onClick={handleRight}>
-            <AiOutlineRight />
+            <BsChevronRight />
           </ButtonBlank>
         )}
       </div>
