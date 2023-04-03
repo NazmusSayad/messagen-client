@@ -31,6 +31,7 @@ export const connect = (token) => {
   soc.on('#ok', () => {
     mem.set(soc)
     $store(Auth.socketId(soc.id))
+    $store(Auth.connectSocket(true))
   })
 
   soc.on('#error', (message) => {

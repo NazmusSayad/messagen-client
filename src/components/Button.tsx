@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 import css from './Button.module.scss'
 
 type CoreProps = ComponentProps<'button'> & ComponentProps<'a'>
-type ButtonProps = Modify<CoreProps, { className?: any }> & {
+type ButtonProps = Modify<CoreProps, { className?: any; ref?: any }> & {
   children: any
   default?: boolean
   loading?: boolean

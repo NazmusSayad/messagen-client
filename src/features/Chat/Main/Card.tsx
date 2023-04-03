@@ -5,8 +5,13 @@ import { ButtonBlank } from '$components/Button'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { useWs } from '$api/ws'
 
-type Props = { message: MessageType; you: boolean; setImages }
-export default function Card({ message, setImages, you }: Props) {
+type Props = { message: MessageType; you: boolean; setImages; scrollToBottom }
+export default function Card({
+  message,
+  setImages,
+  you,
+  scrollToBottom,
+}: Props) {
   const ws = useWs()
   const handleDelete = async () => {
     const data = await ws.send('messages/delete', message._id)
@@ -50,7 +55,11 @@ export default function Card({ message, setImages, you }: Props) {
                       setImages({ active: i, images: message.images })
                     }}
                   >
-                    <img src={src} alt={`message from ${message.from.name}`} />
+                    <img
+                      src={src}
+                      onLoad={scrollToBottom}
+                      alt={`message from ${message.from.name}`}
+                    />
                   </a>
                 ))}
               </div>

@@ -16,16 +16,21 @@ const MessageContent = ({ contact }: { contact: ContactType }) => {
     images: [],
   } as any)
 
-  useLayoutEffect(() => {
+  const scrollToBottom = (force = false) => {
     const scrollHeight = containerRef.current.scrollHeight
     const scrollTop = containerRef.current.scrollTop
     const height = containerRef.current.clientHeight
     const scrollBottom = scrollHeight - scrollTop - height
 
-    if (!forceScrollRef && scrollBottom > 400) return
-    containerRef.current.scrollTop = scrollHeight
     forceScrollRef.current = false
-  }, [messages.length])
+    if (force || forceScrollRef.current || scrollBottom < height) {
+      containerRef.current.scrollTop = scrollHeight
+    }
+  }
+
+  useLayoutEffect(() => {
+    scrollToBottom(messages.at(-1)?.from._id === userId)
+  }, [messages.length, userId])
 
   return (
     <div ref={containerRef} className={css.MessageContent}>
@@ -38,6 +43,7 @@ const MessageContent = ({ contact }: { contact: ContactType }) => {
           message={message}
           setImages={setImages}
           you={message.from._id === userId}
+          scrollToBottom={scrollToBottom}
         />
       ))}
     </div>

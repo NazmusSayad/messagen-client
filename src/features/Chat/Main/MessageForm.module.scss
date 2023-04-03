@@ -10,6 +10,8 @@
   overflow-x: auto;
   grid-auto-flow: column;
   grid-auto-columns: min-content;
+  scroll-behavior: smooth;
+  gap: 0.5rem;
 
   &:not(:empty) {
     margin-bottom: 0.75rem;
@@ -19,6 +21,26 @@
     height: 10rem;
     width: 10rem;
     display: inline-block;
+    position: relative;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    &::after {
+      content: 'Remove';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: clr(err, 0.75);
+      backdrop-filter: blur(2px);
+      @include transition('opacity');
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
 
     img {
       height: 100%;
@@ -31,8 +53,16 @@
 .inputContainer {
   display: flex;
   align-items: flex-end;
+  gap: 0.5rem;
 
   textarea {
     resize: none;
   }
+}
+
+.icon {
+  display: grid;
+  place-content: center;
+  font-size: 2.2rem;
+  margin-bottom: 0.35rem;
 }

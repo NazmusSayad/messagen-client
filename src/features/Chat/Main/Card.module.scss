@@ -27,6 +27,7 @@
 }
 
 .username {
+  font-size: 1.3rem;
   margin-left: calc(var(--img-size) + var(--gap));
   color: clr(9, 0.333);
 }
@@ -70,9 +71,13 @@
 .textContainer {
 }
 
+.textContainer + .imageContainer {
+  margin-top: 1rem;
+}
+
 .imageContainer {
-  &.single {
-  }
+  --width: 30rem;
+  --height: 30rem;
 
   &:not(.single) {
     display: grid;
@@ -83,14 +88,21 @@
   .img {
     border-radius: 0.5rem;
     overflow: hidden;
-    max-width: 30rem;
-    max-height: 30rem;
+    max-width: var(--width);
+    max-height: var(--height);
+  }
+
+  &.single .img {
+    --width: 35rem;
   }
 
   img {
     cursor: pointer;
     width: 100%;
     height: 100%;
+    border-radius: 0.5rem;
+    max-width: var(--width);
+    max-height: var(--height);
     object-fit: cover;
   }
 }

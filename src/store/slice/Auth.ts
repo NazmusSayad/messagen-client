@@ -45,7 +45,10 @@ const Auth = createSlice({
     socketId(state, { payload }) {
       api.updateSocketId(payload || undefined)
       state.socket = payload || null
-      state.isSocketConnected = Boolean(payload)
+    },
+
+    connectSocket(state, { payload }: { payload: boolean }) {
+      state.isSocketConnected = payload
     },
 
     setSocketError(state, { payload }) {

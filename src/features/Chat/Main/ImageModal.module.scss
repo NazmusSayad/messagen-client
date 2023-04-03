@@ -1,12 +1,14 @@
 .Modal {
   display: grid;
-  min-height: 100%;
+  height: 100%;
   grid-auto-rows: auto 1fr;
 }
 
 .header {
   background-color: clr(0);
   padding: 0.5rem 5%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .body {
@@ -16,6 +18,11 @@
   padding: 0.5rem;
   width: fit-content;
   margin: auto;
+  height: 100%;
+
+  img {
+    max-height: 90vh;
+  }
 
   button {
     --right-left: 0.85rem;

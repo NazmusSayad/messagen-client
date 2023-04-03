@@ -1,5 +1,5 @@
 import { useWs } from '$api/ws'
-import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import Message, { MessageType } from '$slice/Message'
 import { useStore } from '$store'
 import { ContactType } from '$slice/User'
@@ -7,6 +7,8 @@ import { createTempObjectId, parseFilesToURL, parseFilesToBASE64 } from '$utils'
 import { ButtonBlank } from '$components/Button'
 import MessageTextInput from './InputText'
 import MessageFileInput from './InputImages'
+import { BsImage } from 'react-icons/bs'
+import { IoSend } from 'react-icons/io5'
 import css from './MessageForm.module.scss'
 
 const MessageForm = ({ contact }: { contact: ContactType }) => {
@@ -60,18 +62,28 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
       <MessageFileInput addImage={addImg} />
 
       <div className={css.inputContainer}>
-        <ButtonBlank onClick={openImageInFS}>AddImage</ButtonBlank>
+        <ButtonBlank type="button" onClick={openImageInFS} className={css.icon}>
+          <BsImage />
+        </ButtonBlank>
         <MessageTextInput value={text} setValue={setText} />
-        <ButtonBlank type="submit">Send</ButtonBlank>
+        <ButtonBlank type="submit" className={css.icon}>
+          <IoSend />
+        </ButtonBlank>
       </div>
     </form>
   )
 }
 
 const useImagePreview = (contactId: string) => {
+  const handleScroll = (e) => {
+    console.log(e)
+  }
+
   const imageContainer = useRef<any>()
   const formRef = useRef() as { current: HTMLFormElement }
-  imageContainer.current ??= <div className={css.Preview} />
+  imageContainer.current ??= (
+    <div onClick={handleScroll} className={css.Preview} />
+  )
 
   const getImageContainer = (): HTMLDivElement => {
     return formRef.current.querySelector(`.${css.Preview}`)!
@@ -88,8 +100,13 @@ const useImagePreview = (contactId: string) => {
       div.remove()
     }
 
+    const container = getImageContainer()
     div.addEventListener('click', handleClick)
-    getImageContainer().appendChild(div)
+    container.appendChild(div)
+    container.onwheel = (e: any) => {
+      const length = e.wheelDelta * -1
+      e.currentTarget.scrollLeft += length
+    }
   }
 
   const getImages = () => {
