@@ -52,6 +52,8 @@
   max-width: fit-content;
   padding: 0.75rem;
   border-radius: 0.5rem;
+  color: clr(10, 0.85);
+  @include transition('opacity');
 
   &:hover .deleteBtn {
     --translateX: -100%;
@@ -65,7 +67,10 @@
 
 .Right .messageContainer {
   background: clr(2);
-  opacity: 0.85;
+}
+
+.messageContainer.pending {
+  opacity: 0.25;
 }
 
 .textContainer {

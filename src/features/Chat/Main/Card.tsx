@@ -33,7 +33,12 @@ export default function Card({
             </div>
           )}
 
-          <div className={css.messageContainer}>
+          <div
+            className={$cn(
+              css.messageContainer,
+              message.pending && css.pending
+            )}
+          >
             {message.text && (
               <p className={css.textContainer}>{message.text}</p>
             )}
