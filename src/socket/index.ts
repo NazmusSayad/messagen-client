@@ -7,11 +7,13 @@ import store from '$store'
 
 const runListner = (event: string, data) => {
   if (event.startsWith('#')) return
+
   const handler = socketEvent[event]
-  if (!(handler instanceof Function)) {
-    return console.warn('No handler found for ' + event)
+  if (handler instanceof Function) {
+    return handler(data?.data ?? data)
   }
-  handler(data?.data ?? data)
+
+  console.warn(event, data)
 }
 
 export { get } from './store'
