@@ -9,7 +9,7 @@ export const setLocalStorage = (key, value) => {
     : localStorage.setItem(key, JSON.stringify(value))
 }
 
-export const parseFormInputs = <
+export const parseFormToObj = <
   T = { [key: string]: string | File | File[] | FileList | Date }
 >(
   form

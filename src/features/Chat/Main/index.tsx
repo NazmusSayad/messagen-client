@@ -15,7 +15,7 @@ const index = () => {
 
   return (
     <Dialog open={isMobile} className={css.Dialog}>
-      <MessageHeader contact={contact} />
+      <MessageHeader contact={contact} isMobile={isMobile} />
       <MessageContent contact={contact} />
       <MessageForm contact={contact} />
     </Dialog>

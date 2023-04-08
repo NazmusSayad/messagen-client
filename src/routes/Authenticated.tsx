@@ -7,12 +7,13 @@ import User from '$slice/User'
 import * as page from '$pages/Authenticated'
 import * as socket from '$src/socket'
 import Loading from '$components/Loading'
-
+import Verificaiton from '$features/Auth/Verificaiton'
 const useAuthApi = createSuspenseApi()
 
 const Authenticated = () => {
   let suspenseError
   const auth = useStore((state) => state.auth)
+  const user = useStore((state) => state.user.user)
 
   if (!auth.jwt) {
     const [{ error }] = useAuthApi(['get', '/auth/token'], ([{ data, ok }]) => {
@@ -24,8 +25,10 @@ const Authenticated = () => {
     suspenseError = error
   }
 
-  socket.connect(auth.jwt)
+  if (!user.isVerified) return <Verificaiton user={user} />
   if (suspenseError) return <h1>{suspenseError}</h1>
+
+  socket.connect(auth.jwt)
   if (auth.socketError) return <h1>{auth.socketError}</h1>
   if (!auth.isSocketConnected) return <Loading />
 

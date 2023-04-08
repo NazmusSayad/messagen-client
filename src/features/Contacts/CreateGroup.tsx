@@ -5,7 +5,7 @@ import { useApi } from '$api/http'
 import Dialog from '$components/Dialog'
 import { Input } from '$components/Input'
 import css from './CreateGroup.module.scss'
-import { parseFormInputs } from '$utils'
+import { parseFormToObj } from '$utils'
 import User, { ContactType } from '$slice/User'
 import { useStore } from '$store'
 import Utils from '$slice/Utils'
@@ -49,7 +49,7 @@ const CreateGroupForm = ({ close, contact = {} as any }: Props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const formData = parseFormInputs(e.target)
+    const formData = parseFormToObj(e.target)
     const data = await api.post('/contacts', formData)
     if (data) {
       close()
@@ -59,7 +59,7 @@ const CreateGroupForm = ({ close, contact = {} as any }: Props) => {
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
-    const formData = parseFormInputs(e.target)
+    const formData = parseFormToObj(e.target)
     const data = await api.patch('/contacts/' + contact._id, formData)
     if (data) {
       close()
@@ -99,6 +99,7 @@ const CreateGroupForm = ({ close, contact = {} as any }: Props) => {
         {contact.users?.map((user) => {
           return (
             <FriendCard
+              key={user.user._id}
               manageMember
               contact={{
                 ...user.user,

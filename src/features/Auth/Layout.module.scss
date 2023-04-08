@@ -1,0 +1,36 @@
+.Container {
+  min-height: 100%;
+  position: relative;
+  display: grid;
+  place-content: center;
+}
+
+.content {
+  margin: auto;
+  width: min(95%, 30rem);
+  margin-block: 5vh 10vh;
+
+  form > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}
+
+.footer {
+  margin-top: 1.25rem;
+  justify-content: center;
+  display: flex;
+  gap: 0.2em;
+}
+
+.wave {
+  position: absolute;
+  inset: 0;
+  top: auto;
+  opacity: 0.2;
+  z-index: -1;
+}

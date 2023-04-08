@@ -1,9 +1,11 @@
 import { useApi } from '$api/http'
 import { useNavigate } from 'react-router-dom'
 import Auth from '$slice/Auth'
-import css from './Login.module.scss'
 import Layout from './Layout'
 import User from '$slice/User'
+import { Input } from '$components/Input'
+import { ButtonPrimary } from '$components/Button'
+import { parseFormToObj } from '$utils'
 
 const Login = () => {
   const api = useApi()
@@ -11,11 +13,7 @@ const Login = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    const formData = {
-      login: e.target.elements.login.value,
-      password: e.target.elements.password.value,
-    }
-
+    const formData = parseFormToObj(e.target)
     const data = await api.post('/auth/login', formData)
     if (!data) return
     $store(User.setUser(data.user))
@@ -24,12 +22,15 @@ const Login = () => {
   }
 
   return (
-    <Layout>
-      <form onSubmit={handleFormSubmit}>
-        <input type="text" name="login" />
-        <input type="password" name="password" />
-        <button>Login</button>
-      </form>
+    <Layout
+      label="Signup"
+      link="/signup"
+      des="Don't have an account?"
+      onSubmit={handleFormSubmit}
+    >
+      <Input type="text" name="login" placeholder="email or username" />
+      <Input type="password" name="password" placeholder="Password" />
+      <ButtonPrimary>Login</ButtonPrimary>
     </Layout>
   )
 }

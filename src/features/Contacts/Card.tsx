@@ -124,6 +124,7 @@ export const FriendCard = ({
 export const FriendsSection = ({
   label,
   contacts,
+  manageGroup,
   ...props
 }: FriendGroupProps) => {
   const content = useMemo(() => {
@@ -131,6 +132,7 @@ export const FriendsSection = ({
       <FriendCard
         key={contact._id}
         {...props}
+        manageGroup={manageGroup && contact.me.isOwner}
         contact={
           contact.isGroup
             ? contact
