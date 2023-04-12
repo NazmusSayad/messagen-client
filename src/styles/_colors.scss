@@ -15,7 +15,7 @@ $colors-length: list.length($colors);
 @mixin colors-base {
   @for $i from $colors-length to 0 {
     $index: $i - 1;
-    $color: list.nth($colors, $i);
+    $color: list.nth($colors, $colors-length - $i + 1);
 
     --c#{$index}: #{$color};
     --cs#{$index}: #{$color};

@@ -37,7 +37,7 @@
   text-decoration: none;
   line-height: 1.5;
   border: none;
-  @include transition('color opacity background-color');
+  @include transition('color, opacity, background-color');
 
   &,
   &:visited {
@@ -50,7 +50,7 @@
   }
 
   &__blank {
-    background: transparent;
+    background-color: transparent;
     text-decoration: none;
     border: none;
     color: inherit;
@@ -75,9 +75,9 @@
   }
 
   &__primary {
-    --clr-bg: var(--c5);
-    --clr-text: var(--cs10);
-    --clr-bg-hover: var(--cs4);
+    --clr-bg: var(--c4);
+    --clr-text: var(--cs0);
+    --clr-bg-hover: var(--cs5);
     --clr-bg-active: var(--cs6);
   }
 
