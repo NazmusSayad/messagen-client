@@ -36,7 +36,8 @@
 
 .brand {
   color: var(--c6);
-  margin-right: 2rem;
+  margin-right: 1.75rem;
+  margin-top: -0.4rem;
 }
 
 .listContainer {
@@ -45,7 +46,7 @@
   align-items: center;
   justify-content: space-between;
   transition: transform 200ms;
-  font-size: $fluid-14;
+  font-size: $fluid-15;
 
   @include max($md) {
     display: block;
@@ -60,7 +61,7 @@
     background: var(--c0);
     box-shadow: 0 0 1.5rem -1.25rem var(--c7);
     text-align: center;
-    font-size: $fluid-18;
+    font-size: $fluid-16;
   }
 
   &[is-active] {
@@ -69,11 +70,27 @@
 }
 
 .linksContainer {
+  position: relative;
   display: flex;
   row-gap: 0.5rem;
 
+  .linkBackdrop {
+    position: absolute;
+    inset-block: 0;
+    background: clr(2);
+    border-radius: 0.5rem;
+    z-index: -1;
+    transition: 0.25s ease-in-out;
+    transition-property: opacity, left, top, width, height;
+    opacity: 0;
+  }
+
   a {
     font-size: inherit;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   @include max($md) {
@@ -83,10 +100,22 @@
   }
 }
 
+.linksContainer,
+.ctaContainer {
+  a {
+    padding: 0.6rem 1.65rem;
+
+    @include max($md) {
+      padding-inline: 2rem;
+    }
+  }
+}
+
 .ctaContainer {
   @include max($md) {
     a {
       font-size: inherit;
+      padding: 0.65rem 2rem;
     }
   }
 }

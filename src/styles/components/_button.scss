@@ -95,7 +95,7 @@
     --clr-bg-active: var(--c3);
 
     &::after {
-      border: 0.15em solid var(--clr-text);
+      border: 0.15em solid clr(10, 0.6);
       border-radius: inherit !important;
       content: '';
       display: block;
