@@ -65,7 +65,7 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
         <ButtonBlank type="button" onClick={openImageInFS} className={css.icon}>
           <BsImage />
         </ButtonBlank>
-        <MessageTextInput value={text} setValue={setText} />
+        <MessageTextInput value={text} setValue={setText} contact={contact} />
         <ButtonBlank type="submit" className={css.icon}>
           <IoSend />
         </ButtonBlank>

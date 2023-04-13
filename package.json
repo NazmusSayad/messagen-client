@@ -9,7 +9,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.3.4",
-    "css-reset-plus": "^1.0.3",
+    "css-reset-plus": "^1.0.4",
     "error-boundary-react": "^1.0.2",
     "get-classnames": "^1.0.8",
     "react": "^18.2.0",

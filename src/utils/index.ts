@@ -46,7 +46,7 @@ export const createTempObjectId = () => {
     magic(Date.now() / 1000) +
     ' '.repeat(hex).replace(/./g, () => magic(Math.random() * hex))
 
-  return '#' + str
+  return '_' + str
 }
 
 export const parseFilesToBASE64 = (files: File[]): Promise<string[]> => {

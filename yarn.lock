@@ -919,10 +919,10 @@ css-prefers-color-scheme@^8.0.2:
   resolved "https://registry.yarnpkg.com/css-prefers-color-scheme/-/css-prefers-color-scheme-8.0.2.tgz#a0671f54eb19ed0d30b952574c0af11ec355fb6d"
   integrity sha512-OvFghizHJ45x7nsJJUSYLyQNTzsCU8yWjxAc/nhPQg1pbs18LMoET8N3kOweFDPy0JV0OSXN2iqRFhPBHYOeMA==
 
-css-reset-plus@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/css-reset-plus/-/css-reset-plus-1.0.3.tgz#6d664ddf10dfb2d6b77d713feb98467038b63989"
-  integrity sha512-ilEWnjkD4MOJYCum0zlBSrkKJUZ8o/wwlAnAxSGsgsQZzkDBsX/pcfd9AjrDF8YxLgjZwsIobJlvMQR8Tasyuw==
+css-reset-plus@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/css-reset-plus/-/css-reset-plus-1.0.4.tgz#2dc1d56239665487c6c30263de45a2bdf7b5fbfc"
+  integrity sha512-50RsLk5C8bLc7UObFH3Hihal3W5p51LC8TxuSbweMHg5E8Pt2ntTs95oS9k2UKdTCkwREimymUdGCyVmVLm9iQ==
 
 cssdb@^7.5.2:
   version "7.5.2"
