@@ -28,7 +28,6 @@ export const connect = (token) => {
     reconnectionDelay: 500,
     reconnectionDelayMax: 2500,
     reconnectionAttempts: Infinity,
-    timeout: Infinity,
   })
 
   soc.on('#ok', () => {
