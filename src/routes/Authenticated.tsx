@@ -25,8 +25,8 @@ const Authenticated = () => {
     suspenseError = error
   }
 
-  if (!user.isVerified) return <Verificaiton user={user} />
   if (suspenseError) return <h1>{suspenseError}</h1>
+  if (user._id && !user.isVerified) return <Verificaiton user={user} />
 
   socket.connect(auth.jwt)
   if (auth.socketError) return <h1>{auth.socketError}</h1>

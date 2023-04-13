@@ -43,11 +43,17 @@
     color: clr(9, 0.75);
     height: 1em;
     overflow-y: hidden;
+    display: flex;
+    gap: 0.5rem;
+
+    svg {
+      min-width: max-content;
+    }
   }
 
   .time {
     text-align: right;
-    width: 12ch;
+    width: 8ch;
     color: clr(9, 0.65);
     font-size: 1rem;
 
@@ -56,4 +62,3 @@
     }
   }
 }
-

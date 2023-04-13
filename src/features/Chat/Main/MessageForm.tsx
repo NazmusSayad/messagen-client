@@ -1,31 +1,48 @@
+import {
+  MutableRefObject,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react'
 import { useWs } from '$api/ws'
-import { useLayoutEffect, useRef, useState } from 'react'
 import Message, { MessageType } from '$slice/Message'
 import { useStore } from '$store'
 import { ContactType } from '$slice/User'
-import { createTempObjectId, parseFilesToURL, parseFilesToBASE64 } from '$utils'
+import { createTempObjectId, parseFilesToURL, convertToFormData } from '$utils'
 import { ButtonBlank } from '$components/Button'
 import MessageTextInput from './InputText'
 import MessageFileInput from './InputImages'
 import { BsImage } from 'react-icons/bs'
 import { IoSend } from 'react-icons/io5'
 import css from './MessageForm.module.scss'
+import { useApi } from '$api/http'
 
 const MessageForm = ({ contact }: { contact: ContactType }) => {
   const ws = useWs()
+  const api = useApi()
   const [text, setText] = useState('')
   const [form, preview, addImg, getImg, clearImg] = useImagePreview(contact._id)
   const user = useStore((state) => state.user.user)
+  const inputUniqueId = useRef() as MutableRefObject<string>
+  inputUniqueId.current ??= createTempObjectId()
+
+  const focusTextArea = () => {
+    document
+      .querySelector<HTMLTextAreaElement>(`.${inputUniqueId.current}`)
+      ?.focus()
+  }
+
+  useEffect(focusTextArea, [contact?._id])
 
   const handleSubmit = async (e) => {
+    focusTextArea()
     e.preventDefault()
     const images = getImg()
     if (!text && images.length === 0) return
-    const body = {
-      to: contact._id,
-      text: text || (undefined as any),
-      images: await parseFilesToBASE64(images),
-    }
+    const body: any = { to: contact._id }
+    if (text) body.text = text
+    if (images.length) body.images = images
 
     const tempId = createTempObjectId()
     const tempMessage: MessageType = {
@@ -40,7 +57,10 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
     setText('')
     clearImg()
     $store(Message.addMessage(tempMessage))
-    const data = await ws.send('messages/post', body)
+
+    const data = await (body.images
+      ? api.post('/messages', convertToFormData(body))
+      : ws.send('messages/post', body))
 
     $store(
       Message.replaceMessage({
@@ -59,31 +79,33 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
   return (
     <form onSubmit={handleSubmit} className={css.Form} ref={form}>
       {preview}
-      <MessageFileInput addImage={addImg} />
+      <MessageFileInput addImage={addImg} focusTextArea={focusTextArea} />
 
       <div className={css.inputContainer}>
         <ButtonBlank type="button" onClick={openImageInFS} className={css.icon}>
           <BsImage />
         </ButtonBlank>
-        <MessageTextInput value={text} setValue={setText} contact={contact} />
+
+        <MessageTextInput
+          value={text}
+          setValue={setText}
+          id={inputUniqueId.current}
+        />
+
         <ButtonBlank type="submit" className={css.icon}>
           <IoSend />
         </ButtonBlank>
       </div>
+
+      {api.error}
     </form>
   )
 }
 
 const useImagePreview = (contactId: string) => {
-  const handleScroll = (e) => {
-    console.log(e)
-  }
-
   const imageContainer = useRef<any>()
   const formRef = useRef() as { current: HTMLFormElement }
-  imageContainer.current ??= (
-    <div onClick={handleScroll} className={css.Preview} />
-  )
+  imageContainer.current ??= <div className={css.Preview} />
 
   const getImageContainer = (): HTMLDivElement => {
     return formRef.current.querySelector(`.${css.Preview}`)!

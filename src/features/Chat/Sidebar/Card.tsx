@@ -1,5 +1,5 @@
 import css from './Card.module.scss'
-import { HiOutlineClock } from 'react-icons/hi'
+import { HiOutlineClock, HiOutlinePhoto } from 'react-icons/hi2'
 import { ContactType } from '$slice/User'
 import { useStore } from '$store'
 import defaultGroupAvatar from '$assets/friend-cat.jpg'
@@ -28,7 +28,10 @@ const Card = ({ contact }: CardProps) => {
         <p>
           {lastMessage ? (
             <>
-              <span className={css.message}>{lastMessage.text}</span>
+              <span className={css.message}>
+                {lastMessage.images?.length ? <HiOutlinePhoto /> : null}
+                {lastMessage.text}
+              </span>
 
               <span className={css.time}>
                 {lastMessage.pending ? (

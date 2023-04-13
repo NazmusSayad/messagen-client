@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 
-const MessageFileInput = ({ addImage }) => {
+const MessageFileInput = ({ addImage, focusTextArea }) => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.files &&
       [...e.target.files]
@@ -18,6 +18,7 @@ const MessageFileInput = ({ addImage }) => {
       name="images"
       accept=".jpg, .jpeg, .png, .webp"
       onChange={handleInputChange}
+      onInput={focusTextArea}
     />
   )
 }

@@ -11,7 +11,7 @@ export const sendRequest = (ev, body: unknown): SendSocketReturnValue => {
   const socket = Socket.get()
 
   return new Promise((resolve) => {
-    if (!socket) {
+    if (!socket?.emit) {
       return resolve({ ok: false, error: 'Unable to conncet with server' })
     }
 

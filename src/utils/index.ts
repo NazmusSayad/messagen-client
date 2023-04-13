@@ -4,16 +4,13 @@ export const getLocalStorage = (key) => {
 }
 
 export const setLocalStorage = (key, value) => {
-  value === null
+  value == null
     ? localStorage.removeItem(key)
     : localStorage.setItem(key, JSON.stringify(value))
 }
 
-export const parseFormToObj = <
-  T = { [key: string]: string | File | File[] | FileList | Date }
->(
-  form
-) => {
+type FormType = { [key: string]: string | File | File[] | FileList | Date }
+export const parseFormToObj = <T = FormType>(form) => {
   const inputs = [
     ...form.querySelectorAll('input[name]:not([type="radio"])'),
     ...form.querySelectorAll('input[name][type="radio"]:checked'),
@@ -40,6 +37,10 @@ export const parseFormToObj = <
 }
 
 export const createTempObjectId = () => {
+  const dateString = Date.now().toString(36)
+  const randomness = Math.random().toString(36).substr(2)
+  return ('ID' + dateString + randomness).toUpperCase()
+
   const hex = 16
   const magic = (s) => Math.floor(s).toString(hex)
   const str =
@@ -49,25 +50,23 @@ export const createTempObjectId = () => {
   return '_' + str
 }
 
-export const parseFilesToBASE64 = (files: File[]): Promise<string[]> => {
-  const promises = files.map(parseFileToBASE64)
-  return Promise.all(promises)
-}
-
-export const parseFileToBASE64 = (file: File): Promise<string> => {
-  return new Promise((res) => {
-    const reader = new FileReader()
-    reader.onload = () => res(reader.result as string)
-    reader.readAsDataURL(file)
-  })
-}
-
 export const parseFilesToURL = (files: File[]) => {
   return files.map((file) => URL.createObjectURL(file))
 }
 
 export const convertToFormData = (object) => {
   const formData = new FormData()
-  for (let key in object) formData.append(key, object[key])
+  for (let key in object) {
+    const value = object[key]
+
+    if (Array.isArray(value)) {
+      for (let singleValue of value) {
+        formData.append(key, singleValue)
+      }
+    } else {
+      formData.append(key, value)
+    }
+  }
+
   return formData
 }

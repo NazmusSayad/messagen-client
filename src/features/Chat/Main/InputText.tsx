@@ -1,27 +1,9 @@
-import {
-  ChangeEvent,
-  KeyboardEvent,
-  memo,
-  MutableRefObject,
-  useEffect,
-  useRef,
-} from 'react'
+import { ChangeEvent, KeyboardEvent, memo } from 'react'
 import { Textarea } from '$components/Input'
-import { createTempObjectId } from '$utils'
 const replaceMap = { '  ': ' ', '\n ': '\n', '\n\n': '\n' }
 const replaceRegex = new RegExp(Object.keys(replaceMap).join('|'), 'g')
 
-const MessageTextInput = ({ value, setValue, contact }) => {
-  const uniqueId = useRef() as MutableRefObject<string>
-  uniqueId.current ??= createTempObjectId()
-
-  useEffect(() => {
-    const element = document.querySelector<HTMLTextAreaElement>(
-      `.${uniqueId.current}`
-    )
-    element?.focus()
-  }, [contact?._id])
-
+const MessageTextInput = ({ value, setValue, id }) => {
   const rows = value.match(/\n/g)?.length ?? 0
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     const notOk =
@@ -51,7 +33,7 @@ const MessageTextInput = ({ value, setValue, contact }) => {
       placeholder="assalamu alaikum..."
       onKeyDown={handleKeyDown}
       onChange={handleChange}
-      className={uniqueId.current}
+      className={id}
     />
   )
 }
