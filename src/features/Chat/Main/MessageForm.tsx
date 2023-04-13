@@ -67,7 +67,7 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
         id: tempId,
         message: data
           ? data.message
-          : { ...tempMessage, pending: false, error: 'Failed' },
+          : { ...tempMessage, pending: false, error: ws.error },
       })
     )
   }

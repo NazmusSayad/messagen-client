@@ -39,8 +39,16 @@ export default function Card({
               message.pending && css.pending
             )}
           >
-            {message.text && (
-              <p className={css.textContainer}>{message.text}</p>
+            {(message.text || message.error) && (
+              <p className={css.textContainer}>
+                {(message.error && !message.text) ||
+                (message.error &&
+                  message.error?.length > message.text?.length) ? (
+                  <span className={css.transparentError}>{message.error}</span>
+                ) : (
+                  message.text
+                )}
+              </p>
             )}
 
             {message.images?.length > 0 && (
@@ -70,10 +78,16 @@ export default function Card({
               </div>
             )}
 
-            {you && (
+            {you && !message.error && (
               <ButtonBlank className={css.deleteBtn} onClick={handleDelete}>
                 <FaRegTrashAlt />
               </ButtonBlank>
+            )}
+
+            {message.error && (
+              <div className={css.errorContainer}>
+                <p>{message.error}</p>
+              </div>
             )}
           </div>
         </div>

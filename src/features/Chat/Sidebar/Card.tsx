@@ -5,12 +5,16 @@ import { useStore } from '$store'
 import defaultGroupAvatar from '$assets/friend-cat.jpg'
 import defaultAvatar from '$assets/cat-x256.jpg'
 import { ButtonBlank } from '$components/Button'
+import { useMemo } from 'react'
 
 type CardProps = { contact: ContactType }
 const Card = ({ contact }: CardProps) => {
-  const lastMessage = useStore((state) =>
-    state.messages.messagesMap[contact._id]?.at(-1)
-  )
+  const messages = useStore((state) => state.messages.messagesMap[contact._id])
+
+  const lastMessage = useMemo(() => {
+    if (!messages) return
+    return [...messages].reverse().find((m) => !m.error)
+  }, [messages])
 
   return (
     <ButtonBlank to={'/chat/' + contact._id} className={css.Card}>
