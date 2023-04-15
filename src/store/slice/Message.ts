@@ -11,6 +11,7 @@ export interface MessageType {
   images: string[]
 
   pending?: true
+  failed?: boolean
   error?: string
 }
 
@@ -59,6 +60,7 @@ const Message = createSlice({
       state,
       { payload }: { payload: { id; message: MessageType } }
     ) {
+      console.log(payload)
       const { id, message } = payload
 
       const contact = state.contactsMap[id]

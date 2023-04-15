@@ -62,14 +62,16 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
       ? api.post('/messages', convertToFormData(body))
       : ws.send('messages/post', body))
 
-    $store(
-      Message.replaceMessage({
-        id: tempId,
-        message: data
-          ? data.message
-          : { ...tempMessage, pending: false, error: ws.error },
-      })
-    )
+    ;(async () => {
+      $store(
+        Message.replaceMessage({
+          id: tempId,
+          message: data
+            ? data.message
+            : { ...tempMessage, pending: false, error: ws.error, failed: true },
+        })
+      )
+    })()
   }
 
   const openImageInFS = () => {

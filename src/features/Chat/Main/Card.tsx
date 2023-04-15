@@ -40,15 +40,15 @@ export default function Card({
             )}
           >
             {(message.text || message.error) && (
-              <p className={css.textContainer}>
+              <div className={css.textContainer}>
                 {(message.error && !message.text) ||
                 (message.error &&
                   message.error?.length > message.text?.length) ? (
                   <span className={css.transparentError}>{message.error}</span>
                 ) : (
-                  message.text
+                  message.text.split('\n').map((text) => <p>{text}</p>)
                 )}
-              </p>
+              </div>
             )}
 
             {message.images?.length > 0 && (

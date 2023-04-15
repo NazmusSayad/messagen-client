@@ -1,4 +1,5 @@
 import css from './Card.module.scss'
+import { MdErrorOutline } from 'react-icons/md'
 import { HiOutlineClock, HiOutlinePhoto } from 'react-icons/hi2'
 import { ContactType } from '$slice/User'
 import { useStore } from '$store'
@@ -16,6 +17,8 @@ const Card = ({ contact }: CardProps) => {
     return [...messages].reverse().find((m) => !m.error)
   }, [messages])
 
+  console.log(lastMessage)
+
   return (
     <ButtonBlank to={'/chat/' + contact._id} className={css.Card}>
       <img
@@ -32,7 +35,9 @@ const Card = ({ contact }: CardProps) => {
         <p>
           {lastMessage ? (
             <>
-              <span className={css.message}>
+              <span
+                className={$cn(css.message, lastMessage.failed && css.error)}
+              >
                 {lastMessage.images?.length ? <HiOutlinePhoto /> : null}
                 {lastMessage.text}
               </span>
@@ -40,6 +45,8 @@ const Card = ({ contact }: CardProps) => {
               <span className={css.time}>
                 {lastMessage.pending ? (
                   <HiOutlineClock />
+                ) : lastMessage.failed ? (
+                  <MdErrorOutline className={css.error} />
                 ) : (
                   new Date(lastMessage.createdAt).toLocaleTimeString('en-us', {
                     hour12: true,
