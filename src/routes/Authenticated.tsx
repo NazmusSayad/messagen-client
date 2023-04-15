@@ -41,6 +41,7 @@ const Authenticated = () => {
           <Route index element={<></>} />
           <Route path=":id" element={<page.ChatMain />} />
         </Route>
+
         <Route path="contacts" element={<page.Contacts />} />
         <Route path="settings" element={<page.Settings />} />
         <Route path="profile" element={<page.Profile />} />

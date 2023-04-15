@@ -1,8 +1,9 @@
 import { lazy } from 'react'
 
-export const Chat = lazy(() => import('$features/Chat'))
-export const Dashboard = lazy(() => import('$features/Dashboard'))
-export const ChatMain = lazy(() => import('$features/Chat/Main'))
+export { default as Dashboard } from '$features/Dashboard'
+export { default as ChatMain } from '$features/Chat/Main'
+export { default as Chat } from '$features/Chat'
+
 export const Contacts = lazy(() => import('$features/Contacts'))
 export const Settings = lazy(() => import('$features/Settings'))
 export const Profile = lazy(() => import('$features/Profile'))
