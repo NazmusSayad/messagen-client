@@ -17,12 +17,15 @@ export default (contactId: string, scrollRef): [boolean, MessageType[]] => {
     if (messages.length >= 10 || triedRef.current) return
     ;(async () => {
       triedRef.current = true
-      const data = await ws.send('messages/get-older', { to: contactId })
+      const data = await ws.send('messages/get-older', {
+        to: contactId,
+        loadBefore: messages.at(-1)?._id,
+      })
+
       if (data && data.messages) {
         data.messages.forEach((message: MessageType) => {
           $store(Message.putMessage(message))
         })
-
         scrollRef.current = true
       }
     })()

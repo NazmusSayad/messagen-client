@@ -88,6 +88,7 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
 
         <MessageTextInput
           value={text}
+          addImage={addImg}
           setValue={setText}
           id={inputUniqueId.current}
         />

@@ -1,0 +1,22 @@
+.AvatarPicker {
+  $size: 6.75rem;
+  width: $size;
+  height: $size;
+  background: clr(6, 0.15);
+  border-radius: 50%;
+  overflow: hidden;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  margin-inline: auto;
+
+  svg {
+    $size: 3rem;
+    width: $size;
+    height: $size;
+  }
+
+  img {
+    object-fit: cover;
+  }
+}

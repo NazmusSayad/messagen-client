@@ -1,9 +1,10 @@
 import { ChangeEvent, KeyboardEvent, memo } from 'react'
 import { Textarea } from '$components/Input'
+import { ALLOWED_IMAGE_FORMATS } from '$config'
 const replaceMap = { '  ': ' ', '\n ': '\n', '\n\n': '\n' }
 const replaceRegex = new RegExp(Object.keys(replaceMap).join('|'), 'g')
 
-const MessageTextInput = ({ value, setValue, id }) => {
+const MessageTextInput = ({ value, setValue, id, addImage }) => {
   const rows = value.match(/\n/g)?.length ?? 0
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     const notOk =
@@ -24,6 +25,15 @@ const MessageTextInput = ({ value, setValue, id }) => {
     )
   }
 
+  const handlePaste = (e) => {
+    const files = [...e.clipboardData.files].filter(({ type }) => {
+      const [, ext] = type.split('/')
+      return ALLOWED_IMAGE_FORMATS.includes(ext)
+    })
+    if (!files.length) return
+    files.forEach(addImage)
+  }
+
   return (
     <Textarea
       name="text"
@@ -34,6 +44,7 @@ const MessageTextInput = ({ value, setValue, id }) => {
       onKeyDown={handleKeyDown}
       onChange={handleChange}
       className={id}
+      onPaste={handlePaste}
     />
   )
 }
