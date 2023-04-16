@@ -84,9 +84,9 @@ export default function Card({
               </ButtonBlank>
             )}
 
-            {message.error && (
+            {message.failed && (
               <div className={css.errorContainer}>
-                <p>{message.error}</p>
+                <p>{message.error ?? 'Something went wrong!'}</p>
               </div>
             )}
           </div>

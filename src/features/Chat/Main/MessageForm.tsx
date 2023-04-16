@@ -63,12 +63,13 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
       : ws.send('messages/post', body))
 
     ;(async () => {
+      const error = ws.error
       $store(
         Message.replaceMessage({
           id: tempId,
           message: data
             ? data.message
-            : { ...tempMessage, pending: false, error: ws.error, failed: true },
+            : { ...tempMessage, pending: false, failed: true, error },
         })
       )
     })()
