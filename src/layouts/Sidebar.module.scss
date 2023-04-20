@@ -3,7 +3,6 @@
   display: grid;
   grid-auto-rows: max-content 1fr;
   background: clr(2);
-  min-width: fit-content;
   width: 100%;
 
   @include min($md) {
