@@ -1,15 +1,20 @@
 import { useStore } from '$store'
+import { setLocalStorage } from '$utils'
 import { useLayoutEffect } from 'react'
 
 const Effect = () => {
-  const theme = useStore((state) => state.settings.theme)
+  const settings = useStore((state) => state.settings)
+
+  useLayoutEffect(() => {
+    setLocalStorage('settings', settings)
+  }, [settings])
 
   useLayoutEffect(() => {
     const target = document.body
-    theme
-      ? target.setAttribute('theme', theme)
+    settings.theme
+      ? target.setAttribute('theme', settings.theme)
       : target.removeAttribute('theme')
-  }, [theme])
+  }, [settings.theme])
 
   return <></>
 }
