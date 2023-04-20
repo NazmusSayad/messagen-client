@@ -38,9 +38,7 @@ const Login = () => {
       <Input type="text" name="username" placeholder="johndoe11" />
       <Input type="email" name="email" placeholder="john@example.com" />
       <Input type="password" name="password" placeholder="Password" />
-      <ButtonPrimary>
-        [It's my app, just I will use it] [If you are me then click else return]
-      </ButtonPrimary>
+      <ButtonPrimary>Signup</ButtonPrimary>
     </Layout>
   )
 }
