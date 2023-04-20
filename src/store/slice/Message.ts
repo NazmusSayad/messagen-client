@@ -60,7 +60,6 @@ const Message = createSlice({
       state,
       { payload }: { payload: { id; message: MessageType } }
     ) {
-      console.log(payload)
       const { id, message } = payload
 
       const contact = state.contactsMap[id]

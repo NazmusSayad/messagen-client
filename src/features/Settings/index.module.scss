@@ -1,0 +1,11 @@
+.Settings {
+  height: 100%;
+
+  @include min($md) {
+    display: flex;
+  }
+
+  :last-child {
+    flex: 1;
+  }
+}

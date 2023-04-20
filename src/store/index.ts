@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { useSelector } from 'react-redux'
 import { authReducers } from './slice/Auth'
 import { utilsReducers } from '$slice/Utils'
+import { settingsReducers } from '$slice/Settings'
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     user: userReducers,
     messages: messageReducers,
     utils: utilsReducers,
+    settings: settingsReducers,
   },
 })
 

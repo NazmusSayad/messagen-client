@@ -1,0 +1,19 @@
+.tab {
+}
+
+.tabButton {
+  color: clr(10, 0.7);
+  background: clr(1);
+  font-size: $fluid-15;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1.75rem;
+  border-radius: 1rem;
+  @include transition('background');
+  margin-bottom: 0.5rem;
+
+  &:hover,
+  &.active {
+    background: clr(0, 0.45);
+  }
+}

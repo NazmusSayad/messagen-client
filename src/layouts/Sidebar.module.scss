@@ -1,0 +1,35 @@
+.Sidebar {
+  height: 100%;
+  display: grid;
+  grid-auto-rows: max-content 1fr;
+  background: clr(2);
+  min-width: fit-content;
+  width: 100%;
+
+  @include min($md) {
+    max-width: 27.5rem;
+  }
+}
+
+.title,
+.content {
+  padding: 1rem 7.5%;
+
+  @include min($md) {
+    padding-inline: 2rem;
+  }
+}
+
+.title {
+  box-shadow: 0 0 0.5rem clr(0, 0.65);
+}
+
+.content {
+  margin-top: 0.75rem;
+}
+
+.contentScroll {
+  height: 100%;
+  max-height: 100%;
+  overflow: auto;
+}

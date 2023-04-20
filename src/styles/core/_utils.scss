@@ -20,6 +20,19 @@
   &[theme='#{$theme}'] {
     @content;
   }
+
+  [theme='auto'] &,
+  &[theme='auto'] {
+    @if ($theme == dark) {
+      @media (prefers-color-scheme: dark) {
+        @content;
+      }
+    } @else if ($theme == light) {
+      @media (prefers-color-scheme: light) {
+        @content;
+      }
+    }
+  }
 }
 
 @mixin focus-true {

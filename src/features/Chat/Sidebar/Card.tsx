@@ -17,8 +17,6 @@ const Card = ({ contact }: CardProps) => {
     return [...messages].reverse().find((m) => !m.error)
   }, [messages])
 
-  console.log(lastMessage)
-
   return (
     <ButtonBlank to={'/chat/' + contact._id} className={css.Card}>
       <img

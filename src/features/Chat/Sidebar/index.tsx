@@ -1,4 +1,5 @@
 import { Input } from '$components/Input'
+import Sidebar from '$layouts/Sidebar'
 import { ContactType } from '$slice/User'
 import { useStore } from '$store'
 import { useMemo, useState } from 'react'
@@ -9,22 +10,20 @@ const index = () => {
   const [contacts, setQuery] = useContactsSearch()
 
   return (
-    <div className={css.Sidebar}>
-      <div className={css.top}>
-        <h3 className={css.title}>Messages</h3>
-        <Input
-          type="search"
-          placeholder="Search..."
-          onChange={(e) => setQuery(e.target.value)}
-        />
-      </div>
+    <Sidebar title="Messages">
+      <Input
+        type="search"
+        placeholder="Search..."
+        className={css.search}
+        onChange={(e) => setQuery(e.target.value)}
+      />
 
       <div>
         {contacts.map((contact) => {
           return <Card key={contact._id} contact={contact} />
         })}
       </div>
-    </div>
+    </Sidebar>
   )
 }
 
@@ -38,8 +37,25 @@ const useContactsSearch = (): [ContactType[], Function] => {
         if (!(contact.me?.accepted && contact.friend?.accepted)) return
       } else if (!contact.me?.accepted) return
 
-      const contactStr = JSON.stringify(contact)
-      return contactStr.includes(query)
+      const contactStr = [
+        contact._id,
+        contact.name,
+        contact.friend?.user?.name,
+        contact.friend?.user?.username,
+      ]
+
+      const contactUsersStr = contact.users?.map(({ user }) => [
+        user._id,
+        user.name,
+        user.username,
+      ])
+
+      return [contactStr, contactUsersStr]
+        .flat()
+        .filter(Boolean)
+        .join('\n')
+        .toLowerCase()
+        .includes(query.toLowerCase())
     })
   }, [query, contacts])
 

@@ -1,0 +1,61 @@
+.theme {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1rem;
+  margin-inline: auto;
+  max-width: 40rem;
+  color: clrs(0);
+
+  > * {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid clr(3);
+    border-radius: 1rem;
+    min-height: 7rem;
+    aspect-ratio: 16 / 9;
+  }
+
+  .auto {
+    .dark {
+      clip-path: polygon(0 0, 0% 100%, 100% 0);
+    }
+    .light {
+      clip-path: polygon(0 100%, 100% 100%, 100% 0);
+      transform: translateY(-100%);
+    }
+
+    .dark,
+    .light {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .dark {
+    background-color: gray;
+
+    @include theme('dark') {
+      background-color: clr(1);
+    }
+  }
+
+  .light {
+    background-color: lightgrey;
+  }
+
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.25rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: transparent;
+    @include transition('background-color', 300ms);
+  }
+
+  .active .center {
+    background-color: clr(7);
+  }
+}
