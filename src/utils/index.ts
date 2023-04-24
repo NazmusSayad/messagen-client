@@ -40,14 +40,6 @@ export const createTempObjectId = () => {
   const dateString = Date.now().toString(36)
   const randomness = Math.random().toString(36).substr(2)
   return ('ID' + dateString + randomness).toUpperCase()
-
-  const hex = 16
-  const magic = (s) => Math.floor(s).toString(hex)
-  const str =
-    magic(Date.now() / 1000) +
-    ' '.repeat(hex).replace(/./g, () => magic(Math.random() * hex))
-
-  return '_' + str
 }
 
 export const parseFilesToURL = (files: File[]) => {
