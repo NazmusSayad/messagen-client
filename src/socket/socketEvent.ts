@@ -1,8 +1,10 @@
 import Message from '$slice/Message'
 import User from '$slice/User'
+import sendMessageNotification from '$utils/sendMessageNotification'
 
 export default {
   ['messages/post'](data) {
+    sendMessageNotification(data.message)
     $store(Message.addMessage(data.message))
   },
 
