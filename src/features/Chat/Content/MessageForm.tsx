@@ -100,8 +100,6 @@ const MessageForm = ({ contact }: { contact: ContactType }) => {
           <IoSend />
         </ButtonBlank>
       </div>
-
-      {api.error}
     </form>
   )
 }
