@@ -1,0 +1,14 @@
+.container {
+  max-width: 40rem;
+  padding: 2rem 5%;
+  margin-inline: auto;
+
+  > * {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.error {
+  color: clr(err);
+  text-align: center;
+}

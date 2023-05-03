@@ -1,0 +1,46 @@
+.Input {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  inset: 0;
+  left: auto;
+  display: grid;
+  place-content: center;
+}
+
+.svg {
+  border-radius: 50%;
+  background-color: transparent;
+  @include transition('background-color');
+
+  &:hover {
+    background-color: clr(5);
+  }
+
+  svg {
+    padding: 0.5rem;
+    min-height: 3rem;
+    min-width: 3rem;
+    aspect-ratio: 1;
+  }
+}
+
+.label {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: clr(9, 0.85);
+  font-weight: bold;
+  margin-left: 0.5rem;
+  margin-bottom: 0.1rem;
+}
+
+.password {
+  margin-top: 0.5rem;
+}
+
+.error {
+  color: clr(err);
+  text-align: center;
+}

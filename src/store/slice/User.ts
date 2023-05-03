@@ -95,6 +95,7 @@ export interface UserType {
   avatar: string
   username: string
   isVerified: boolean
+  pendingEmail?: string
 }
 
 interface RawContactType {

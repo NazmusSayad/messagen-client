@@ -2,9 +2,7 @@ import { useRef, useState } from 'react'
 import { AiOutlineCamera } from 'react-icons/ai'
 import css from './AvatarPicker.module.scss'
 
-interface Props {}
-
-const AvatarPicker = (props: Props) => {
+const AvatarPicker = ({ onFileChange = null as any, ...props }) => {
   const inputRef = useRef<HTMLInputElement>()
   const [imgSrc, setImgSrc] = useState('')
 
@@ -14,6 +12,7 @@ const AvatarPicker = (props: Props) => {
 
   const handleChange = (e) => {
     const file = e.target.files[0]
+    onFileChange && onFileChange(file)
     setImgSrc(file ? URL.createObjectURL(file) : '')
   }
 
@@ -22,6 +21,7 @@ const AvatarPicker = (props: Props) => {
       {imgSrc ? <img src={imgSrc} alt="" /> : <AiOutlineCamera />}
 
       <input
+        {...props}
         ref={inputRef as any}
         hidden
         type="file"
